@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sign Up & Get in Touch | The McBride Impact - Sign up to stay updated, receive our weekly emails, and get involved in our community initiatives.">
+  <title>Sign Up | The McBride Impact</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="main-header" id="home">
+    <div class="container nav-container">
+      <a href="index.html" class="logo-link">
+        <img src="assets/McBride Impact Logo (Transparent Background).png" alt="McBride Impact Logo" class="logo-img">
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="nav-links">
+          <li class="nav-item"><a href="signup.html" class="active">Sign Up</a></li>
+          <li class="nav-item"><a href="index.html#impacts">The Impacts</a></li>
+          <li class="nav-item"><a href="scholarship.html">Scholarship Fund</a></li>
+          <li class="nav-item"><a href="whoweare.html">Who We Are</a></li>
+          <li class="nav-item dropdown">
+            <a href="#" class="dropdown-toggle">What We Do <span class="arrow">&#9662;</span></a>
+            <ul class="dropdown-menu">
+              <li><a href="kidskreation.html">Kids Kreation</a></li>
+              <li><a href="events.html">Events</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="coloradouniversity.html">Colorado University</a></li>
+          <li class="nav-item"><a href="bigpictureproject.html">The Big Picture Project</a></li>
+          <li class="nav-item"><a href="gallery.html">Gallery</a></li>
+          <li class="nav-item"><a href="assistance.html">Assistance</a></li>
+          <li class="nav-item"><a href="volunteer.html">Volunteer</a></li>
+        </ul>
+      </nav>
+
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle Navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- SIGN UP MAIN CONTENT -->
+  <main class="signup-main-container reveal-on-scroll">
+    <div class="container" style="max-width: 1100px;">
+      <div class="text-center" style="margin-bottom: 40px;">
+        <h1 class="hero-title-lg">Get in Touch</h1>
+        <p class="body-lg signup-subtitle" style="margin-top: 10px; color: var(--color-text-light); max-width: 1100px; margin-left: auto; margin-right: auto;">Sign up to stay connected, receive our weekly impact reports, or get involved in our youth programs.</p>
+      </div>
+
+      <div class="card-premium" style="max-width: 860px; margin: 0 auto;">
+        <form class="signup-form" id="mcbride-signup-form" action="#" method="POST">
+          
+          <!-- Name Row -->
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="first-name">First Name <span class="required-tag">(required)</span></label>
+              <input type="text" id="first-name" name="firstName" required placeholder="First Name" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="last-name">Last Name <span class="required-tag">(required)</span></label>
+              <input type="text" id="last-name" name="lastName" required placeholder="Last Name" class="form-control">
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="form-group">
+            <label for="email">Email <span class="required-tag">(required)</span></label>
+            <input type="email" id="email" name="email" required placeholder="your.email@example.com" class="form-control">
+          </div>
+
+          <!-- Phone -->
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" placeholder="(303) 865-0051" class="form-control">
+          </div>
+
+          <!-- Organization -->
+          <div class="form-group">
+            <label for="organization">Organization</label>
+            <input type="text" id="organization" name="organization" placeholder="Organization name" class="form-control">
+          </div>
+
+          <!-- Your Position -->
+          <div class="form-group">
+            <label for="position">Your Position</label>
+            <input type="text" id="position" name="position" placeholder="Your Title / Role" class="form-control">
+          </div>
+
+          <!-- What more do you want to tell us? -->
+          <div class="form-group">
+            <label for="message">What more do you want to tell us?</label>
+            <textarea id="message" name="message" rows="4" placeholder="Share any thoughts, questions, or ideas with us..." class="form-control textarea-control"></textarea>
+          </div>
+
+          <!-- Submit Button & Feedback -->
+          <div class="form-actions" style="margin-top: 24px;">
+            <button type="submit" class="btn-donate-gold" id="signup-submit-btn" style="width: 100%; text-align: center; font-size: 1.15rem; cursor: pointer;">Submit Information</button>
+          </div>
+
+          <div class="form-success-msg" id="signup-success-msg" style="display: none; margin-top: 20px;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="success-icon"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Thank you for signing up! We've received your information and will be in touch soon.</span>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- COMPREHENSIVE MODERN NONPROFIT FOOTER -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-grid-4col">
+        <!-- Col 1: About & Logo -->
+        <div class="footer-col">
+          <a href="index.html" class="logo-link">
+            <img src="assets/McBride Impact Logo (Transparent Background).png" alt="McBride Impact Logo" style="height: 50px; width: auto; margin-bottom: 16px;">
+          </a>
+          <p class="caption-sm" style="color: #2d3748; margin-bottom: 20px; line-height: 1.6; font-weight: 500;">The McBride Impact is a registered 501(c)(3) non-profit organization dedicated to youth violence prevention, trauma intervention, and educational empowerment.</p>
+          <p class="caption-sm" style="color: #1a202c; font-weight: 700;">CALL 303-865-0051</p>
+        </div>
+
+        <!-- Col 2: Navigation -->
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-col-links">
+            <li><a href="whoweare.html">Who We Are</a></li>
+            <li><a href="scholarship.html">Scholarship Fund</a></li>
+            <li><a href="coloradouniversity.html">Colorado University</a></li>
+            <li><a href="bigpictureproject.html">Big Picture Project</a></li>
+            <li><a href="gallery.html">Gallery & Media</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Programs & Action -->
+        <div class="footer-col">
+          <h4>Get Involved</h4>
+          <ul class="footer-col-links">
+            <li><a href="kidskreation.html">Kids Kreation</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="assistance.html">Assistance</a></li>
+            <li><a href="volunteer.html">Volunteer</a></li>
+            <li><a href="signup.html">Sign Up</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Newsletter -->
+        <div class="footer-col">
+          <h4>Newsletter</h4>
+          <p class="caption-sm" style="color: #2d3748; font-weight: 500;">Subscribe for weekly impact reports and updates.</p>
+          <form class="footer-newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+            <input type="email" placeholder="Your email address" required class="footer-newsletter-input">
+            <button type="submit" class="btn-newsletter-submit">Join</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p>© 2026 The McBride Impact. 501(c)(3) Non-Profit Organization. All Rights Reserved.</p>
+        <div class="footer-bottom-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Accessibility</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

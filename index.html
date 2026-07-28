@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The McBride Impact - Advocating for trust, systemic accountability, reform, and justice to create safer and fairer communities.">
+  <title>The McBride Impact | Accountability, Reform, and Community</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="main-header" id="home">
+    <div class="container nav-container">
+      <a href="#home" class="logo-link">
+        <img src="assets/McBride Impact Logo (Transparent Background).png" alt="McBride Impact Logo" class="logo-img">
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="nav-links">
+          <li class="nav-item"><a href="signup.html">Sign Up</a></li>
+          <li class="nav-item"><a href="#impacts">The Impacts</a></li>
+          <li class="nav-item"><a href="scholarship.html">Scholarship Fund</a></li>
+          <li class="nav-item"><a href="whoweare.html">Who We Are</a></li>
+          <li class="nav-item dropdown">
+            <a href="#" class="dropdown-toggle">What We Do <span class="arrow">&#9662;</span></a>
+            <ul class="dropdown-menu">
+              <li><a href="kidskreation.html">Kids Kreation</a></li>
+              <li><a href="events.html">Events</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="coloradouniversity.html">Colorado University</a></li>
+          <li class="nav-item"><a href="bigpictureproject.html">The Big Picture Project</a></li>
+          <li class="nav-item"><a href="gallery.html">Gallery</a></li>
+          <li class="nav-item"><a href="assistance.html">Assistance</a></li>
+          <li class="nav-item"><a href="volunteer.html">Volunteer</a></li>
+        </ul>
+      </nav>
+
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle Navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <video autoplay muted loop playsinline class="hero-bg-video">
+      <source src="assets/Hero Looping Page Background.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <!-- Floating Form Overlay -->
+    <div class="hero-floating-overlay">
+      <div class="hero-form-card">
+        <h2 class="hero-form-title">Can you imagine a world where youth violence is cut in half in one year? <span class="highlight-blue">We can.</span></h2>
+        <p class="hero-form-desc">We created a blueprint called <strong>“Impact for Change”</strong> to reduce youth violence by 50% in one year. We combine old school street wisdom with new school social technology. We are building a national network of change makers. Sign up to receive the “Impact for Change” blueprint.</p>
+        
+        <form class="hero-blueprint-form" id="hero-blueprint-form" action="#" method="POST">
+          <div class="hero-form-grid">
+            <div class="form-field">
+              <label for="hero-name">Name</label>
+              <input type="text" id="hero-name" name="name" placeholder="Your Name" required class="hero-input">
+            </div>
+            <div class="form-field">
+              <label for="hero-org">Organization</label>
+              <input type="text" id="hero-org" name="organization" placeholder="Organization Name" class="hero-input">
+            </div>
+            <div class="form-field">
+              <label for="hero-email">Email</label>
+              <input type="email" id="hero-email" name="email" placeholder="your.email@example.com" required class="hero-input">
+            </div>
+            <div class="form-field">
+              <label for="hero-phone">Phone <span class="opt-tag">(optional)</span></label>
+              <input type="tel" id="hero-phone" name="phone" placeholder="(303) 865-0051" class="hero-input">
+            </div>
+          </div>
+          
+          <div class="hero-form-btn-wrapper">
+            <button type="submit" class="btn-hero-blueprint" id="hero-blueprint-btn">Send Me the Blueprint</button>
+          </div>
+
+          <div class="hero-form-success" id="hero-form-success" style="display: none;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="success-icon"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Thank you! Your "Impact for Change" blueprint is on its way to your inbox.</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- THREE PILLARS SECTION -->
+  <section class="pillars-section reveal-on-scroll" id="pillars">
+    <div class="container">
+      <div class="text-center" style="margin-bottom: 50px;">
+        <h2 class="section-title-lg">The Three "Impact for Change" Components</h2>
+      </div>
+      <div class="pillars-grid">
+        <!-- Component 1 -->
+        <div class="card-premium text-center" style="padding: 32px 18px;">
+          <img src="assets/Section 2 Assets/Section 2, Hyper-Engaging Curriculum Photo.png" alt="Hyper-Engaging Curriculum" class="component-img" style="margin: 0 auto; display: block;">
+          <h3 class="card-title-lg" style="margin: 20px 0 10px; text-align: center; font-size: 1.25rem; white-space: nowrap;">Hyper-Engaging Curriculum</h3>
+          <p class="body-lg" style="font-size: 1rem; color: var(--color-text-light); text-align: center;">Immersive Story-Based Curriculum that teaches goal achievement and problem-solving that keeps students hooked.</p>
+        </div>
+        <!-- Component 2 -->
+        <div class="card-premium text-center" style="padding: 32px 18px;">
+          <img src="assets/Section 2 Assets/Section 2, Deep Trauma Intervention Photo.png" alt="Deep Trauma Intervention" class="component-img" style="margin: 0 auto; display: block;">
+          <h3 class="card-title-lg" style="margin: 20px 0 10px; text-align: center; font-size: 1.25rem; white-space: nowrap;">Deep Trauma Intervention</h3>
+          <p class="body-lg" style="font-size: 1rem; color: var(--color-text-light); text-align: center;">Healing trauma at the root level so inner-city kids can actually thrive, not just survive.</p>
+        </div>
+        <!-- Component 3 -->
+        <div class="card-premium text-center" style="padding: 32px 18px;">
+          <img src="assets/Section 2 Assets/Section 2, The  22Big Picture 22 Project Photo.png" alt="The 'Big Picture' Project" class="component-img" style="margin: 0 auto; display: block;">
+          <h3 class="card-title-lg" style="margin: 20px 0 10px; text-align: center; font-size: 1.25rem; white-space: nowrap;">The "Big Picture" Project</h3>
+          <p class="body-lg" style="font-size: 1rem; color: var(--color-text-light); text-align: center;">We're building the world's largest anti-violence poster to make a massive visual statement the world can't ignore.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WATCH VIDEO SECTION -->
+  <section class="learn-more-section reveal-on-scroll" id="learn-more">
+    <div class="container">
+      <div class="text-center" style="margin-bottom: 40px;">
+        <h2 class="section-title-lg">Watch the Video to Learn More</h2>
+      </div>
+      <div class="video-embed-wrapper">
+        <iframe class="embed-iframe" src="https://www.youtube.com/embed/AjiLfebHYiQ" title="After takeover concerns, Aurora teens choose ice cream over chaos" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+      <div class="text-center" style="margin-top: 40px;">
+        <h3 class="card-title-lg" style="font-size: 1.8rem; margin-bottom: 8px;">We can't do it without you!</h3>
+        <p class="body-lg" style="margin-bottom: 24px;">This has never been done before. Join the movement!</p>
+        <div>
+          <a href="tel:3038650051" class="btn-accent" style="padding: 14px 36px; font-size: 1.1rem; letter-spacing: 0.5px;">Book a Call</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION SECTION -->
+  <section class="mission-section reveal-on-scroll" id="mission">
+    <div class="container text-center">
+      <div class="mission-header">
+        <h2 class="section-title-lg" style="margin-bottom: 16px;">Our Mission</h2>
+        <p class="body-lg" style="margin-bottom: 40px;">Empower people of color through sustainable pillar initiatives</p>
+      </div>
+      <div class="mission-grid">
+        <!-- Education -->
+        <div class="card-premium text-center">
+          <img src="assets/Section 4/Education Icon.png" alt="Education" class="mission-icon">
+          <h3 class="card-title-lg" style="margin-top: 15px;">EDUCATION</h3>
+        </div>
+        <!-- Employment -->
+        <div class="card-premium text-center">
+          <img src="assets/Section 4/Employment Icon.png" alt="Employment" class="mission-icon">
+          <h3 class="card-title-lg" style="margin-top: 15px;">EMPLOYMENT</h3>
+        </div>
+        <!-- Equality -->
+        <div class="card-premium text-center">
+          <img src="assets/Section 4/Equality Icon.png" alt="Equality" class="mission-icon">
+          <h3 class="card-title-lg" style="margin-top: 15px;">EQUALITY</h3>
+        </div>
+        <!-- Equity -->
+        <div class="card-premium text-center">
+          <img src="assets/Section 4/Equity Icon.png" alt="Equity" class="mission-icon">
+          <h3 class="card-title-lg" style="margin-top: 15px;">EQUITY</h3>
+        </div>
+      </div>
+      <div class="mission-action" style="margin-top: 40px;">
+        <a href="#donate-showcase" class="btn-donate-gold">Donate Today</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCHOLARSHIP SECTION -->
+  <section class="scholarship-section reveal-on-scroll" id="scholarship">
+    <div class="container text-center">
+      <div class="scholarship-content">
+        <img src="assets/Section 5/John McBride Memorial Scholarship Fund Logo.png" alt="John McBride Memorial Scholarship Fund Logo" class="scholarship-logo">
+        <div class="scholarship-title-box">
+          <h2>For Outstanding Student of Color</h2>
+        </div>
+        <div class="scholarship-action">
+          <a href="scholarship.html" class="btn-learn-more-flat">Learn more</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QR REGISTER SECTION -->
+  <section class="qr-register-section reveal-on-scroll" id="qr-register">
+    <div class="container text-center">
+      <div class="qr-register-header">
+        <div class="qr-text-wrapper">
+          <h2 class="section-title-lg">Register for McBride Impact Programs</h2>
+        </div>
+        <p class="body-lg" style="margin-top: 10px;">Scan to begin your transformation journey</p>
+      </div>
+      <div class="qr-image-container">
+        <img src="assets/Register for McBride Impact Programs QR.png" alt="Register for McBride Impact Programs QR" class="qr-register-img">
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACT PROGRAMS VISUAL JOURNEY TIMELINE -->
+  <section class="programs-section reveal-on-scroll" id="programs">
+    <div class="container">
+      <div class="text-center">
+        <h2 class="section-title-lg" style="text-align: center;">Impact Programs</h2>
+        <p class="body-lg" style="max-width: 650px; margin: 12px auto 0;">A guided progression path empowering youth from mentorship to leadership.</p>
+      </div>
+
+      <div class="timeline-journey">
+        <!-- Step 1: P.R.E.P. -->
+        <div class="timeline-step">
+          <div class="timeline-step-node"></div>
+          <div class="timeline-step-card">
+            <div class="program-img-wrapper" style="margin-bottom: 14px;">
+              <img src="assets/Program Section/PREP Icon.png" alt="P.R.E.P. Program Icon" class="program-img">
+            </div>
+            <h3 class="card-title-lg">P.R.E.P.</h3>
+            <p class="caption-sm" style="color: var(--color-blueprint); font-weight: 600; margin: 4px 0 10px;">Peer Run Exit Program</p>
+            <p class="body-lg" style="font-size: 0.95rem;">Empowering youth through peer-led exit strategies and community support systems.</p>
+            <a href="signup.html" class="btn-program-learn" style="margin-top: 15px; display: inline-block;">Get Involved</a>
+          </div>
+        </div>
+
+        <!-- Step 2: F.R.E.S.H. 101 -->
+        <div class="timeline-step">
+          <div class="timeline-step-node"></div>
+          <div class="timeline-step-card">
+            <div class="program-img-wrapper" style="margin-bottom: 14px;">
+              <img src="assets/Program Section/F.R.E.S.H. 101 Icon.png" alt="F.R.E.S.H. 101 Program Icon" class="program-img">
+            </div>
+            <h3 class="card-title-lg">F.R.E.S.H. 101</h3>
+            <p class="caption-sm" style="color: var(--color-blueprint); font-weight: 600; margin: 4px 0 10px;">School Supplies & Haircuts</p>
+            <p class="body-lg" style="font-size: 0.95rem;">Building confidence and dignity through essential school readiness tools.</p>
+            <a href="signup.html" class="btn-program-learn" style="margin-top: 15px; display: inline-block;">Get Involved</a>
+          </div>
+        </div>
+
+        <!-- Step 3: City-Wide Network -->
+        <div class="timeline-step">
+          <div class="timeline-step-node"></div>
+          <div class="timeline-step-card">
+            <div class="program-img-wrapper" style="margin-bottom: 14px;">
+              <img src="assets/Program Section/City-Wide Network Icon.png" alt="City-Wide Network Program Icon" class="program-img">
+            </div>
+            <h3 class="card-title-lg">City-Wide Network</h3>
+            <p class="caption-sm" style="color: var(--color-blueprint); font-weight: 600; margin: 4px 0 10px;">After School Program</p>
+            <p class="body-lg" style="font-size: 0.95rem;">Safe spaces, academic support, and creative enrichment across city neighborhoods.</p>
+            <a href="signup.html" class="btn-program-learn" style="margin-top: 15px; display: inline-block;">Get Involved</a>
+          </div>
+        </div>
+
+        <!-- Step 4: 10 for 10 -->
+        <div class="timeline-step">
+          <div class="timeline-step-node"></div>
+          <div class="timeline-step-card">
+            <div class="program-img-wrapper" style="margin-bottom: 14px;">
+              <img src="assets/Program Section/10 for 10 Icon.png" alt="10 for 10 Program Icon" class="program-img">
+            </div>
+            <h3 class="card-title-lg">10 for 10</h3>
+            <p class="caption-sm" style="color: var(--color-blueprint); font-weight: 600; margin: 4px 0 10px;">Youth Leadership Academy</p>
+            <p class="body-lg" style="font-size: 0.95rem;">Developing next-generation community leaders and change makers.</p>
+            <a href="signup.html" class="btn-program-learn" style="margin-top: 15px; display: inline-block;">Get Involved</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIFESTYLE MERCHANDISE STOREFRONT SECTION -->
+  <section class="tshirt-section reveal-on-scroll" id="tshirt-sale">
+    <div class="container">
+      <div class="text-center" style="margin-bottom: 30px;">
+        <h2 class="section-title-lg">McBride Impact Storefront</h2>
+        <p class="body-lg" style="margin-top: 8px;">Wear the movement. Every purchase directly funds our youth programs.</p>
+      </div>
+
+      <div class="merch-storefront-grid">
+        <!-- Merch Item 1 -->
+        <div class="merch-card">
+          <div class="merch-img-wrapper">
+            <span class="price-badge">$20.00</span>
+            <img src="assets/Tshirt Section/Tshirt Icon.png" alt="McBride Impact Official T-Shirt">
+          </div>
+          <div class="merch-info">
+            <h3 class="merch-item-title">Official T-Shirt</h3>
+            <p class="merch-item-desc">Premium soft-cotton tee featuring the iconic McBride Impact emblem. Available in all sizes & colors.</p>
+            <a href="signup.html" class="btn-signup-submit" style="width: 100%; text-align: center;">Order Shirt</a>
+          </div>
+        </div>
+
+        <!-- Merch Item 2 -->
+        <div class="merch-card">
+          <div class="merch-img-wrapper">
+            <span class="price-badge">$55.00</span>
+            <img src="assets/Tshirt Section/Hoodies Icon .png" alt="McBride Impact Hoodie">
+          </div>
+          <div class="merch-info">
+            <h3 class="merch-item-title">Impact Pullover Hoodie</h3>
+            <p class="merch-item-desc">Heavyweight comfortable fleece hoodie designed for everyday warmth and community pride.</p>
+            <a href="signup.html" class="btn-signup-submit" style="width: 100%; text-align: center;">Order Hoodie</a>
+          </div>
+        </div>
+
+        <!-- Merch Item 3 -->
+        <div class="merch-card">
+          <div class="merch-img-wrapper">
+            <span class="price-badge">Custom</span>
+            <img src="assets/Tshirt Section/McBride Tshirt Kids.png" alt="Youth Apparel & Custom Orders">
+          </div>
+          <div class="merch-info">
+            <h3 class="merch-item-title">Youth & Custom Collection</h3>
+            <p class="merch-item-desc">Specialty youth sizes ($40.00) and custom organizational group orders available upon request.</p>
+            <a href="signup.html" class="btn-signup-submit" style="width: 100%; text-align: center;">Custom Request</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMOTIONAL DONATION FEATURE BANNER -->
+  <section class="donation-feature-banner reveal-on-scroll" id="donate-showcase">
+    <div class="donation-banner-content">
+      <h2 class="donation-banner-title">One Donation. One Student. One Future Changed.</h2>
+      <p class="donation-banner-desc">Your generosity fuels trauma intervention, education equity, and youth empowerment. Stand with us to build a violence-free community.</p>
+      <a href="tel:3038650051" class="btn-donate-gold">Donate Today & Make an Impact</a>
+    </div>
+  </section>
+
+  <!-- EDITORIAL QUOTE SECTION -->
+  <section class="editorial-quote-section reveal-on-scroll" id="proverb-quote">
+    <div class="quote-container">
+      <span class="quote-mark">“</span>
+      <blockquote class="quote-text">
+        If you want to know what's on the road ahead, ask a man who is walking back.
+      </blockquote>
+      <cite class="quote-author">— Chinese Proverb</cite>
+    </div>
+  </section>
+
+  <!-- GALLERY SHOWCASE SECTION -->
+  <section class="gallery-section reveal-on-scroll" id="gallery">
+    <div class="container text-center">
+      <h2 class="section-title-lg">Photo Gallery</h2>
+      <p class="body-lg" style="margin-top: 10px;">Visual stories of transformation across our community programs</p>
+    </div>
+    
+    <div class="gallery-slider-container">
+      <button class="gallery-arrow gallery-arrow-left" id="gallery-prev" aria-label="Previous image">
+        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      
+      <div class="gallery-slider-track-wrapper">
+        <div class="gallery-slider-track" id="gallery-track">
+          <div class="gallery-slide">
+            <img src="assets/Gallery Photos 1/aj0y9ovw0ethwib13m53.png" alt="McBride Impact Community Event">
+          </div>
+          <div class="gallery-slide">
+            <img src="assets/Gallery Photos 1/ddyaftidvlnapobma4yz.png" alt="McBride Impact Community Event">
+          </div>
+          <div class="gallery-slide">
+            <img src="assets/Gallery Photos 1/gjnqpyuopwj0da24ldfr.png" alt="McBride Impact Community Event">
+          </div>
+          <div class="gallery-slide">
+            <img src="assets/Gallery Photos 1/gqncj1i1qppvix1cvatv.png" alt="McBride Impact Community Event">
+          </div>
+          <div class="gallery-slide">
+            <img src="assets/Gallery Photos 1/j7hawdoev2x14uekjsch.png" alt="McBride Impact Community Event">
+          </div>
+          <div class="gallery-slide">
+            <img src="assets/Gallery Photos 1/nep24q6tulxnuhsawf9b.png" alt="McBride Impact Community Event">
+          </div>
+        </div>
+      </div>
+      
+      <button class="gallery-arrow gallery-arrow-right" id="gallery-next" aria-label="Next image">
+        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- OUR SUPPORTERS SHOWCASE SECTION -->
+  <section class="supporters-section reveal-on-scroll" id="supporters-showcase">
+    <div class="container text-center">
+      <h2 class="section-title-lg">Our Partners & Supporters</h2>
+      <p class="body-lg" style="margin-top: 8px;">Proudly partnering with community leaders and organizations.</p>
+      
+      <div class="supporters-grid">
+        <div class="supporter-logo-item">
+          <img src="assets/Our Sponsors/GRASP Icon.png" alt="GRASP">
+        </div>
+        <div class="supporter-logo-item">
+          <img src="assets/Our Sponsors/JCP Icon.png" alt="JCP">
+        </div>
+        <div class="supporter-logo-item">
+          <img src="assets/Our Sponsors/KAE Icon.png" alt="Kids Above Everything">
+        </div>
+        <div class="supporter-logo-item">
+          <img src="assets/Our Sponsors/Toys for Tots Icon.png" alt="Toys for Tots">
+        </div>
+        <div class="supporter-logo-item">
+          <img src="assets/Our Sponsors/Target Icon.png" alt="Target">
+        </div>
+        <div class="supporter-logo-item">
+          <img src="assets/Our Sponsors/Walmart Icon.png" alt="Walmart">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AWARDS & RECOGNITION GALLERY SECTION -->
+  <section class="awards-recognition-section reveal-on-scroll" id="awards-recognition">
+    <div class="container text-center">
+      <h2 class="section-title-lg">Awards and Recognition</h2>
+    </div>
+    
+    <div class="awards-slider-container">
+      <button class="awards-arrow awards-arrow-left" id="awards-prev" aria-label="Previous image">
+        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      
+      <div class="awards-slider-track-wrapper">
+        <div class="awards-slider-track" id="awards-track">
+          <div class="awards-slide">
+            <img src="assets/Gallery 2/mkz35riehd6calz0jmb7.png" alt="McBride Impact Award">
+          </div>
+          <div class="awards-slide">
+            <img src="assets/Gallery 2/ufkthckrftvbphgeszq1.png" alt="McBride Impact Award">
+          </div>
+          <div class="awards-slide">
+            <img src="assets/Gallery 2/ybxqkcpmkh5cp83qk0o3.png" alt="McBride Impact Award">
+          </div>
+          <div class="awards-slide">
+            <img src="assets/Gallery 2/zjki3c3ixo8cmepcsmbt.png" alt="McBride Impact Award">
+          </div>
+        </div>
+      </div>
+      
+      <button class="awards-arrow awards-arrow-right" id="awards-next" aria-label="Next image">
+        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- COMPREHENSIVE MODERN NONPROFIT FOOTER -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-grid-4col">
+        <!-- Col 1: About & Logo -->
+        <div class="footer-col">
+          <a href="index.html" class="logo-link">
+            <img src="assets/McBride Impact Logo (Transparent Background).png" alt="McBride Impact Logo" style="height: 50px; width: auto; margin-bottom: 16px;">
+          </a>
+          <p class="caption-sm" style="color: #2d3748; margin-bottom: 20px; line-height: 1.6; font-weight: 500;">The McBride Impact is a registered 501(c)(3) non-profit organization dedicated to youth violence prevention, trauma intervention, and educational empowerment.</p>
+          <p class="caption-sm footer-call-text" style="color: #1a202c; font-weight: 700;">CALL 303-865-0051</p>
+        </div>
+
+        <!-- Col 2: Navigation -->
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-col-links">
+            <li><a href="whoweare.html">Who We Are</a></li>
+            <li><a href="scholarship.html">Scholarship Fund</a></li>
+            <li><a href="coloradouniversity.html">Colorado University</a></li>
+            <li><a href="bigpictureproject.html">Big Picture Project</a></li>
+            <li><a href="gallery.html">Gallery & Media</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Programs & Action -->
+        <div class="footer-col">
+          <h4>Get Involved</h4>
+          <ul class="footer-col-links">
+            <li><a href="kidskreation.html">Kids Kreation</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="assistance.html">Assistance</a></li>
+            <li><a href="volunteer.html">Volunteer</a></li>
+            <li><a href="signup.html">Sign Up</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Newsletter -->
+        <div class="footer-col">
+          <h4>Newsletter</h4>
+          <p class="caption-sm" style="color: #2d3748; font-weight: 500;">Subscribe for weekly impact reports and updates.</p>
+          <form class="footer-newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+            <input type="email" placeholder="Your email address" required class="footer-newsletter-input">
+            <button type="submit" class="btn-newsletter-submit">Join</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p>© 2026 The McBride Impact. 501(c)(3) Non-Profit Organization. All Rights Reserved.</p>
+        <div class="footer-bottom-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Accessibility</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX MODAL FOR GALLERY IMAGES -->
+  <div class="lightbox-modal" id="lightbox-modal">
+    <span class="lightbox-close" id="lightbox-close">&times;</span>
+    <img src="" alt="Enlarged view" class="lightbox-content" id="lightbox-img">
+  </div>
+
+
+  <!-- VIDEO LIGHTBOX MODAL -->
+  <div class="lightbox-modal" id="video-lightbox">
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightbox-close-btn">&times; Close</button>
+      <iframe class="lightbox-iframe" id="lightbox-iframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- SUCCESS STATE MODAL -->
+  <div class="success-modal" id="success-modal">
+    <div class="success-card">
+      <div class="success-icon-wrapper">
+        <svg class="success-icon" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <h3 class="success-title">Submission Received!</h3>
+      <p class="success-desc">Thank you for joining the movement. We will keep you updated on key policy implementations and action items in your area.</p>
+      <button class="btn-primary" id="success-close-btn" style="width: 100%;">Return to Site</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
