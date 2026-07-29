@@ -4925,3 +4925,107 @@ a {
     white-space: nowrap;
   }
 }
+
+/* ==========================================================================
+   MOBILE RESPONSIVENESS FIXES (ALL PAGES & COMPONENTS)
+   ========================================================================== */
+
+/* Mission Grid 2x2 Layout on Mobile (Prevents truncated EDUCATION, EMPLOYMENT, EQUALITY, EQUITY text) */
+@media (max-width: 768px) {
+  .mission-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px 14px !important;
+    padding: 0 10px;
+  }
+  .mission-icon {
+    max-width: 130px !important;
+    margin-bottom: 12px !important;
+  }
+  .mission-card-title {
+    font-size: 1.05rem !important;
+    letter-spacing: 0.5px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .mission-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px 10px !important;
+  }
+  .mission-icon {
+    max-width: 105px !important;
+  }
+  .mission-card-title {
+    font-size: 0.95rem !important;
+  }
+}
+
+/* Colorado University Grids on Mobile */
+.cu-photos-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+  .cu-photos-row {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  .cu-photos-row .cu-thumb-img {
+    height: 200px !important;
+  }
+  .cu-donate-grid {
+    grid-template-columns: 1fr !important;
+    gap: 30px !important;
+  }
+  .cu-photo-grid-2x2 {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+  .cu-grid-img {
+    height: 140px !important;
+  }
+}
+
+/* Our Partners & Supporters Grid Mobile Scaling */
+@media (max-width: 768px) {
+  .supporters-section {
+    padding: 50px 16px !important;
+  }
+  .supporters-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 30px 15px !important;
+    margin-top: 35px !important;
+  }
+  .supporter-logo-item {
+    padding: 10px 4px !important;
+  }
+  .supporter-logo-item img {
+    max-width: 100% !important;
+    max-height: 75px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .supporters-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 24px 10px !important;
+  }
+  .supporter-logo-item img {
+    max-height: 60px !important;
+  }
+}
+
+/* Card Premium Mobile Padding & Overflow Prevention */
+@media (max-width: 768px) {
+  .card-premium {
+    padding: 24px 18px !important;
+  }
+  .bigpicture-main-container,
+  .assistance-main-container,
+  .volunteer-main-container {
+    padding: 40px 14px 80px !important;
+  }
+}
