@@ -4930,33 +4930,79 @@ a {
    MOBILE RESPONSIVENESS FIXES (ALL PAGES & COMPONENTS)
    ========================================================================== */
 
-/* Mission Grid 2x2 Layout on Mobile (Prevents truncated EDUCATION, EMPLOYMENT, EQUALITY, EQUITY text) */
+/* Mission Section Fixed Header Clearance & Responsive Title Layout */
+.mission-section {
+  scroll-margin-top: 100px;
+}
+
+@media (max-width: 768px) {
+  .mission-section {
+    padding-top: 130px !important;
+    padding-bottom: 70px !important;
+    scroll-margin-top: 90px !important;
+  }
+}
+
+/* Mission Grid 2x2 Layout on Mobile (Prevents truncated EDUCATION, EMPLOYMENT, EQUALITY, EQUITY text & centers icons) */
+.mission-grid .card-premium,
+.mission-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  padding: 24px 12px !important;
+}
+
+.mission-icon {
+  display: block !important;
+  margin: 0 auto 12px auto !important;
+  width: auto !important;
+  max-width: 130px !important;
+  max-height: 120px !important;
+  object-fit: contain !important;
+}
+
+.mission-grid .card-title-lg,
+.mission-card-title {
+  font-family: var(--font-heading) !important;
+  font-weight: 800 !important;
+  font-size: clamp(0.75rem, 3.4vw, 1.1rem) !important;
+  color: var(--color-text) !important;
+  letter-spacing: 0.5px !important;
+  text-align: center !important;
+  width: 100% !important;
+  margin-top: 8px !important;
+  white-space: nowrap !important;
+}
+
 @media (max-width: 768px) {
   .mission-grid {
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 20px 14px !important;
-    padding: 0 10px;
+    gap: 18px 12px !important;
+    padding: 0 8px;
   }
   .mission-icon {
-    max-width: 130px !important;
-    margin-bottom: 12px !important;
-  }
-  .mission-card-title {
-    font-size: 1.05rem !important;
-    letter-spacing: 0.5px !important;
+    max-width: 110px !important;
+    max-height: 100px !important;
+    margin-bottom: 10px !important;
   }
 }
 
 @media (max-width: 480px) {
   .mission-grid {
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 16px 10px !important;
+    gap: 14px 10px !important;
+  }
+  .mission-grid .card-premium {
+    padding: 18px 8px !important;
   }
   .mission-icon {
-    max-width: 105px !important;
+    max-width: 90px !important;
+    max-height: 85px !important;
   }
-  .mission-card-title {
-    font-size: 0.95rem !important;
+  .mission-grid .card-title-lg {
+    font-size: clamp(0.7rem, 3.2vw, 0.95rem) !important;
   }
 }
 
