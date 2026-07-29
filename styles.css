@@ -182,15 +182,16 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 100%;
-  padding-left: 170px;
-  padding-right: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
 .logo-link {
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-shrink: 0;
 }
 
 .logo-img {
@@ -213,16 +214,16 @@ a {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
   list-style: none;
 }
 
 .nav-item a {
   font-family: var(--font-heading);
   font-weight: 600;
-  font-size: 0.88rem;
+  font-size: 0.83rem;
   white-space: nowrap;
-  padding: 6px 12px;
+  padding: 6px 10px;
   border-radius: 6px;
   color: var(--color-text);
   transition: all 0.2s ease;
@@ -232,6 +233,19 @@ a {
 .nav-item a:hover {
   color: var(--color-blueprint);
   background-color: rgba(44, 82, 130, 0.08);
+}
+
+@media (max-width: 1250px) and (min-width: 769px) {
+  .nav-container {
+    padding: 0 16px;
+  }
+  .nav-links {
+    gap: 3px;
+  }
+  .nav-item a {
+    font-size: 0.78rem;
+    padding: 5px 6px;
+  }
 }
 
 /* --- DROPDOWN NAVIGATION MENU --- */
