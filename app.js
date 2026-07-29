@@ -14,14 +14,21 @@ document.addEventListener('DOMContentLoaded', () => {
     overlay.id = 'rocket-launch-overlay';
     overlay.className = 'rocket-launch-overlay';
     overlay.innerHTML = `
+      <div class="cinematic-aura"></div>
+      <div class="cinematic-speed-lines">
+        <div class="speed-line line-1"></div>
+        <div class="speed-line line-2"></div>
+        <div class="speed-line line-3"></div>
+      </div>
       <div class="rocket-wrapper">
         <div class="cartoon-rocket">
-          <img src="assets/McBRide Impact Favicon.png" alt="McBride Impact Rocket" class="rocket-icon-huge">
-          <div class="cartoon-flame"></div>
-          <div class="cartoon-smoke-group">
+          <img src="assets/McBRide Impact Favicon.png" alt="McBride Impact Rocket" class="rocket-icon-cinematic">
+          <div class="cartoon-flame-cinematic"></div>
+          <div class="cartoon-smoke-group-cinematic">
             <div class="smoke-puff puff-1"></div>
             <div class="smoke-puff puff-2"></div>
             <div class="smoke-puff puff-3"></div>
+            <div class="smoke-puff puff-4"></div>
           </div>
         </div>
       </div>
