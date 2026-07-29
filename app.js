@@ -15,9 +15,19 @@ document.addEventListener('DOMContentLoaded', () => {
     overlay.className = 'rocket-launch-overlay';
     overlay.innerHTML = `
       <div class="rocket-wrapper">
-        <img src="assets/favicon.png" alt="McBride Impact Rocket" class="rocket-icon">
-        <div class="rocket-flame"></div>
-        <div class="rocket-trail"></div>
+        <div class="cartoon-rocket">
+          <div class="cartoon-rocket-badge">
+            <img src="assets/favicon.png" alt="McBride Impact Rocket" class="rocket-icon">
+          </div>
+          <div class="cartoon-fin fin-left"></div>
+          <div class="cartoon-fin fin-right"></div>
+          <div class="cartoon-flame"></div>
+          <div class="cartoon-smoke-group">
+            <div class="smoke-puff puff-1"></div>
+            <div class="smoke-puff puff-2"></div>
+            <div class="smoke-puff puff-3"></div>
+          </div>
+        </div>
       </div>
     `;
     document.body.appendChild(overlay);
