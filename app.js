@@ -37,13 +37,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setTimeout(() => {
       overlay.classList.add('fade-out');
-    }, 1100);
+    }, 2000);
 
     setTimeout(() => {
       if (overlay.parentNode) {
         overlay.parentNode.removeChild(overlay);
       }
-    }, 1600);
+    }, 2600);
   };
 
   triggerRocketLaunch();
