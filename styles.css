@@ -352,17 +352,14 @@ a {
   border-bottom: var(--border-sketch);
   overflow: hidden;
   background-color: var(--bg-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .hero-bg-video {
   width: 100%;
+  min-width: 100%;
   height: auto;
-  max-height: 85vh;
   display: block;
-  object-fit: contain;
+  object-fit: cover;
   pointer-events: none;
   background-color: var(--bg-primary);
 }
