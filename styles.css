@@ -4927,7 +4927,7 @@ a {
 }
 
 /* ==========================================================================
-   CINEMATIC MASSIVE ROCKET LAUNCH (MCBRIDE FAVICON ICON)
+   ROCKET LAUNCH ANIMATION (MATCHING SAMPLE GIF WITH MCBRIDE DESIGN)
    ========================================================================== */
 .rocket-launch-overlay {
   position: fixed;
@@ -4937,138 +4937,139 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at center, rgba(248, 245, 238, 0.6) 0%, rgba(244, 240, 230, 0.85) 100%);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.95) 0%, rgba(244, 240, 230, 0.98) 100%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   opacity: 1;
   overflow: hidden;
-  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.5s ease;
 }
 
 .rocket-launch-overlay.fade-out {
   opacity: 0;
 }
 
-/* Cinematic Background Speed Lines & Thruster Aura */
-.cinematic-aura {
-  position: absolute;
-  width: 700px;
-  height: 700px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(251, 191, 36, 0.55) 0%, rgba(249, 115, 22, 0.35) 45%, transparent 70%);
-  filter: blur(40px);
-  animation: auraPulse 0.15s infinite alternate ease-in-out;
-}
-
-.cinematic-speed-lines {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  justify-content: space-around;
-  pointer-events: none;
-  opacity: 0.6;
-}
-
-.speed-line {
-  width: 4px;
-  height: 250px;
-  background: linear-gradient(180deg, transparent, rgba(251, 191, 36, 0.9), rgba(239, 68, 68, 0.8), transparent);
-  border-radius: 4px;
-  filter: blur(1px);
-  animation: speedLineShoot 0.4s infinite linear;
-}
-
-.line-1 { animation-delay: 0s; }
-.line-2 { animation-delay: 0.15s; }
-.line-3 { animation-delay: 0.3s; }
-
-/* Rocket Wrapper & Motion Controls */
-.rocket-wrapper {
+/* Billowy Launch Smoke Clouds Rolling Outward */
+.sample-launch-clouds {
   position: absolute;
   bottom: 0;
+  width: 100%;
+  height: 300px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  transform-origin: bottom center;
-  animation: cinematicRocketLaunch 2.5s cubic-bezier(0.25, 0.9, 0.35, 1) forwards;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.cloud-billow {
+  position: absolute;
+  bottom: -40px;
+  background: rgba(224, 242, 254, 0.95);
+  border: 3.5px solid #000000;
+  box-shadow: 4px 4px 0px #000000;
+  border-radius: 50%;
   will-change: transform, opacity;
 }
 
-.cartoon-rocket {
+.billow-left-1 { width: 220px; height: 180px; left: calc(50% - 280px); animation: billowRollLeft 2.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+.billow-left-2 { width: 170px; height: 140px; left: calc(50% - 190px); animation: billowRollLeft 2.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.1s forwards; }
+.billow-right-1 { width: 220px; height: 180px; right: calc(50% - 280px); animation: billowRollRight 2.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+.billow-right-2 { width: 170px; height: 140px; right: calc(50% - 190px); animation: billowRollRight 2.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.1s forwards; }
+
+/* Sky Atmosphere Clouds Floating Down */
+.sample-sky-cloud {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.95);
+  border: 3.5px solid #000000;
+  box-shadow: 4px 4px 0px #000000;
+  border-radius: 60px;
+  opacity: 0.9;
+  animation: skyCloudPass 2.4s linear forwards;
+}
+
+.sky-cloud-1 { width: 220px; height: 85px; top: -100px; left: 8%; animation-delay: 0.2s; }
+.sky-cloud-2 { width: 280px; height: 100px; top: -120px; right: 10%; animation-delay: 0.5s; }
+
+/* Rocket Wrapper with McBride Design */
+.sample-rocket-wrapper {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: sampleRocketFlight 2.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.sample-rocket-body {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.rocket-icon-cinematic {
-  width: min(500px, 85vw);
-  height: min(500px, 85vw);
+.mcbride-rocket-icon {
+  width: min(360px, 80vw);
+  height: min(360px, 80vw);
   object-fit: contain;
-  filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.35)) drop-shadow(0 0 40px rgba(251, 191, 36, 0.7));
+  filter: drop-shadow(0 15px 30px rgba(0,0,0,0.25));
   z-index: 2;
 }
 
-/* Cartoony Fire Flame Thruster Trail */
-.cartoon-flame-cinematic {
-  width: 140px;
-  height: 220px;
-  margin-top: -60px;
-  background: linear-gradient(180deg, #fef08a 0%, #facc15 25%, #f97316 60%, #dc2626 95%);
-  border: 5px solid #1e1e1e;
+.sample-flame {
+  width: 90px;
+  height: 150px;
+  margin-top: -35px;
+  background: linear-gradient(180deg, #facc15 0%, #f97316 50%, #dc2626 95%);
+  border: 4px solid #000000;
   border-radius: 50% 50% 30% 30%;
-  box-shadow: 8px 8px 0px #1e1e1e, 0 0 50px rgba(249, 115, 22, 0.9);
+  box-shadow: 5px 5px 0px #000000, 0 0 40px rgba(249, 115, 22, 0.8);
   z-index: 1;
-  animation: cartoonFlamePulse 0.06s infinite alternate ease-in-out;
+  animation: sampleFlamePulse 0.08s infinite alternate ease-in-out;
   transform-origin: top center;
 }
 
-/* Epic Cinematic Keyframe Animation Sequence */
-@keyframes cinematicRocketLaunch {
+/* Keyframe Motions */
+@keyframes sampleRocketFlight {
   0% {
-    transform: translateY(130vh) scaleX(1.8) scaleY(0.4) rotate(-3deg);
+    transform: translateY(65vh) scale(0.75);
     opacity: 0;
   }
-  10% {
+  15% {
+    transform: translateY(40vh) scale(0.95);
     opacity: 1;
-    transform: translateY(105vh) scaleX(1.6) scaleY(0.5) rotate(2deg);
   }
-  25% {
-    transform: translateY(65vh) scaleX(0.65) scaleY(1.7) rotate(-4deg);
+  40% {
+    transform: translateY(-5vh) scale(1.15);
   }
-  45% {
-    transform: translateY(0vh) scaleX(1.25) scaleY(0.85) rotate(3deg);
-  }
-  62% {
-    transform: translateY(-25vh) scaleX(0.8) scaleY(1.35) rotate(-2deg);
-  }
-  80% {
-    transform: translateY(-75vh) scaleX(1.15) scaleY(0.9) rotate(2deg);
-  }
-  92% {
-    transform: translateY(-120vh) scaleX(0.35) scaleY(2.5);
-    opacity: 1;
+  70% {
+    transform: translateY(-45vh) scale(0.95);
   }
   100% {
-    transform: translateY(-180vh) scaleX(0.2) scaleY(3.8);
+    transform: translateY(-135vh) scale(0.5);
     opacity: 0;
   }
 }
 
-@keyframes auraPulse {
-  0% { transform: scale(0.9); opacity: 0.7; }
-  100% { transform: scale(1.15); opacity: 1; }
+@keyframes billowRollLeft {
+  0% { transform: scale(0.4) translateX(50px); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: scale(1.6) translateX(-180px); opacity: 0; }
 }
 
-@keyframes speedLineShoot {
-  0% { transform: translateY(-100vh); opacity: 0; }
-  50% { opacity: 1; }
-  100% { transform: translateY(100vh); opacity: 0; }
+@keyframes billowRollRight {
+  0% { transform: scale(0.4) translateX(-50px); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: scale(1.6) translateX(180px); opacity: 0; }
 }
 
-@keyframes cartoonFlamePulse {
-  0% { transform: scaleX(0.85) scaleY(0.85) rotate(-3deg); }
-  100% { transform: scaleX(1.25) scaleY(1.2) rotate(3deg); }
+@keyframes skyCloudPass {
+  0% { transform: translateY(0); opacity: 0; }
+  20% { opacity: 0.9; }
+  100% { transform: translateY(110vh); opacity: 0; }
+}
+
+@keyframes sampleFlamePulse {
+  0% { transform: scaleX(0.85) scaleY(0.85) rotate(-2deg); }
+  100% { transform: scaleX(1.2) scaleY(1.15) rotate(2deg); }
 }
 
 @keyframes smokePuffExpand {

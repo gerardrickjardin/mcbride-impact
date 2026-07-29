@@ -71,22 +71,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // Rocket Launch Entrance Animation using McBride Favicon
+  // Rocket Launch Entrance Animation matching Rocket Launch Sample.gif with McBride Design
   const triggerRocketLaunch = () => {
     const overlay = document.createElement('div');
     overlay.id = 'rocket-launch-overlay';
     overlay.className = 'rocket-launch-overlay';
     overlay.innerHTML = `
-      <div class="cinematic-aura"></div>
-      <div class="cinematic-speed-lines">
-        <div class="speed-line line-1"></div>
-        <div class="speed-line line-2"></div>
-        <div class="speed-line line-3"></div>
+      <div class="sample-launch-clouds">
+        <div class="cloud-billow billow-left-1"></div>
+        <div class="cloud-billow billow-left-2"></div>
+        <div class="cloud-billow billow-right-1"></div>
+        <div class="cloud-billow billow-right-2"></div>
       </div>
-      <div class="rocket-wrapper">
-        <div class="cartoon-rocket">
-          <img src="assets/McBRide Impact Favicon.png" alt="McBride Impact Rocket" class="rocket-icon-cinematic">
-          <div class="cartoon-flame-cinematic"></div>
+      <div class="sample-sky-cloud sky-cloud-1"></div>
+      <div class="sample-sky-cloud sky-cloud-2"></div>
+      <div class="sample-rocket-wrapper">
+        <div class="sample-rocket-body">
+          <img src="assets/McBRide Impact Favicon.png" alt="McBride Impact Rocket" class="mcbride-rocket-icon">
+          <div class="sample-flame"></div>
         </div>
       </div>
     `;
@@ -96,13 +98,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setTimeout(() => {
       overlay.classList.add('fade-out');
-    }, 2000);
+    }, 2100);
 
     setTimeout(() => {
       if (overlay.parentNode) {
         overlay.parentNode.removeChild(overlay);
       }
-    }, 2600);
+    }, 2700);
   };
 
   triggerRocketLaunch();
