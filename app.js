@@ -314,6 +314,20 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const submitBtn = document.getElementById('signup-submit-btn');
       const successMsg = document.getElementById('signup-success-msg');
+
+      const firstName = document.getElementById('first-name')?.value || '';
+      const lastName = document.getElementById('last-name')?.value || '';
+      const email = document.getElementById('signup-email')?.value || '';
+      const phone = document.getElementById('signup-phone')?.value || '';
+      const org = document.getElementById('signup-org')?.value || '';
+      const position = document.getElementById('signup-position')?.value || '';
+
+      const mailSubject = encodeURIComponent("Website Sign Up Submission");
+      const mailBody = encodeURIComponent(
+        `Hello McBride Impact Team,\n\nHere is a new sign up request from the McBride Impact website:\n\nName: ${firstName} ${lastName}\nEmail: ${email}\nPhone: ${phone}\nOrganization: ${org}\nPosition: ${position}\n\nThank you!`
+      );
+      window.location.href = `mailto:admin@mcbrideimpact.org?subject=${mailSubject}&body=${mailBody}`;
+
       if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.innerText = 'Submitting...';
@@ -332,6 +346,18 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const submitBtn = document.getElementById('hero-blueprint-btn');
       const successMsg = document.getElementById('hero-form-success');
+
+      const name = document.getElementById('hero-name')?.value || '';
+      const org = document.getElementById('hero-org')?.value || '';
+      const email = document.getElementById('hero-email')?.value || '';
+      const phone = document.getElementById('hero-phone')?.value || '';
+
+      const mailSubject = encodeURIComponent("Impact for Change Blueprint Request");
+      const mailBody = encodeURIComponent(
+        `Hello McBride Impact Team,\n\nI would like to receive the "Impact for Change" blueprint.\n\nName: ${name}\nOrganization: ${org}\nEmail: ${email}\nPhone: ${phone}\n\nThank you!`
+      );
+      window.location.href = `mailto:admin@mcbrideimpact.org?subject=${mailSubject}&body=${mailBody}`;
+
       if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.innerText = 'Sending...';
