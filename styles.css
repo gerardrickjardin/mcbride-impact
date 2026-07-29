@@ -2872,8 +2872,8 @@ a {
 
 /* Hero Banner */
 .whoweare-hero {
-  padding: 160px 0 100px;
-  background-image: linear-gradient(rgba(244, 240, 230, 0.4), rgba(244, 240, 230, 0.4)), url('assets/Who We Are Section/Who We Are Graphics.png');
+  padding: 140px 0 90px;
+  background-image: linear-gradient(rgba(244, 240, 230, 0.25), rgba(244, 240, 230, 0.25)), url('assets/Who We Are Section/Who We Are Graphics.png');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -2883,6 +2883,19 @@ a {
   align-items: center;
   justify-content: center;
   position: relative;
+}
+
+.whoweare-hero-card {
+  display: inline-block;
+  background: rgba(248, 245, 238, 0.93);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: var(--border-sketch);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), var(--shadow-sketch);
+  border-radius: 14px;
+  padding: 32px 45px;
+  max-width: 750px;
+  margin: 0 auto;
 }
 
 .whoweare-hero-title {
