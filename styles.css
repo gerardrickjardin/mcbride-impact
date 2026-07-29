@@ -348,40 +348,37 @@ a {
 .hero-section {
   position: relative;
   width: 100%;
-  min-height: 80vh;
   padding: 0;
   border-bottom: var(--border-sketch);
   overflow: hidden;
-  background-color: #1a1a1a;
+  background-color: var(--bg-primary);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .hero-bg-video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
+  width: 100%;
   height: auto;
-  transform: translate(-50%, -50%);
-  object-fit: cover;
+  max-height: 85vh;
+  display: block;
+  object-fit: contain;
   pointer-events: none;
-  z-index: 1;
+  background-color: var(--bg-primary);
 }
 
 .hero-floating-overlay {
-  position: relative;
-  z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  min-height: 80vh;
+  height: 100%;
+  z-index: 10;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 40px 20px;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.55) 100%);
+  padding: 20px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.15) 100%);
 }
 
 .hero-form-card {
@@ -516,8 +513,13 @@ a {
     min-height: auto;
   }
   .hero-floating-overlay {
-    min-height: auto;
-    padding: 30px 15px;
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
+    padding: 20px 15px;
+    background: transparent;
   }
   .hero-form-card {
     padding: 16px 16px;
