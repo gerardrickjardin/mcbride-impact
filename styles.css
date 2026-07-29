@@ -5009,7 +5009,7 @@ a {
   z-index: 2;
 }
 
-/* Cartoony Fire Flame & Smoke Trail */
+/* Cartoony Fire Flame Thruster Trail */
 .cartoon-flame-cinematic {
   width: 140px;
   height: 220px;
@@ -5022,27 +5022,6 @@ a {
   animation: cartoonFlamePulse 0.06s infinite alternate ease-in-out;
   transform-origin: top center;
 }
-
-.cartoon-smoke-group-cinematic {
-  position: absolute;
-  bottom: -90px;
-  display: flex;
-  gap: 16px;
-  z-index: 0;
-}
-
-.smoke-puff {
-  background: #ffffff;
-  border: 4px solid #1e1e1e;
-  box-shadow: 5px 5px 0px #1e1e1e;
-  border-radius: 50%;
-  animation: smokePuffExpand 0.25s infinite alternate ease-in-out;
-}
-
-.puff-1 { width: 70px; height: 70px; animation-delay: 0s; }
-.puff-2 { width: 95px; height: 95px; animation-delay: 0.1s; }
-.puff-3 { width: 75px; height: 75px; animation-delay: 0.05s; }
-.puff-4 { width: 60px; height: 60px; animation-delay: 0.18s; }
 
 /* Epic Cinematic Keyframe Animation Sequence */
 @keyframes cinematicRocketLaunch {

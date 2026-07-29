@@ -8,6 +8,69 @@ function loadYouTubeVideo(containerId, videoId) {
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // Rocket Launch Sound Synthesizer (Web Audio API)
+  const playRocketLaunchAudio = () => {
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
+      const ctx = new AudioCtx();
+      if (ctx.state === 'suspended') {
+        ctx.resume();
+      }
+
+      // Deep Rocket Thruster Engine Rumble (Brown Noise)
+      const bufferSize = ctx.sampleRate * 2.5;
+      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      let lastOut = 0.0;
+      for (let i = 0; i < bufferSize; i++) {
+        const white = Math.random() * 2 - 1;
+        data[i] = (lastOut + (0.02 * white)) / 1.02;
+        lastOut = data[i];
+        data[i] *= 3.5;
+      }
+
+      const noise = ctx.createBufferSource();
+      noise.buffer = buffer;
+
+      const filter = ctx.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(120, ctx.currentTime);
+      filter.frequency.exponentialRampToValueAtTime(700, ctx.currentTime + 1.2);
+      filter.frequency.exponentialRampToValueAtTime(180, ctx.currentTime + 2.4);
+
+      const gain = ctx.createGain();
+      gain.gain.setValueAtTime(0.01, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.4, ctx.currentTime + 0.3);
+      gain.gain.linearRampToValueAtTime(0.35, ctx.currentTime + 1.5);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 2.5);
+
+      // Rocket Acceleration Whistle/Synth Sweep
+      const osc = ctx.createOscillator();
+      const oscGain = ctx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(90, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(550, ctx.currentTime + 1.8);
+      oscGain.gain.setValueAtTime(0.01, ctx.currentTime);
+      oscGain.gain.linearRampToValueAtTime(0.08, ctx.currentTime + 0.5);
+      oscGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 2.4);
+
+      noise.connect(filter);
+      filter.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.connect(oscGain);
+      oscGain.connect(ctx.destination);
+
+      noise.start();
+      osc.start();
+      noise.stop(ctx.currentTime + 2.5);
+      osc.stop(ctx.currentTime + 2.5);
+    } catch (e) {
+      console.log('Audio launch effect bypassed:', e);
+    }
+  };
+
   // Rocket Launch Entrance Animation using McBride Favicon
   const triggerRocketLaunch = () => {
     const overlay = document.createElement('div');
@@ -24,16 +87,12 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="cartoon-rocket">
           <img src="assets/McBRide Impact Favicon.png" alt="McBride Impact Rocket" class="rocket-icon-cinematic">
           <div class="cartoon-flame-cinematic"></div>
-          <div class="cartoon-smoke-group-cinematic">
-            <div class="smoke-puff puff-1"></div>
-            <div class="smoke-puff puff-2"></div>
-            <div class="smoke-puff puff-3"></div>
-            <div class="smoke-puff puff-4"></div>
-          </div>
         </div>
       </div>
     `;
     document.body.appendChild(overlay);
+
+    playRocketLaunchAudio();
 
     setTimeout(() => {
       overlay.classList.add('fade-out');
