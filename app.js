@@ -16,6 +16,21 @@ document.addEventListener('DOMContentLoaded', () => {
     window.scrollTo(0, 0);
   }
 
+  // Seamless Hero Video Loader (Prevents flash/stutter on initial load & loop)
+  const heroVideo = document.getElementById('hero-bg-video');
+  if (heroVideo) {
+    const handleVideoReady = () => {
+      heroVideo.classList.add('is-loaded');
+    };
+    if (heroVideo.readyState >= 2) {
+      handleVideoReady();
+    } else {
+      heroVideo.addEventListener('canplay', handleVideoReady, { once: true });
+      heroVideo.addEventListener('playing', handleVideoReady, { once: true });
+      setTimeout(handleVideoReady, 300);
+    }
+  }
+
   // ==========================================
   // MOBILE NAVIGATION MENU
   // ==========================================

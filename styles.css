@@ -362,6 +362,14 @@ a {
   object-fit: cover;
   pointer-events: none;
   background-color: var(--bg-primary);
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  will-change: opacity;
+  transform: translateZ(0);
+}
+
+.hero-bg-video.is-loaded {
+  opacity: 1;
 }
 
 .hero-floating-overlay {
