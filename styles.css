@@ -4925,3 +4925,94 @@ a {
     white-space: nowrap;
   }
 }
+
+/* ==========================================================================
+   ROCKET LAUNCH ENTRANCE ANIMATION (MCBRIDE FAVICON)
+   ========================================================================== */
+.rocket-launch-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(248, 245, 238, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.rocket-launch-overlay.fade-out {
+  opacity: 0;
+}
+
+.rocket-wrapper {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: rocketAscend 1.3s cubic-bezier(0.25, 0.9, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.rocket-icon {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 20px rgba(212, 160, 23, 0.85)) drop-shadow(0 0 35px rgba(239, 68, 68, 0.6));
+}
+
+.rocket-flame {
+  width: 28px;
+  height: 60px;
+  margin-top: -10px;
+  background: linear-gradient(to bottom, #fbbf24, #f59e0b 40%, #ef4444 70%, transparent 100%);
+  border-radius: 50% 50% 30% 30%;
+  filter: blur(2px);
+  animation: rocketFlameBurn 0.1s infinite alternate ease-in-out;
+}
+
+.rocket-trail {
+  width: 6px;
+  height: 120px;
+  background: linear-gradient(to bottom, rgba(251, 191, 36, 0.8), rgba(239, 68, 68, 0.4), transparent);
+  filter: blur(4px);
+  border-radius: 4px;
+}
+
+@keyframes rocketAscend {
+  0% {
+    transform: translateY(120vh) scale(0.6);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+    transform: translateY(90vh) scale(0.95);
+  }
+  50% {
+    transform: translateY(10vh) scale(1.2);
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+    transform: translateY(-80vh) scale(1.05);
+  }
+  100% {
+    transform: translateY(-140vh) scale(0.7);
+    opacity: 0;
+  }
+}
+
+@keyframes rocketFlameBurn {
+  0% {
+    transform: scaleX(0.85) scaleY(0.9);
+    opacity: 0.85;
+  }
+  100% {
+    transform: scaleX(1.15) scaleY(1.1);
+    opacity: 1;
+  }
+}

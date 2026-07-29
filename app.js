@@ -8,6 +8,33 @@ function loadYouTubeVideo(containerId, videoId) {
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // Rocket Launch Entrance Animation using McBride Favicon
+  const triggerRocketLaunch = () => {
+    const overlay = document.createElement('div');
+    overlay.id = 'rocket-launch-overlay';
+    overlay.className = 'rocket-launch-overlay';
+    overlay.innerHTML = `
+      <div class="rocket-wrapper">
+        <img src="assets/favicon.png" alt="McBride Impact Rocket" class="rocket-icon">
+        <div class="rocket-flame"></div>
+        <div class="rocket-trail"></div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+
+    setTimeout(() => {
+      overlay.classList.add('fade-out');
+    }, 1100);
+
+    setTimeout(() => {
+      if (overlay.parentNode) {
+        overlay.parentNode.removeChild(overlay);
+      }
+    }, 1600);
+  };
+
+  triggerRocketLaunch();
+
   // Ensure page always starts at top on refresh/load so looping hero is visible directly
   if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
