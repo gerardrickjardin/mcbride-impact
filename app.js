@@ -88,7 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="sample-rocket-wrapper">
         <div class="sample-rocket-body">
           <img src="assets/McBRide Impact Favicon.png" alt="McBride Impact Rocket" class="mcbride-rocket-icon">
-          <div class="sample-flame"></div>
         </div>
       </div>
     `;
