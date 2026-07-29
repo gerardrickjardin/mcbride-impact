@@ -2930,6 +2930,8 @@ a {
 }
 
 .whoweare-about-img-wrapper {
+  height: 280px;
+  width: 100%;
   border: var(--border-sketch);
   border-radius: var(--radius-sketch-1);
   box-shadow: var(--shadow-sketch);
@@ -2945,9 +2947,10 @@ a {
 
 .whoweare-about-img {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
   object-fit: cover;
+  object-position: center 20%;
 }
 
 .whoweare-about-text p {
