@@ -8,6 +8,14 @@ function loadYouTubeVideo(containerId, videoId) {
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // Ensure page always starts at top on refresh/load so looping hero is visible directly
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  if (!window.location.hash) {
+    window.scrollTo(0, 0);
+  }
+
   // ==========================================
   // MOBILE NAVIGATION MENU
   // ==========================================
