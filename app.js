@@ -16,11 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     overlay.innerHTML = `
       <div class="rocket-wrapper">
         <div class="cartoon-rocket">
-          <div class="cartoon-rocket-badge">
-            <img src="assets/favicon.png" alt="McBride Impact Rocket" class="rocket-icon">
-          </div>
-          <div class="cartoon-fin fin-left"></div>
-          <div class="cartoon-fin fin-right"></div>
+          <img src="assets/McBRide Impact Favicon.png" alt="McBride Impact Rocket" class="rocket-icon-huge">
           <div class="cartoon-flame"></div>
           <div class="cartoon-smoke-group">
             <div class="smoke-puff puff-1"></div>
