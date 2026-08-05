@@ -416,5 +416,91 @@ document.addEventListener('DOMContentLoaded', () => {
     lightboxModal.addEventListener('click', closeLightbox);
   }
 
+  // ==========================================
+  // LOUREASE AUDIO & VIDEO PLAYBACK SYSTEM
+  // ==========================================
+  let currentAudio = null;
+  let currentActiveBtn = null;
+
+  const audioButtons = document.querySelectorAll('.board-icon-btn.audio-btn');
+  audioButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const audioSrc = btn.getAttribute('data-audio');
+      if (!audioSrc) return;
+
+      // If clicking the currently playing audio button, toggle pause
+      if (currentAudio && currentActiveBtn === btn) {
+        if (!currentAudio.paused) {
+          currentAudio.pause();
+          btn.classList.remove('is-playing');
+        } else {
+          currentAudio.play();
+          btn.classList.add('is-playing');
+        }
+        return;
+      }
+
+      // Stop any existing playing audio
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+      }
+      if (currentActiveBtn) {
+        currentActiveBtn.classList.remove('is-playing');
+      }
+
+      // Create & play new audio
+      const audio = new Audio(audioSrc);
+      currentAudio = audio;
+      currentActiveBtn = btn;
+      btn.classList.add('is-playing');
+
+      audio.play().catch(err => console.log('Audio playback error:', err));
+
+      audio.onended = () => {
+        btn.classList.remove('is-playing');
+        currentAudio = null;
+        currentActiveBtn = null;
+      };
+    });
+  });
+
+  // Lourease Video Modal Handling
+  const videoBtn = document.querySelector('.board-icon-btn.video-btn');
+  const videoModal = document.getElementById('lourease-video-modal');
+  const videoPlayer = document.getElementById('lourease-video-player');
+  const modalClose = document.getElementById('lourease-modal-close');
+
+  if (videoBtn && videoModal && videoPlayer) {
+    videoBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      // Stop audio if playing
+      if (currentAudio) {
+        currentAudio.pause();
+        if (currentActiveBtn) currentActiveBtn.classList.remove('is-playing');
+      }
+      const videoSrc = videoBtn.getAttribute('data-video');
+      if (videoSrc) {
+        videoPlayer.src = videoSrc;
+        videoModal.classList.add('active');
+        videoPlayer.play().catch(err => console.log('Video play error:', err));
+      }
+    });
+
+    const closeVideo = () => {
+      videoPlayer.pause();
+      videoPlayer.currentTime = 0;
+      videoPlayer.src = '';
+      videoModal.classList.remove('active');
+    };
+
+    if (modalClose) modalClose.addEventListener('click', closeVideo);
+    videoModal.addEventListener('click', (e) => {
+      if (e.target === videoModal) closeVideo();
+    });
+  }
+
 });
+
 
