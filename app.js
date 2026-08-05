@@ -466,13 +466,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Lourease YouTube Video Modal Handling
+  // Lourease Local Video Modal Handling
   const videoBtn = document.querySelector('.board-icon-btn.video-btn');
   const videoModal = document.getElementById('lourease-video-modal');
-  const youtubeWrapper = document.getElementById('lourease-youtube-wrapper');
+  const videoPlayer = document.getElementById('lourease-video-player');
   const modalClose = document.getElementById('lourease-modal-close');
 
-  if (videoBtn && videoModal && youtubeWrapper) {
+  if (videoBtn && videoModal && videoPlayer) {
     videoBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       // Stop audio if playing
@@ -480,15 +480,18 @@ document.addEventListener('DOMContentLoaded', () => {
         currentAudio.pause();
         if (currentActiveBtn) currentActiveBtn.classList.remove('is-playing');
       }
-      const youtubeId = videoBtn.getAttribute('data-youtube');
-      if (youtubeId) {
-        youtubeWrapper.innerHTML = `<iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" src="https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0&enablejsapi=1" title="Lourease Story Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+      const videoSrc = videoBtn.getAttribute('data-video');
+      if (videoSrc) {
+        videoPlayer.src = videoSrc;
         videoModal.classList.add('active');
+        videoPlayer.play().catch(err => console.log('Video play error:', err));
       }
     });
 
     const closeVideo = () => {
-      youtubeWrapper.innerHTML = '';
+      videoPlayer.pause();
+      videoPlayer.currentTime = 0;
+      videoPlayer.src = '';
       videoModal.classList.remove('active');
     };
 
