@@ -5106,6 +5106,12 @@ a {
   max-width: 1672px;
   margin: 0 auto;
   display: block;
+  font-size: 0;
+  line-height: 0;
+  border-radius: 12px;
+  box-shadow: var(--shadow-sketch);
+  border: var(--border-sketch);
+  overflow: hidden;
 }
 
 .lourease-photo-img {
@@ -5113,19 +5119,23 @@ a {
   height: auto;
   display: block;
   object-fit: contain;
-  border-radius: 12px;
-  box-shadow: var(--shadow-sketch);
-  border: var(--border-sketch);
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .board-icon-btn {
   position: absolute;
-  width: 2.2%;
+  width: 2.3%;
   aspect-ratio: 1 / 1;
+  min-width: 20px;
+  min-height: 20px;
   border-radius: 50%;
   background-color: rgba(26, 32, 44, 0.9);
   color: #ffffff;
-  border: 0.15em solid #d69e2e;
+  border: 1.5px solid #d69e2e;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -5135,11 +5145,13 @@ a {
   z-index: 10;
   padding: 0;
   outline: none;
+  transform: translate(-50%, -50%);
 }
 
 .board-icon-btn svg {
   width: 55%;
   height: 55%;
+  pointer-events: none;
 }
 
 .board-icon-btn:hover {
@@ -5162,6 +5174,18 @@ a {
   border-color: #d69e2e;
   box-shadow: 0 6px 18px rgba(44, 82, 130, 0.6);
 }
+
+@media (max-width: 768px) {
+  .lourease-card {
+    padding: 12px !important;
+  }
+  .board-icon-btn {
+    min-width: 22px;
+    min-height: 22px;
+    border-width: 1px;
+  }
+}
+
 
 
 
