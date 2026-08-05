@@ -5114,6 +5114,7 @@ a {
   box-shadow: var(--shadow-sketch);
   border: var(--border-sketch);
   overflow: hidden;
+  container-type: inline-size;
 }
 
 .lourease-photo-img {
@@ -5128,21 +5129,19 @@ a {
 
 .board-icon-btn {
   position: absolute;
-  width: 2.3%;
-  aspect-ratio: 1 / 1;
-  min-width: 20px;
-  min-height: 20px;
-  max-width: 38px;
-  max-height: 38px;
+  width: 1.8cqw;
+  height: 1.8cqw;
+  min-width: 16px;
+  min-height: 16px;
   border-radius: 50%;
   background-color: rgba(26, 32, 44, 0.9);
   color: #ffffff;
-  border: 2px solid #d69e2e;
+  border: 0.12cqw solid #d69e2e;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0.2cqw 0.5cqw rgba(0, 0, 0, 0.35);
   transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.25s;
   z-index: 10;
   padding: 0;
@@ -5155,11 +5154,11 @@ a {
 }
 
 .board-icon-btn:hover {
-  transform: translate(-50%, -50%) scale(1.22);
+  transform: translate(-50%, -50%) scale(1.25);
   background-color: #d69e2e;
   color: #1a202c;
   border-color: #ffffff;
-  box-shadow: 0 6px 18px rgba(214, 158, 46, 0.6);
+  box-shadow: 0 0.3cqw 0.8cqw rgba(214, 158, 46, 0.6);
 }
 
 .board-icon-btn.video-btn {
@@ -5168,12 +5167,13 @@ a {
 }
 
 .board-icon-btn.video-btn:hover {
-  transform: translate(-50%, -50%) scale(1.22);
+  transform: translate(-50%, -50%) scale(1.25);
   background-color: #2c5282;
   color: #ffffff;
   border-color: #d69e2e;
-  box-shadow: 0 6px 18px rgba(44, 82, 130, 0.6);
+  box-shadow: 0 0.3cqw 0.8cqw rgba(44, 82, 130, 0.6);
 }
+
 
 
 
