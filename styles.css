@@ -5071,7 +5071,45 @@ a {
   }
   .bigpicture-main-container,
   .assistance-main-container,
-  .volunteer-main-container {
+  .volunteer-main-container,
+  .lourease-main-container {
     padding: 40px 14px 80px !important;
   }
 }
+
+/* ==========================================
+   LOUREASE PAGE STYLES
+   ========================================== */
+.lourease-main-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 60px 20px 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 350px);
+}
+
+.lourease-card {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  background-color: var(--bg-card);
+  border: var(--border-sketch);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+.lourease-photo-img {
+  width: 100%;
+  max-width: 1576px;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: var(--shadow-sketch);
+  border: var(--border-sketch);
+}
+
