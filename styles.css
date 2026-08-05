@@ -5176,12 +5176,32 @@ a {
 }
 
 @media (max-width: 768px) {
+  .lourease-main-container {
+    padding: 30px 10px 60px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+  }
   .lourease-card {
-    padding: 12px !important;
+    padding: 10px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .lourease-board-wrapper {
+    margin: 0 auto !important;
+    width: 100% !important;
   }
   .board-icon-btn {
-    min-width: 22px;
-    min-height: 22px;
+    min-width: 20px;
+    min-height: 20px;
     border-width: 1px;
   }
 }
