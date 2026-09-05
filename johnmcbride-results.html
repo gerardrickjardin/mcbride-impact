@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Community Vote Results — John McBride Impact Project</title>
+  <meta name="description" content="See how your priorities compare to other Colorado community members and discover the John McBride Impact Blueprint." />
+  <link rel="icon" href="assets/favicon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-canvas: #070913;
+      --card-bg: rgba(14, 18, 30, 0.88);
+      --card-border: rgba(255, 255, 255, 0.12);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --accent-pink: #ff2a85;
+      --accent-cyan: #38bdf8;
+      --accent-purple: #c084fc;
+      --accent-green: #10b981;
+      --accent-gold: #fbbf24;
+      --cta-gradient: linear-gradient(90deg, #ff2a85 0%, #e11d48 50%, #d946ef 100%);
+      --cta-glow: 0 10px 30px -5px rgba(255, 42, 133, 0.5);
+      --font-heading: 'Plus Jakarta Sans', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: var(--font-body);
+      background-color: var(--bg-canvas);
+      color: var(--text-main);
+      overflow-x: hidden;
+      overflow-y: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 50% 8%, rgba(192, 132, 252, 0.18) 0%, transparent 45%),
+        radial-gradient(circle at 10% 25%, rgba(56, 189, 248, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 90% 40%, rgba(255, 42, 133, 0.15) 0%, transparent 45%),
+        linear-gradient(180deg, #090b16 0%, #05060d 100%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Top Bar */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 8px 28px;
+      height: 48px;
+    }
+
+    .top-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-logo {
+      height: 32px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+    }
+
+    .brand-tag {
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-green);
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 4px 12px;
+      border-radius: 100px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .btn-enter-home {
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 5px 14px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+    }
+    .btn-enter-home:hover {
+      background: var(--accent-cyan);
+      color: #000;
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+    }
+
+    /* Container */
+    .results-wrapper {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 20px 10px;
+      height: calc(100vh - 48px);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .headline-wrap {
+      text-align: center;
+      padding: 2px 10px;
+      flex-shrink: 0;
+    }
+
+    .main-headline {
+      font-family: var(--font-heading);
+      font-size: clamp(1.2rem, 1.9vw, 1.75rem);
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .color-pink { color: var(--accent-pink); }
+    .color-cyan { color: var(--accent-cyan); }
+    .color-purple { color: var(--accent-purple); }
+    .color-green { color: var(--accent-green); }
+
+    /* Stage */
+    .main-stage {
+      flex: 1;
+      min-height: 0;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 20px 50px -10px rgba(0,0,0,0.8), 0 0 30px rgba(120, 50, 200, 0.12);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+    }
+
+    /* Left: Chart & Blueprint */
+    .stage-left {
+      padding: 16px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,0.2) transparent;
+    }
+
+    .greeting-box {
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: 12px;
+      padding: 10px 14px;
+    }
+
+    .greeting-title {
+      font-family: var(--font-heading);
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 2px;
+    }
+
+    .greeting-desc {
+      font-size: 0.77rem;
+      color: #cbd5e1;
+      line-height: 1.4;
+    }
+
+    /* Chart Box */
+    .chart-box {
+      background: rgba(10, 14, 26, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .chart-box-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chart-box-title {
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #94a3b8;
+    }
+
+    .chart-total-votes {
+      font-size: 0.72rem;
+      color: var(--accent-cyan);
+      font-weight: 600;
+    }
+
+    .chart-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .bar-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .bar-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 0.78rem;
+    }
+
+    .bar-name {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .bar-pct-val {
+      font-weight: 800;
+      color: var(--accent-cyan);
+      font-size: 0.82rem;
+    }
+
+    .bar-track {
+      width: 100%;
+      height: 14px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 100px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+    }
+
+    .bar-progress {
+      height: 100%;
+      border-radius: 100px;
+      width: 0%;
+      transition: width 1.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+
+    .bar-school   { background: linear-gradient(90deg, #38bdf8 0%, #2563eb 100%); }
+    .bar-healing  { background: linear-gradient(90deg, #ff2a85 0%, #e11d48 100%); }
+    .bar-coaches  { background: linear-gradient(90deg, #c084fc 0%, #9333ea 100%); }
+
+    .user-vote-tag {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--accent-green);
+      display: none;
+      align-items: center;
+      gap: 4px;
+      margin-top: 1px;
+    }
+    .user-vote-tag.show { display: flex; }
+
+    /* Summary Card */
+    .settlement-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 0.77rem;
+      color: #cbd5e1;
+      line-height: 1.45;
+    }
+    .settlement-card strong { color: #fff; }
+
+    /* Action Buttons */
+    .actions-cluster {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    .btn-blueprint {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 12px 18px;
+      background: var(--cta-gradient);
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      box-shadow: var(--cta-glow);
+      text-decoration: none;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .btn-blueprint:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 32px -4px rgba(255, 42, 133, 0.7);
+    }
+
+    .btn-secondary-home {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      font-family: var(--font-heading);
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 11px 18px;
+      background: rgba(255, 255, 255, 0.06);
+      color: #e2e8f0;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 10px;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .btn-secondary-home:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      border-color: #fff;
+    }
+
+    /* Right: Documentary & Sharing */
+    .stage-right {
+      padding: 16px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,0.2) transparent;
+    }
+
+    .video-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-heading);
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-pink);
+    }
+
+    .video-heading {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.3;
+    }
+
+    .doc-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: #000;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+      flex-shrink: 0;
+    }
+
+    .doc-wrapper iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .doc-caption {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      line-height: 1.45;
+      background: rgba(255, 255, 255, 0.03);
+      border-left: 3px solid var(--accent-purple);
+      padding: 7px 12px;
+      border-radius: 0 8px 8px 0;
+    }
+    .doc-caption strong { color: #fff; }
+
+    /* Share card */
+    .share-card {
+      background: rgba(10, 14, 26, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .share-title {
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .share-desc {
+      font-size: 0.72rem;
+      color: #94a3b8;
+      line-height: 1.35;
+    }
+
+    .copy-row {
+      display: flex;
+      gap: 6px;
+    }
+
+    .share-input {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      padding: 7px 10px;
+      font-family: var(--font-body);
+      font-size: 0.76rem;
+      color: #cbd5e1;
+      outline: none;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .btn-copy-link {
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 7px 14px;
+      background: #ffffff;
+      color: #0f172a;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+    .btn-copy-link:hover {
+      background: var(--accent-cyan);
+    }
+    .btn-copy-link.copied {
+      background: var(--accent-green);
+      color: #fff;
+    }
+
+    .social-btn-row {
+      display: flex;
+      gap: 6px;
+    }
+
+    .btn-soc {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 7px 10px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #fff;
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .btn-soc:hover { transform: translateY(-1px); filter: brightness(1.15); }
+    .btn-soc.fb { background: #1877f2; }
+    .btn-soc.ig { background: linear-gradient(135deg, #f09433 0%, #dc2743 50%, #bc1888 100%); }
+    .btn-soc.tt { background: #111827; }
+
+    @media (max-width: 980px) {
+      html, body {
+        overflow-y: auto;
+        height: auto;
+      }
+      .results-wrapper {
+        height: auto;
+        padding-bottom: 30px;
+      }
+      .main-stage {
+        grid-template-columns: 1fr;
+        overflow: visible;
+      }
+      .stage-left {
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        overflow: visible;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-bar">
+    <a href="/" class="top-brand">
+      <img src="assets/McBride Impact Logo (Transparent Background).png" alt="McBride Impact" class="brand-logo" />
+      <span class="brand-tag">&check; Vote Recorded</span>
+    </a>
+    <a href="home.html" class="btn-enter-home" title="Explore full McBride Impact organization">
+      Enter Full Homepage <span>&rarr;</span>
+    </a>
+  </header>
+
+  <div class="results-wrapper">
+
+    <!-- Headline -->
+    <div class="headline-wrap">
+      <h1 class="main-headline">
+        Here's How Your Voice <span class="color-pink">Shapes The Movement</span> &amp; The <span class="color-cyan">Blueprint for Change</span>
+      </h1>
+    </div>
+
+    <!-- Main Stage Container -->
+    <main class="main-stage">
+
+      <!-- LEFT: Live Results Chart & Blueprint -->
+      <section class="stage-left">
+        <div class="greeting-box" id="greeting-box">
+          <div class="greeting-title">
+            <span>&check;</span> <span id="personalized-greeting">Thank you for voting!</span>
+          </div>
+          <p class="greeting-desc" id="greeting-sub">
+            Your priorities directly influence where Colorado settlement funding will be targeted first.
+          </p>
+        </div>
+
+        <!-- Priority Bars Chart -->
+        <div class="chart-box">
+          <div class="chart-box-header">
+            <span class="chart-box-title">Community Allocation Priorities</span>
+            <span class="chart-total-votes" id="vote-tally-num">2,847 Community Votes</span>
+          </div>
+
+          <div class="chart-bars">
+            <!-- School Culture -->
+            <div class="bar-item">
+              <div class="bar-label-row">
+                <span class="bar-name">🏫 Transformative School Culture</span>
+                <span class="bar-pct-val">90%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-progress bar-school" id="bar-school" data-pct="90"></div>
+              </div>
+              <div class="user-vote-tag" id="tag-school">
+                &check; You voted for this priority
+              </div>
+            </div>
+
+            <!-- Community Healing -->
+            <div class="bar-item">
+              <div class="bar-label-row">
+                <span class="bar-name">💛 Community Healing &amp; Havens</span>
+                <span class="bar-pct-val">85%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-progress bar-healing" id="bar-healing" data-pct="85"></div>
+              </div>
+              <div class="user-vote-tag" id="tag-healing">
+                &check; You voted for this priority
+              </div>
+            </div>
+
+            <!-- Empowered Coaches -->
+            <div class="bar-item">
+              <div class="bar-label-row">
+                <span class="bar-name">⚡ Empowered Coaches &amp; Tools</span>
+                <span class="bar-pct-val">72%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-progress bar-coaches" id="bar-coaches" data-pct="72"></div>
+              </div>
+              <div class="user-vote-tag" id="tag-coaches">
+                &check; You voted for this priority
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Colorado Settlement Blurb -->
+        <div class="settlement-card">
+          <p>
+            The John McBride Impact Project is <strong>formally applying for Colorado settlement dollars</strong> to ensure that funds reach the streets, schools, and families who need them most. Your vote builds the undeniable public evidence that <strong>communities must drive state funding decisions</strong>.
+          </p>
+        </div>
+
+        <!-- Action CTAs -->
+        <div class="actions-cluster">
+          <a class="btn-blueprint" href="mailto:admin@mcbrideimpact.org?subject=Blueprint%20Request%20-%20John%20McBride%20Impact%20Project&body=Please%20send%20me%20the%20full%2012-page%20John%20McBride%20Impact%20Project%20blueprint." target="_blank" id="btn-blueprint">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download Full 12-Page Blueprint (PDF)
+          </a>
+
+          <a class="btn-secondary-home" href="home.html">
+            Explore Full McBride Impact Homepage &rarr;
+          </a>
+        </div>
+      </section>
+
+      <!-- RIGHT: Documentary & Social Sharing -->
+      <section class="stage-right">
+        <div>
+          <span class="video-eyebrow">🎬 THE FULL STORY</span>
+          <h2 class="video-heading">The John McBride Impact Project — Full 5:50 Documentary</h2>
+        </div>
+
+        <!-- Documentary 16:9 Video Player -->
+        <div class="doc-wrapper">
+          <iframe
+            src="https://www.youtube.com/embed/EOht_WR8oX4?rel=0&modestbranding=1"
+            title="The John McBride Impact Project — Full Documentary (5:50)"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <div class="doc-caption">
+          <strong>John McBride</strong> was a visionary community pillar whose legacy created this movement. This documentary highlights the lived experiences, neighborhood challenges, and community solutions that make up Colorado's most comprehensive youth violence prevention blueprint.
+        </div>
+
+        <!-- Share & Viral Spread Section -->
+        <div class="share-card">
+          <div class="share-title">📣 Blast This to Your Network — Every Vote Counts!</div>
+          <p class="share-desc">The more verified community responses we submit, the stronger our grant case for state settlement funds.</p>
+
+          <div class="copy-row">
+            <input type="text" class="share-input" id="share-url" value="https://mcbrideimpact.org" readonly />
+            <button class="btn-copy-link" id="btn-copy" type="button">Copy Link</button>
+          </div>
+
+          <div class="social-btn-row">
+            <a class="btn-soc fb" id="btn-fb" href="#" target="_blank" rel="noopener">Facebook</a>
+            <a class="btn-soc ig" id="btn-ig" href="#" target="_blank" rel="noopener">Instagram</a>
+            <a class="btn-soc tt" id="btn-tt" href="#" target="_blank" rel="noopener">TikTok</a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    // Read session storage data
+    const votes   = JSON.parse(sessionStorage.getItem('mcb_votes') || '[]');
+    const name    = sessionStorage.getItem('mcb_name') || '';
+    const company = sessionStorage.getItem('mcb_company') || '';
+
+    // Personalized greeting
+    if (name) {
+      const firstName = name.split(' ')[0];
+      document.getElementById('personalized-greeting').textContent = 'Hi ' + firstName + '! Here is where your priorities stand.';
+      document.getElementById('greeting-sub').textContent =
+        'Thank you for contributing, ' + firstName + ' (' + (company || 'Community Supporter') + '). Your vote joins 2,847+ voices demanding direct community allocation.';
+    }
+
+    // Highlight user's votes
+    const map = {
+      school_culture:    'tag-school',
+      empowered_coaches: 'tag-coaches',
+      community_healing: 'tag-healing'
+    };
+    votes.forEach(v => {
+      const elId = map[v];
+      if (elId) {
+        const el = document.getElementById(elId);
+        if (el) el.classList.add('show');
+      }
+    });
+
+    // Animate bars after load
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.querySelectorAll('.bar-progress').forEach(bar => {
+          bar.style.width = bar.dataset.pct + '%';
+        });
+      }, 250);
+    });
+
+    // Share link configuration
+    const shareInput = document.getElementById('share-url');
+    const btnCopy    = document.getElementById('btn-copy');
+    const landingUrl = window.location.origin + '/';
+    shareInput.value = landingUrl;
+
+    btnCopy.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(landingUrl);
+      } catch (err) {
+        shareInput.select();
+        document.execCommand('copy');
+      }
+      btnCopy.textContent = '✓ Copied!';
+      btnCopy.classList.add('copied');
+      setTimeout(() => {
+        btnCopy.textContent = 'Copy Link';
+        btnCopy.classList.remove('copied');
+      }, 2200);
+    });
+
+    // Social Sharing
+    const shareText = encodeURIComponent('I just cast my vote on the John McBride Impact Project — a plan to reduce youth violence by 50% in Colorado. Add your voice! 🙌');
+    const shareLink = encodeURIComponent(landingUrl);
+
+    document.getElementById('btn-fb').href = 'https://www.facebook.com/sharer/sharer.php?u=' + shareLink + '&quote=' + shareText;
+
+    document.getElementById('btn-ig').addEventListener('click', (e) => {
+      e.preventDefault();
+      navigator.clipboard.writeText(landingUrl + '\n\nI just voted on the John McBride Impact Project to help reduce youth violence in Colorado by 50%! Cast your vote now.').catch(()=>{});
+      alert('✓ Link copied to clipboard! Paste it into your Instagram story or bio to share.');
+    });
+
+    document.getElementById('btn-tt').addEventListener('click', (e) => {
+      e.preventDefault();
+      navigator.clipboard.writeText(landingUrl + '\n\nJohn McBride Impact Project — community blueprint to cut youth violence in Colorado! #McBrideImpact #CommunityVote').catch(()=>{});
+      alert('✓ Caption and link copied to clipboard! Paste it into your TikTok video description.');
+    });
+  </script>
+</body>
+</html>
