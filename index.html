@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The John McBride Impact Project — Cast Your Community Vote</title>
+  <title>The John McBride Impact Project — Community Priority Vote</title>
   <meta name="description" content="Help allocate Colorado settlement funds to reduce youth violence by 50%. Cast your vote on community priorities and see real-time results." />
   <link rel="icon" href="assets/favicon.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -11,22 +11,31 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg-canvas: #070913;
-      --card-bg: rgba(14, 18, 30, 0.88);
-      --card-border: rgba(255, 255, 255, 0.12);
-      --card-border-active: #ff2a85;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --text-dim: #64748b;
-      --accent-pink: #ff2a85;
-      --accent-cyan: #38bdf8;
-      --accent-purple: #c084fc;
-      --accent-gold: #fbbf24;
-      --cta-gradient: linear-gradient(90deg, #ff2a85 0%, #e11d48 50%, #d946ef 100%);
-      --cta-glow: 0 10px 30px -5px rgba(255, 42, 133, 0.5);
+      --bg-primary: #f4eee1;
+      --bg-secondary: #ebe3cf;
+      --bg-card: #FAF6ED;
+      --bg-white: #ffffff;
+      --color-text: #1a202c;
+      --color-text-muted: #4a5568;
+      --color-blueprint: #2c5282;
+      --color-blueprint-light: rgba(44, 82, 130, 0.1);
+      --color-accent: #d69e2e;
+      --color-accent-hover: #b7791f;
+      --color-success: #276749;
+      --color-danger: #c53030;
+      
+      --border-sketch: 2.5px solid #1a202c;
+      --border-blueprint: 1.5px dashed var(--color-blueprint);
+      --shadow-sketch: 6px 6px 0px #1a202c;
+      --shadow-sketch-hover: 10px 10px 0px #1a202c;
+      --shadow-card-sm: 4px 4px 0px #1a202c;
+      
+      --radius-s1: 255px 15px 225px 15px / 15px 225px 15px 255px;
+      --radius-s2: 15px 225px 15px 255px / 255px 15px 225px 15px;
+      
       --font-heading: 'Plus Jakarta Sans', sans-serif;
       --font-body: 'Inter', sans-serif;
-      --transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition: all 0.22s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
     *, *::before, *::after {
@@ -38,35 +47,36 @@
     html, body {
       height: 100%;
       font-family: var(--font-body);
-      background-color: var(--bg-canvas);
-      color: var(--text-main);
+      background-color: var(--bg-primary);
+      color: var(--color-text);
       overflow-x: hidden;
       overflow-y: hidden;
     }
 
-    /* Ambient glow background */
+    /* Blueprint grid paper background texture */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
-      background: 
-        radial-gradient(circle at 50% 8%, rgba(192, 132, 252, 0.18) 0%, transparent 45%),
-        radial-gradient(circle at 10% 25%, rgba(56, 189, 248, 0.12) 0%, transparent 40%),
-        radial-gradient(circle at 90% 40%, rgba(255, 42, 133, 0.15) 0%, transparent 45%),
-        linear-gradient(180deg, #090b16 0%, #05060d 100%);
-      z-index: -1;
+      background-image: 
+        linear-gradient(to right, rgba(44, 82, 130, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(44, 82, 130, 0.05) 1px, transparent 1px);
+      background-size: 28px 28px;
       pointer-events: none;
+      z-index: 0;
     }
 
-    /* Top Bar */
+    /* Top Navigation Bar */
     .top-bar {
+      position: relative;
+      z-index: 10;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      max-width: 1400px;
+      max-width: 1380px;
       margin: 0 auto;
-      padding: 8px 28px;
-      height: 48px;
+      padding: 8px 24px;
+      height: 52px;
     }
 
     .top-brand {
@@ -77,100 +87,105 @@
     }
 
     .brand-logo {
-      height: 32px;
+      height: 36px;
       width: auto;
       object-fit: contain;
-      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
     }
 
-    .brand-tag {
+    .brand-badge {
       font-family: var(--font-heading);
       font-size: 0.72rem;
       font-weight: 700;
-      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: #cbd5e1;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
-      padding: 4px 12px;
+      letter-spacing: 0.06em;
+      color: var(--color-blueprint);
+      background: var(--color-blueprint-light);
+      border: var(--border-blueprint);
+      padding: 3px 12px;
       border-radius: 100px;
     }
 
-    .skip-link {
+    .skip-btn {
       font-family: var(--font-heading);
-      font-size: 0.76rem;
-      font-weight: 600;
-      color: #94a3b8;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--color-text);
       text-decoration: none;
+      background: var(--bg-card);
+      border: 2px solid #1a202c;
+      box-shadow: 3px 3px 0px #1a202c;
+      padding: 5px 14px;
+      border-radius: 100px;
       display: flex;
       align-items: center;
       gap: 5px;
-      padding: 4px 12px;
-      border-radius: 8px;
       transition: var(--transition);
     }
-    .skip-link:hover {
-      color: #fff;
-      background: rgba(255,255,255,0.08);
+    .skip-btn:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 5px 5px 0px #1a202c;
+      background: var(--bg-white);
     }
 
-    /* Main Container */
+    /* Main Page Wrapper */
     .landing-wrapper {
+      position: relative;
+      z-index: 5;
       max-width: 1360px;
       margin: 0 auto;
-      padding: 0 20px 10px;
-      height: calc(100vh - 48px);
+      padding: 0 20px 8px;
+      height: calc(100vh - 52px);
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
       gap: 8px;
     }
 
-    /* Main Headline like solrevibe */
+    /* Blueprint Headline */
     .headline-wrap {
       text-align: center;
-      padding: 2px 10px;
+      padding: 0 12px;
       flex-shrink: 0;
     }
 
     .main-headline {
       font-family: var(--font-heading);
-      font-size: clamp(1.2rem, 2.05vw, 1.85rem);
+      font-size: clamp(1.15rem, 1.95vw, 1.7rem);
       font-weight: 800;
       line-height: 1.25;
-      letter-spacing: -0.02em;
-      color: #ffffff;
-      max-width: 1180px;
+      color: var(--color-text);
+      max-width: 1140px;
       margin: 0 auto;
     }
 
-    .color-pink { color: var(--accent-pink); }
-    .color-cyan { color: var(--accent-cyan); }
-    .color-purple { color: var(--accent-purple); }
+    .highlight-blueprint { color: var(--color-blueprint); }
+    .highlight-accent {
+      color: var(--color-accent-hover);
+      background: rgba(214, 158, 46, 0.14);
+      padding: 0 6px;
+      border-radius: 6px;
+    }
 
-    /* The Main Rounded Container */
+    /* Central Sketch Stage Container */
     .main-stage {
       flex: 1;
       min-height: 0;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 20px;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      box-shadow: 0 20px 50px -10px rgba(0,0,0,0.8), 0 0 30px rgba(120, 50, 200, 0.12);
+      background: var(--bg-card);
+      border: var(--border-sketch);
+      border-radius: 18px;
+      box-shadow: var(--shadow-sketch);
       display: grid;
       grid-template-columns: 1.05fr 0.95fr;
       overflow: hidden;
     }
 
-    /* Left Column: Media & Highlights */
+    /* Left Column: Media & Blueprint Highlights */
     .stage-left {
-      padding: 16px 20px;
+      padding: 16px 22px;
       display: flex;
       flex-direction: column;
       gap: 10px;
-      border-right: 1px solid rgba(255, 255, 255, 0.08);
-      background: linear-gradient(180deg, rgba(20, 26, 44, 0.4) 0%, rgba(10, 14, 26, 0.7) 100%);
+      border-right: var(--border-sketch);
+      background: var(--bg-white);
       overflow: hidden;
     }
 
@@ -178,11 +193,11 @@
       position: relative;
       width: 100%;
       padding-top: 56.25%; /* 16:9 */
-      border-radius: 14px;
+      border-radius: 12px;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      border: 2px solid #1a202c;
+      box-shadow: var(--shadow-card-sm);
       background: #000;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
       flex-shrink: 0;
     }
 
@@ -203,89 +218,100 @@
       overflow: hidden;
     }
 
-    .blueprint-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      font-family: var(--font-heading);
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--accent-cyan);
-      background: rgba(56, 189, 248, 0.12);
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      border-radius: 100px;
-      padding: 3px 12px;
-      width: fit-content;
+    .blueprint-card {
+      background: var(--bg-card);
+      border: 2px solid #1a202c;
+      border-radius: 12px;
+      padding: 10px 14px;
+      box-shadow: 3px 3px 0px #1a202c;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
     }
 
-    .blueprint-features {
+    .blueprint-card-title {
+      font-family: var(--font-heading);
+      font-size: 0.74rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-blueprint);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .blueprint-bullets {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 5px;
     }
 
-    .blueprint-features li {
+    .blueprint-bullets li {
       display: flex;
       align-items: flex-start;
       gap: 8px;
       font-size: clamp(0.72rem, 0.85vw, 0.8rem);
-      color: #cbd5e1;
       line-height: 1.35;
+      color: var(--color-text);
     }
 
-    .diamond-icon {
-      color: var(--accent-pink);
-      font-size: 0.7rem;
-      line-height: 1.35;
+    .bullet-num {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--color-accent);
+      color: #1a202c;
+      font-size: 0.65rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       flex-shrink: 0;
+      border: 1.5px solid #1a202c;
+      margin-top: 1px;
     }
 
     .social-proof-bar {
       display: flex;
       align-items: center;
       gap: 10px;
-      padding: 7px 12px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 6px 12px;
+      background: var(--color-blueprint-light);
+      border: var(--border-blueprint);
       border-radius: 10px;
-      margin-top: auto;
     }
 
-    .avatars-cluster {
-      display: flex;
-    }
-
+    .avatars-cluster { display: flex; }
     .mini-avatar {
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
-      border: 2px solid #0f172a;
-      margin-left: -6px;
-      background: var(--accent-purple);
+      border: 1.5px solid #1a202c;
+      margin-left: -7px;
+      background: var(--color-blueprint);
       color: #fff;
-      font-size: 0.55rem;
+      font-size: 0.58rem;
       font-weight: 700;
       display: flex;
       align-items: center;
       justify-content: center;
     }
-    .mini-avatar:first-child { margin-left: 0; background: var(--accent-cyan); color: #000; }
-    .mini-avatar:nth-child(2) { background: var(--accent-pink); }
+    .mini-avatar:first-child { margin-left: 0; background: var(--color-accent); color: #1a202c; }
+    .mini-avatar:nth-child(2) { background: #276749; }
 
     .proof-copy {
-      font-size: 0.72rem;
-      color: #94a3b8;
+      font-size: 0.73rem;
+      color: var(--color-text-muted);
       line-height: 1.3;
     }
-    .proof-copy strong {
-      color: #ffffff;
-      font-weight: 600;
-    }
+    .proof-copy strong { color: var(--color-text); }
 
-    /* Right Column: Interactive Vote + Inline Capture */
+    /* Right Column: Priority Voting & Inline Capture */
     .stage-right {
       padding: 14px 20px;
       display: flex;
@@ -293,64 +319,59 @@
       gap: 10px;
       overflow-y: auto;
       scrollbar-width: thin;
-      scrollbar-color: rgba(255,255,255,0.2) transparent;
+      scrollbar-color: rgba(26,32,44,0.3) transparent;
+      background: var(--bg-card);
     }
 
-    .right-header {
-      flex-shrink: 0;
-    }
-
+    .right-header { flex-shrink: 0; }
     .eyebrow-tag {
       font-family: var(--font-heading);
       font-size: 0.7rem;
       font-weight: 800;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: #f1f5f9;
+      color: var(--color-blueprint);
       display: flex;
       align-items: center;
       gap: 6px;
       margin-bottom: 2px;
     }
 
-    .eyebrow-sparkle {
-      color: var(--accent-pink);
-    }
-
     .right-subtitle {
-      font-size: 0.76rem;
-      color: #94a3b8;
-      line-height: 1.3;
+      font-size: 0.77rem;
+      color: var(--color-text-muted);
+      line-height: 1.35;
     }
 
-    /* Priority Cards */
-    .vote-selection-box {
-      background: rgba(10, 14, 26, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Priority Cards Box */
+    .priority-cards-box {
+      background: var(--bg-white);
+      border: 2px solid #1a202c;
       border-radius: 12px;
+      box-shadow: var(--shadow-card-sm);
       padding: 8px 10px;
       display: flex;
       flex-direction: column;
-      gap: 7px;
+      gap: 6px;
       flex-shrink: 0;
     }
 
-    .vote-box-title {
-      font-family: var(--font-heading);
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: #cbd5e1;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+    .vote-box-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--color-blueprint);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
-    .vote-box-title span.hint {
+    .vote-hint {
       font-size: 0.68rem;
-      font-weight: 500;
-      color: var(--accent-cyan);
+      font-weight: 600;
+      color: var(--color-accent-hover);
       text-transform: none;
       letter-spacing: normal;
     }
@@ -365,31 +386,30 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1.5px solid rgba(255, 255, 255, 0.1);
+      background: var(--bg-card);
+      border: 2px solid #1a202c;
       border-radius: 10px;
       padding: 6px 10px;
       cursor: pointer;
       position: relative;
       transition: var(--transition);
       user-select: none;
+      box-shadow: 2px 2px 0px #1a202c;
     }
 
     .priority-card:hover {
-      background: rgba(255, 255, 255, 0.07);
-      border-color: rgba(255, 255, 255, 0.25);
-      transform: translateY(-1px);
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0px #1a202c;
+      background: #fff;
     }
 
     .priority-card.selected {
-      background: rgba(255, 42, 133, 0.12);
-      border-color: var(--accent-pink);
-      box-shadow: 0 0 14px rgba(255, 42, 133, 0.25);
+      background: rgba(44, 82, 130, 0.09);
+      border-color: var(--color-blueprint);
+      box-shadow: 3px 3px 0px var(--color-blueprint);
     }
 
-    .priority-card input[type="checkbox"] {
-      display: none;
-    }
+    .priority-card input[type="checkbox"] { display: none; }
 
     .priority-thumb {
       width: 54px;
@@ -397,7 +417,7 @@
       border-radius: 6px;
       object-fit: cover;
       flex-shrink: 0;
-      border: 1px solid rgba(255,255,255,0.15);
+      border: 1.5px solid #1a202c;
     }
 
     .priority-meta {
@@ -408,16 +428,14 @@
     .priority-title {
       font-family: var(--font-heading);
       font-size: 0.8rem;
-      font-weight: 700;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      font-weight: 800;
+      color: var(--color-text);
+      margin-bottom: 1px;
     }
 
     .priority-desc {
       font-size: 0.69rem;
-      color: #94a3b8;
+      color: var(--color-text-muted);
       line-height: 1.25;
       white-space: nowrap;
       overflow: hidden;
@@ -425,40 +443,42 @@
     }
 
     .check-indicator {
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
-      border: 1.5px solid rgba(255,255,255,0.3);
+      border: 2px solid #1a202c;
+      background: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
       transition: var(--transition);
       color: transparent;
-      font-size: 0.65rem;
+      font-size: 0.7rem;
       font-weight: 800;
     }
 
     .priority-card.selected .check-indicator {
-      background: var(--accent-pink);
-      border-color: var(--accent-pink);
+      background: var(--color-blueprint);
+      border-color: var(--color-blueprint);
       color: #fff;
     }
 
     .vote-alert {
       font-size: 0.72rem;
-      color: #f87171;
+      font-weight: 600;
+      color: var(--color-danger);
       text-align: center;
       display: none;
       padding-top: 2px;
     }
     .vote-alert.show { display: block; }
 
-    /* Inline Lead Capture Form (matching reference) */
+    /* Inline Lead Capture Form */
     .inline-form {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 7px;
       flex-shrink: 0;
     }
 
@@ -468,40 +488,38 @@
       gap: 8px;
     }
 
-    .input-wrapper {
-      position: relative;
-    }
+    .input-wrapper { position: relative; }
 
     .form-control {
       width: 100%;
       background: #ffffff;
-      border: 1.5px solid rgba(255, 255, 255, 0.2);
+      border: 2px solid #1a202c;
       border-radius: 8px;
-      padding: 9px 12px;
+      padding: 8px 11px;
       font-family: var(--font-body);
       font-size: 0.82rem;
-      color: #0f172a;
+      color: var(--color-text);
       outline: none;
+      box-shadow: 2px 2px 0px #1a202c;
       transition: var(--transition);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
 
     .form-control::placeholder {
-      color: #64748b;
+      color: #718096;
       font-size: 0.8rem;
     }
 
     .form-control:focus {
-      border-color: var(--accent-cyan);
-      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.3);
+      border-color: var(--color-blueprint);
+      box-shadow: 0 0 0 3px rgba(44, 82, 130, 0.18), 2px 2px 0px var(--color-blueprint);
     }
 
     .form-control.error {
-      border-color: #ef4444;
+      border-color: var(--color-danger);
       background: #fff5f5;
     }
 
-    /* Solrevibe Style Pink CTA Button */
+    /* Signature McBride Impact Gold Button */
     .btn-submit-funnel {
       display: block;
       width: 100%;
@@ -509,53 +527,46 @@
       font-size: 0.95rem;
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
       text-align: center;
       padding: 13px 20px;
-      background: var(--cta-gradient);
-      color: #ffffff;
-      border: none;
-      border-radius: 10px;
-      box-shadow: var(--cta-glow);
+      background: var(--color-accent);
+      color: #1a202c;
+      border: var(--border-sketch);
+      border-radius: var(--radius-s1);
+      box-shadow: var(--shadow-sketch);
       cursor: pointer;
       transition: var(--transition);
-      position: relative;
-      overflow: hidden;
       margin-top: 2px;
     }
 
     .btn-submit-funnel:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 36px -4px rgba(255, 42, 133, 0.7);
-      filter: brightness(1.08);
+      transform: translate(-2px, -2px);
+      box-shadow: var(--shadow-sketch-hover);
+      background: var(--color-accent-hover);
     }
 
     .btn-submit-funnel:active {
-      transform: translateY(0);
+      transform: translate(0, 0);
+      box-shadow: 3px 3px 0px #1a202c;
     }
 
     .footer-guarantee {
       text-align: center;
       font-size: 0.7rem;
-      color: #64748b;
+      color: var(--color-text-muted);
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 5px;
-      margin-top: 1px;
-    }
-
-    .footer-guarantee a {
-      color: #94a3b8;
-      text-decoration: underline;
     }
 
     .spinner {
       display: inline-block;
       width: 14px;
       height: 14px;
-      border: 2px solid rgba(255,255,255,0.4);
-      border-top-color: #fff;
+      border: 2.5px solid rgba(26, 32, 44, 0.3);
+      border-top-color: #1a202c;
       border-radius: 50%;
       animation: spin 0.6s linear infinite;
       vertical-align: middle;
@@ -563,7 +574,7 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* Responsive adjustments */
+    /* Mobile / Tablet Adjustments */
     @media (max-width: 980px) {
       html, body {
         overflow-y: auto;
@@ -579,7 +590,7 @@
       }
       .stage-left {
         border-right: none;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
+        border-bottom: var(--border-sketch);
         overflow: visible;
       }
       .form-row {
@@ -594,26 +605,26 @@
   <header class="top-bar">
     <a href="/" class="top-brand">
       <img src="assets/McBride Impact Logo (Transparent Background).png" alt="McBride Impact" class="brand-logo" />
-      <span class="brand-tag">John McBride Impact Project</span>
+      <span class="brand-badge">John McBride Impact Project</span>
     </a>
-    <a href="home.html" class="skip-link" title="Explore full McBride Impact organization">
+    <a href="home.html" class="skip-btn" title="Explore full McBride Impact organization">
       Enter Full Homepage <span>&rarr;</span>
     </a>
   </header>
 
   <div class="landing-wrapper">
 
-    <!-- Solrevibe-Style Main Headline -->
+    <!-- McBride Architectural Blueprint Headline -->
     <div class="headline-wrap">
       <h1 class="main-headline">
-        Help Allocate <span class="color-pink">$10,000,000+</span> in Settlement Funds to Cut Youth Violence by <span class="color-cyan">50%</span> with the <span class="color-pink">JOHN</span> <span class="color-purple">MCBRIDE</span> Blueprint
+        Help Direct <span class="highlight-accent">$10,000,000+</span> in Colorado Settlement Funds to Cut Youth Violence by <span class="highlight-blueprint">50%</span> with the <span class="highlight-blueprint">JOHN MCBRIDE</span> Blueprint
       </h1>
     </div>
 
     <!-- Central Split Stage Container -->
     <main class="main-stage">
 
-      <!-- LEFT: Jason McBride Video Player & Blueprint Features -->
+      <!-- LEFT: Jason McBride Video Player & Blueprint Highlights -->
       <section class="stage-left">
         <div class="video-frame-container">
           <iframe
@@ -625,26 +636,30 @@
         </div>
 
         <div class="left-details">
-          <span class="blueprint-badge">✦ Denver Youth Violence Prevention Initiative</span>
+          <div class="blueprint-card">
+            <div class="blueprint-card-title">
+              <span>📋 Project Blueprint Highlights</span>
+            </div>
 
-          <ul class="blueprint-features">
-            <li>
-              <span class="diamond-icon">◆</span>
-              <span><strong>Proven Leadership:</strong> Jason McBride merges street wisdom with evidence-based youth intervention.</span>
-            </li>
-            <li>
-              <span class="diamond-icon">◆</span>
-              <span><strong>Settlement Allocation:</strong> Formally applying for Colorado settlement funding — community votes decide priorities.</span>
-            </li>
-            <li>
-              <span class="diamond-icon">◆</span>
-              <span><strong>Action Blueprint:</strong> Backed by an extensive 12-page roadmap tackling schools, mentors, and neighborhood healing.</span>
-            </li>
-            <li>
-              <span class="diamond-icon">◆</span>
-              <span><strong>Target Goal:</strong> Reducing youth violence by 50% in Year One through trauma-informed community safe havens.</span>
-            </li>
-          </ul>
+            <ul class="blueprint-bullets">
+              <li>
+                <span class="bullet-num">1</span>
+                <span><strong>Proven Leadership:</strong> Combining street wisdom with cutting-edge tools to stop youth violence at the root.</span>
+              </li>
+              <li>
+                <span class="bullet-num">2</span>
+                <span><strong>Settlement Allocation:</strong> Formally applying for Colorado settlement funding — community votes decide priorities.</span>
+              </li>
+              <li>
+                <span class="bullet-num">3</span>
+                <span><strong>Comprehensive Blueprint:</strong> Backed by a full 12-page roadmap tackling schools, mentors, and neighborhood healing.</span>
+              </li>
+              <li>
+                <span class="bullet-num">4</span>
+                <span><strong>Measurable Outcomes:</strong> Targeting a 50% reduction in youth violence in Year One across Denver neighborhoods.</span>
+              </li>
+            </ul>
+          </div>
 
           <div class="social-proof-bar">
             <div class="avatars-cluster">
@@ -663,7 +678,7 @@
       <section class="stage-right">
         <div class="right-header">
           <div class="eyebrow-tag">
-            <span class="eyebrow-sparkle">✦</span> COMMUNITY ALLOCATION VOTE
+            <span>🗳️</span> COMMUNITY ALLOCATION VOTE
           </div>
           <p class="right-subtitle">
             Select the priorities you want funded first, then see how your vote compares across Colorado.
@@ -671,10 +686,10 @@
         </div>
 
         <!-- Priority Cards (Choose 1 or more) -->
-        <div class="vote-selection-box" role="group" aria-label="Community Priority Selection">
-          <div class="vote-box-title">
+        <div class="priority-cards-box" role="group" aria-label="Community Priority Selection">
+          <div class="vote-box-header">
             <span>Community Priorities</span>
-            <span class="hint">Select 1 or more options &darr;</span>
+            <span class="vote-hint">Select 1 or more options &darr;</span>
           </div>
 
           <div class="priority-cards">
@@ -715,7 +730,7 @@
           <div class="vote-alert" id="vote-alert">&bull; Please select at least one priority before unlocking results.</div>
         </div>
 
-        <!-- Inline Lead Capture Fields (Solrevibe layout) -->
+        <!-- Inline Lead Capture Fields (Clean Parchment Sketch Style) -->
         <form class="inline-form" id="funnel-form" novalidate>
           <div class="form-row">
             <div class="input-wrapper">
@@ -735,7 +750,7 @@
             </div>
           </div>
 
-          <!-- High-impact CTA Button -->
+          <!-- Signature McBride Gold Button -->
           <button type="submit" class="btn-submit-funnel" id="btn-submit">
             Show Me The Results &amp; Blueprint &rarr;
           </button>
