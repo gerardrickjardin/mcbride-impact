@@ -178,12 +178,13 @@
       overflow: hidden;
     }
 
-    /* Left Column: Media & Blueprint Highlights */
+    /* Left Column: Media */
     .stage-left {
-      padding: 16px 22px;
+      padding: 24px 28px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      justify-content: center;
+      gap: 18px;
       border-right: var(--border-sketch);
       background: var(--bg-white);
       overflow: hidden;
@@ -193,10 +194,10 @@
       position: relative;
       width: 100%;
       padding-top: 56.25%; /* 16:9 */
-      border-radius: 12px;
+      border-radius: 14px;
       overflow: hidden;
-      border: 2px solid #1a202c;
-      box-shadow: var(--shadow-card-sm);
+      border: var(--border-sketch);
+      box-shadow: var(--shadow-sketch);
       background: #000;
       flex-shrink: 0;
     }
@@ -207,73 +208,6 @@
       width: 100%;
       height: 100%;
       border: none;
-    }
-
-    .left-details {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 8px;
-      overflow: hidden;
-    }
-
-    .blueprint-card {
-      background: var(--bg-card);
-      border: 2px solid #1a202c;
-      border-radius: 12px;
-      padding: 10px 14px;
-      box-shadow: 3px 3px 0px #1a202c;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      overflow: hidden;
-    }
-
-    .blueprint-card-title {
-      font-family: var(--font-heading);
-      font-size: 0.74rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--color-blueprint);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 6px;
-    }
-
-    .blueprint-bullets {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-
-    .blueprint-bullets li {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      font-size: clamp(0.72rem, 0.85vw, 0.8rem);
-      line-height: 1.35;
-      color: var(--color-text);
-    }
-
-    .bullet-num {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: var(--color-accent);
-      color: #1a202c;
-      font-size: 0.65rem;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      border: 1.5px solid #1a202c;
-      margin-top: 1px;
     }
 
     .social-proof-bar {
@@ -624,7 +558,7 @@
     <!-- Central Split Stage Container -->
     <main class="main-stage">
 
-      <!-- LEFT: Jason McBride Video Player & Blueprint Highlights -->
+      <!-- LEFT: Jason McBride Video Player -->
       <section class="stage-left">
         <div class="video-frame-container">
           <iframe
@@ -635,42 +569,15 @@
           </iframe>
         </div>
 
-        <div class="left-details">
-          <div class="blueprint-card">
-            <div class="blueprint-card-title">
-              <span>📋 Project Blueprint Highlights</span>
-            </div>
-
-            <ul class="blueprint-bullets">
-              <li>
-                <span class="bullet-num">1</span>
-                <span><strong>Proven Leadership:</strong> Combining street wisdom with cutting-edge tools to stop youth violence at the root.</span>
-              </li>
-              <li>
-                <span class="bullet-num">2</span>
-                <span><strong>Settlement Allocation:</strong> Formally applying for Colorado settlement funding — community votes decide priorities.</span>
-              </li>
-              <li>
-                <span class="bullet-num">3</span>
-                <span><strong>Comprehensive Blueprint:</strong> Backed by a full 12-page roadmap tackling schools, mentors, and neighborhood healing.</span>
-              </li>
-              <li>
-                <span class="bullet-num">4</span>
-                <span><strong>Measurable Outcomes:</strong> Targeting a 50% reduction in youth violence in Year One across Denver neighborhoods.</span>
-              </li>
-            </ul>
+        <div class="social-proof-bar">
+          <div class="avatars-cluster">
+            <div class="mini-avatar">JM</div>
+            <div class="mini-avatar">KR</div>
+            <div class="mini-avatar">+</div>
           </div>
-
-          <div class="social-proof-bar">
-            <div class="avatars-cluster">
-              <div class="mini-avatar">JM</div>
-              <div class="mini-avatar">KR</div>
-              <div class="mini-avatar">+</div>
-            </div>
-            <p class="proof-copy">
-              <strong>2,847+ community members</strong> have already cast their votes to guide Colorado funding.
-            </p>
-          </div>
+          <p class="proof-copy">
+            <strong>2,847+ community members</strong> have already cast their votes to guide Colorado funding.
+          </p>
         </div>
       </section>
 
