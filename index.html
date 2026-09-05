@@ -18,7 +18,7 @@
       --color-text: #1a202c;
       --color-text-muted: #4a5568;
       --color-blueprint: #2c5282;
-      --color-blueprint-light: rgba(44, 82, 130, 0.1);
+      --color-blueprint-light: rgba(44, 82, 130, 0.09);
       --color-accent: #d69e2e;
       --color-accent-hover: #b7791f;
       --color-success: #276749;
@@ -26,16 +26,16 @@
       
       --border-sketch: 2.5px solid #1a202c;
       --border-blueprint: 1.5px dashed var(--color-blueprint);
-      --shadow-sketch: 6px 6px 0px #1a202c;
-      --shadow-sketch-hover: 10px 10px 0px #1a202c;
-      --shadow-card-sm: 4px 4px 0px #1a202c;
+      --shadow-sketch: 5px 5px 0px #1a202c;
+      --shadow-sketch-hover: 8px 8px 0px #1a202c;
+      --shadow-card-sm: 3px 3px 0px #1a202c;
       
       --radius-s1: 255px 15px 225px 15px / 15px 225px 15px 255px;
       --radius-s2: 15px 225px 15px 255px / 255px 15px 225px 15px;
       
       --font-heading: 'Plus Jakarta Sans', sans-serif;
       --font-body: 'Inter', sans-serif;
-      --transition: all 0.22s cubic-bezier(0.25, 1, 0.5, 1);
+      --transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
     *, *::before, *::after {
@@ -45,12 +45,11 @@
     }
 
     html, body {
-      height: 100%;
+      min-height: 100%;
       font-family: var(--font-body);
       background-color: var(--bg-primary);
       color: var(--color-text);
       overflow-x: hidden;
-      overflow-y: hidden;
     }
 
     /* Blueprint grid paper background texture */
@@ -73,48 +72,48 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      max-width: 1380px;
+      max-width: 1140px;
       margin: 0 auto;
-      padding: 8px 24px;
-      height: 52px;
+      padding: 10px 20px 0;
+      height: 48px;
     }
 
     .top-brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       text-decoration: none;
     }
 
     .brand-logo {
-      height: 36px;
+      height: 34px;
       width: auto;
       object-fit: contain;
     }
 
     .brand-badge {
       font-family: var(--font-heading);
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.06em;
       color: var(--color-blueprint);
       background: var(--color-blueprint-light);
       border: var(--border-blueprint);
-      padding: 3px 12px;
+      padding: 3px 10px;
       border-radius: 100px;
     }
 
     .skip-btn {
       font-family: var(--font-heading);
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       font-weight: 700;
       color: var(--color-text);
       text-decoration: none;
       background: var(--bg-card);
       border: 2px solid #1a202c;
-      box-shadow: 3px 3px 0px #1a202c;
-      padding: 5px 14px;
+      box-shadow: 2.5px 2.5px 0px #1a202c;
+      padding: 5px 12px;
       border-radius: 100px;
       display: flex;
       align-items: center;
@@ -123,37 +122,37 @@
     }
     .skip-btn:hover {
       transform: translate(-1px, -1px);
-      box-shadow: 5px 5px 0px #1a202c;
+      box-shadow: 4px 4px 0px #1a202c;
       background: var(--bg-white);
     }
 
-    /* Main Page Wrapper */
+    /* Main Page Wrapper - Centered & Hugs Content */
     .landing-wrapper {
       position: relative;
       z-index: 5;
-      max-width: 1360px;
+      max-width: 1140px;
       margin: 0 auto;
-      padding: 0 20px 8px;
-      height: calc(100vh - 52px);
+      padding: 10px 20px 20px;
+      min-height: calc(100vh - 48px);
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      justify-content: center;
+      gap: 12px;
     }
 
-    /* Blueprint Headline */
+    /* Headline */
     .headline-wrap {
       text-align: center;
-      padding: 0 12px;
-      flex-shrink: 0;
+      padding: 0 10px;
     }
 
     .main-headline {
       font-family: var(--font-heading);
-      font-size: clamp(1.15rem, 1.95vw, 1.7rem);
+      font-size: clamp(1.15rem, 1.85vw, 1.55rem);
       font-weight: 800;
       line-height: 1.25;
       color: var(--color-text);
-      max-width: 1140px;
+      max-width: 1020px;
       margin: 0 auto;
     }
 
@@ -165,39 +164,38 @@
       border-radius: 6px;
     }
 
-    /* Central Sketch Stage Container */
+    /* Central Sketch Stage Container - Hugs content cleanly */
     .main-stage {
-      flex: 1;
-      min-height: 0;
+      width: 100%;
       background: var(--bg-card);
       border: var(--border-sketch);
-      border-radius: 18px;
+      border-radius: 16px;
       box-shadow: var(--shadow-sketch);
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
       overflow: hidden;
     }
 
-    /* Left Column: Media */
+    /* Left Column: Media & Founder Quote */
     .stage-left {
-      padding: 24px 28px;
+      padding: 20px 22px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      gap: 18px;
+      justify-content: space-between;
+      gap: 12px;
       border-right: var(--border-sketch);
       background: var(--bg-white);
-      overflow: hidden;
     }
 
     .video-frame-container {
       position: relative;
       width: 100%;
-      padding-top: 56.25%; /* 16:9 */
-      border-radius: 14px;
+      padding-top: 56.25%; /* 16:9 ratio */
+      border-radius: 12px;
       overflow: hidden;
-      border: var(--border-sketch);
-      box-shadow: var(--shadow-sketch);
+      border: 2px solid #1a202c;
+      box-shadow: var(--shadow-card-sm);
       background: #000;
       flex-shrink: 0;
     }
@@ -210,11 +208,37 @@
       border: none;
     }
 
+    /* Authentic Founder Pull Quote */
+    .founder-quote-box {
+      background: var(--bg-card);
+      border: 1.5px solid #1a202c;
+      border-left: 4px solid var(--color-blueprint);
+      border-radius: 10px;
+      padding: 10px 14px;
+      box-shadow: 2px 2px 0px #1a202c;
+    }
+
+    .founder-quote-text {
+      font-size: 0.77rem;
+      font-style: italic;
+      color: var(--color-text);
+      line-height: 1.45;
+      margin-bottom: 4px;
+    }
+
+    .founder-quote-author {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--color-blueprint);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
     .social-proof-bar {
       display: flex;
       align-items: center;
       gap: 10px;
-      padding: 6px 12px;
+      padding: 7px 12px;
       background: var(--color-blueprint-light);
       border: var(--border-blueprint);
       border-radius: 10px;
@@ -247,13 +271,11 @@
 
     /* Right Column: Priority Voting & Inline Capture */
     .stage-right {
-      padding: 14px 20px;
+      padding: 18px 22px;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       gap: 10px;
-      overflow-y: auto;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(26,32,44,0.3) transparent;
       background: var(--bg-card);
     }
 
@@ -272,9 +294,9 @@
     }
 
     .right-subtitle {
-      font-size: 0.77rem;
+      font-size: 0.76rem;
       color: var(--color-text-muted);
-      line-height: 1.35;
+      line-height: 1.3;
     }
 
     /* Priority Cards Box */
@@ -287,7 +309,6 @@
       display: flex;
       flex-direction: column;
       gap: 6px;
-      flex-shrink: 0;
     }
 
     .vote-box-header {
@@ -295,7 +316,7 @@
       justify-content: space-between;
       align-items: center;
       font-family: var(--font-heading);
-      font-size: 0.72rem;
+      font-size: 0.71rem;
       font-weight: 800;
       color: var(--color-blueprint);
       text-transform: uppercase;
@@ -303,7 +324,7 @@
     }
 
     .vote-hint {
-      font-size: 0.68rem;
+      font-size: 0.67rem;
       font-weight: 600;
       color: var(--color-accent-hover);
       text-transform: none;
@@ -321,8 +342,8 @@
       align-items: center;
       gap: 10px;
       background: var(--bg-card);
-      border: 2px solid #1a202c;
-      border-radius: 10px;
+      border: 1.5px solid #1a202c;
+      border-radius: 8px;
       padding: 6px 10px;
       cursor: pointer;
       position: relative;
@@ -333,7 +354,7 @@
 
     .priority-card:hover {
       transform: translate(-1px, -1px);
-      box-shadow: 4px 4px 0px #1a202c;
+      box-shadow: 3px 3px 0px #1a202c;
       background: #fff;
     }
 
@@ -346,9 +367,9 @@
     .priority-card input[type="checkbox"] { display: none; }
 
     .priority-thumb {
-      width: 54px;
-      height: 38px;
-      border-radius: 6px;
+      width: 52px;
+      height: 36px;
+      border-radius: 5px;
       object-fit: cover;
       flex-shrink: 0;
       border: 1.5px solid #1a202c;
@@ -361,14 +382,14 @@
 
     .priority-title {
       font-family: var(--font-heading);
-      font-size: 0.8rem;
+      font-size: 0.79rem;
       font-weight: 800;
       color: var(--color-text);
       margin-bottom: 1px;
     }
 
     .priority-desc {
-      font-size: 0.69rem;
+      font-size: 0.68rem;
       color: var(--color-text-muted);
       line-height: 1.25;
       white-space: nowrap;
@@ -377,10 +398,10 @@
     }
 
     .check-indicator {
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
-      border: 2px solid #1a202c;
+      border: 1.5px solid #1a202c;
       background: #fff;
       display: flex;
       align-items: center;
@@ -388,7 +409,7 @@
       flex-shrink: 0;
       transition: var(--transition);
       color: transparent;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       font-weight: 800;
     }
 
@@ -399,12 +420,12 @@
     }
 
     .vote-alert {
-      font-size: 0.72rem;
+      font-size: 0.71rem;
       font-weight: 600;
       color: var(--color-danger);
       text-align: center;
       display: none;
-      padding-top: 2px;
+      padding-top: 1px;
     }
     .vote-alert.show { display: block; }
 
@@ -413,7 +434,6 @@
       display: flex;
       flex-direction: column;
       gap: 7px;
-      flex-shrink: 0;
     }
 
     .form-row {
@@ -427,11 +447,11 @@
     .form-control {
       width: 100%;
       background: #ffffff;
-      border: 2px solid #1a202c;
+      border: 1.5px solid #1a202c;
       border-radius: 8px;
-      padding: 8px 11px;
+      padding: 7px 10px;
       font-family: var(--font-body);
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--color-text);
       outline: none;
       box-shadow: 2px 2px 0px #1a202c;
@@ -440,7 +460,7 @@
 
     .form-control::placeholder {
       color: #718096;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
     }
 
     .form-control:focus {
@@ -453,17 +473,17 @@
       background: #fff5f5;
     }
 
-    /* Signature McBride Impact Gold Button */
+    /* Signature McBride Gold Button */
     .btn-submit-funnel {
       display: block;
       width: 100%;
       font-family: var(--font-heading);
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.04em;
       text-align: center;
-      padding: 13px 20px;
+      padding: 12px 18px;
       background: var(--color-accent);
       color: #1a202c;
       border: var(--border-sketch);
@@ -482,12 +502,12 @@
 
     .btn-submit-funnel:active {
       transform: translate(0, 0);
-      box-shadow: 3px 3px 0px #1a202c;
+      box-shadow: 2px 2px 0px #1a202c;
     }
 
     .footer-guarantee {
       text-align: center;
-      font-size: 0.7rem;
+      font-size: 0.69rem;
       color: var(--color-text-muted);
       display: flex;
       align-items: center;
@@ -497,35 +517,30 @@
 
     .spinner {
       display: inline-block;
-      width: 14px;
-      height: 14px;
-      border: 2.5px solid rgba(26, 32, 44, 0.3);
+      width: 13px;
+      height: 13px;
+      border: 2px solid rgba(26, 32, 44, 0.3);
       border-top-color: #1a202c;
       border-radius: 50%;
       animation: spin 0.6s linear infinite;
       vertical-align: middle;
-      margin-right: 6px;
+      margin-right: 5px;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
     /* Mobile / Tablet Adjustments */
     @media (max-width: 980px) {
-      html, body {
-        overflow-y: auto;
-        height: auto;
-      }
       .landing-wrapper {
-        height: auto;
+        min-height: auto;
+        padding-top: 14px;
         padding-bottom: 30px;
       }
       .main-stage {
         grid-template-columns: 1fr;
-        overflow: visible;
       }
       .stage-left {
         border-right: none;
         border-bottom: var(--border-sketch);
-        overflow: visible;
       }
       .form-row {
         grid-template-columns: 1fr;
@@ -558,7 +573,7 @@
     <!-- Central Split Stage Container -->
     <main class="main-stage">
 
-      <!-- LEFT: Jason McBride Video Player -->
+      <!-- LEFT: Jason McBride Video Player & Founder Quote -->
       <section class="stage-left">
         <div class="video-frame-container">
           <iframe
@@ -567,6 +582,15 @@
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen>
           </iframe>
+        </div>
+
+        <div class="founder-quote-box">
+          <p class="founder-quote-text">
+            &ldquo;Our youth don't need more empty promises. They need street-smart leadership, proven mentors, and real community-backed safe havens.&rdquo;
+          </p>
+          <div class="founder-quote-author">
+            &mdash; <strong>Jason McBride</strong>, Project Director
+          </div>
         </div>
 
         <div class="social-proof-bar">
@@ -637,7 +661,7 @@
           <div class="vote-alert" id="vote-alert">&bull; Please select at least one priority before unlocking results.</div>
         </div>
 
-        <!-- Inline Lead Capture Fields (Clean Parchment Sketch Style) -->
+        <!-- Inline Lead Capture Fields -->
         <form class="inline-form" id="funnel-form" novalidate>
           <div class="form-row">
             <div class="input-wrapper">
