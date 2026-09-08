@@ -440,6 +440,59 @@
     }
     .vote-alert.show { display: block; }
 
+    /* Step 1 "Cast My Vote" button */
+    .btn-cast-vote {
+      display: block;
+      width: 100%;
+      margin-top: 12px;
+      padding: 13px 20px;
+      background: var(--color-text);
+      color: #fff;
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: 2px solid var(--color-text);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s, transform 0.12s;
+    }
+    .btn-cast-vote:hover {
+      background: var(--color-accent, #e8a000);
+      border-color: var(--color-accent, #e8a000);
+      color: #1a202c;
+    }
+    .btn-cast-vote:active { transform: scale(0.98); }
+
+    /* Step 2 reveal panel */
+    .reveal-contact {
+      display: none;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    .reveal-contact.visible {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-contact.animating {
+      display: block;
+    }
+    .reveal-headline {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 900;
+      color: var(--color-text);
+      margin: 14px 0 10px;
+      text-align: center;
+      line-height: 1.35;
+    }
+    .reveal-headline span {
+      color: var(--color-accent, #e8a000);
+    }
+
     /* Inline Lead Capture Form */
     .inline-form {
       display: flex;
@@ -682,33 +735,42 @@
           <div class="vote-alert" id="vote-alert">&bull; Please select at least one priority before unlocking results.</div>
         </div>
 
-        <!-- Inline Lead Capture Fields -->
+        <!-- Step 1: Cast My Vote button (always visible) -->
+        <button type="button" class="btn-cast-vote" id="btn-cast-vote">
+          Cast My Vote &rarr;
+        </button>
+
+        <!-- Step 2: Contact fields revealed after vote is cast -->
         <form class="inline-form" id="funnel-form" novalidate>
-          <div class="form-row">
-            <div class="input-wrapper">
-              <input type="text" class="form-control" id="inp-name" name="name" placeholder="Full Name *" autocomplete="name" required />
-            </div>
-            <div class="input-wrapper">
-              <input type="text" class="form-control" id="inp-company" name="company" placeholder="Organization / School / Business *" autocomplete="organization" required />
-            </div>
-          </div>
+          <div class="reveal-contact" id="reveal-contact">
+            <p class="reveal-headline">See how your vote compares &mdash;<br><span>enter your info to unlock the results.</span></p>
 
-          <div class="form-row">
-            <div class="input-wrapper">
-              <input type="email" class="form-control" id="inp-email" name="email" placeholder="Email Address *" autocomplete="email" required />
+            <div class="form-row">
+              <div class="input-wrapper">
+                <input type="text" class="form-control" id="inp-name" name="name" placeholder="Full Name *" autocomplete="name" required />
+              </div>
+              <div class="input-wrapper">
+                <input type="text" class="form-control" id="inp-company" name="company" placeholder="Organization / School / Business *" autocomplete="organization" required />
+              </div>
             </div>
-            <div class="input-wrapper">
-              <input type="tel" class="form-control" id="inp-phone" name="phone" placeholder="Phone Number (Optional)" autocomplete="tel" />
+
+            <div class="form-row">
+              <div class="input-wrapper">
+                <input type="email" class="form-control" id="inp-email" name="email" placeholder="Email Address *" autocomplete="email" required />
+              </div>
+              <div class="input-wrapper">
+                <input type="tel" class="form-control" id="inp-phone" name="phone" placeholder="Phone Number (Optional)" autocomplete="tel" />
+              </div>
             </div>
-          </div>
 
-          <!-- Signature McBride Gold Button -->
-          <button type="submit" class="btn-submit-funnel" id="btn-submit">
-            Show Me The Results &amp; Blueprint &rarr;
-          </button>
+            <!-- Signature McBride Gold Button -->
+            <button type="submit" class="btn-submit-funnel" id="btn-submit">
+              Show Me How My Vote Compares &rarr;
+            </button>
 
-          <div class="footer-guarantee">
-            <span>🔒 Community data is protected. Your vote directly impacts state funding applications.</span>
+            <div class="footer-guarantee">
+              <span>&#128274; Community data is protected. Your vote directly impacts state funding applications.</span>
+            </div>
           </div>
         </form>
       </section>
@@ -727,10 +789,29 @@
       });
     });
 
-    // Form Submission & Validation
+    // ── STEP 1: "Cast My Vote" reveals the contact fields ──────────────────
+    const btnCastVote   = document.getElementById('btn-cast-vote');
+    const revealContact = document.getElementById('reveal-contact');
+    const voteAlert     = document.getElementById('vote-alert');
+
+    btnCastVote.addEventListener('click', () => {
+      const checked = document.querySelectorAll('input[name="vote"]:checked');
+      if (checked.length === 0) {
+        voteAlert.classList.add('show');
+        return;
+      }
+      // Hide the cast button, reveal contact panel with animation
+      btnCastVote.style.display = 'none';
+      revealContact.classList.add('animating');
+      // Trigger reflow so transition fires
+      revealContact.getBoundingClientRect();
+      revealContact.classList.add('visible');
+    });
+
+    // ── STEP 2: Full form submission & validation ───────────────────────────
     const funnelForm = document.getElementById('funnel-form');
     const btnSubmit  = document.getElementById('btn-submit');
-    const voteAlert  = document.getElementById('vote-alert');
+    // Form Submission & Validation
 
     funnelForm.addEventListener('submit', async (e) => {
       e.preventDefault();
