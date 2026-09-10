@@ -2,9 +2,25 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/", "destination": "/index.html" },
-    { "source": "/home", "destination": "/home.html" },
-    { "source": "/johnmcbride-vote", "destination": "/index.html" },
-    { "source": "/johnmcbride-results", "destination": "/johnmcbride-results.html" }
+    {
+      "source": "/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/landing",
+      "destination": "/landing.html"
+    },
+    {
+      "source": "/home",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/johnmcbride-vote",
+      "destination": "/landing.html"
+    },
+    {
+      "source": "/johnmcbride-results",
+      "destination": "/johnmcbride-results.html"
+    }
   ]
 }

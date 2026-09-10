@@ -1,901 +1,553 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The John McBride Impact Project — Community Priority Vote</title>
-  <meta name="description" content="Help allocate Colorado settlement funds to reduce youth violence by 50%. Cast your vote on community priorities and see real-time results." />
-  <link rel="icon" href="assets/favicon.png" type="image/png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg-primary: #f4eee1;
-      --bg-secondary: #ebe3cf;
-      --bg-card: #FAF6ED;
-      --bg-white: #ffffff;
-      --color-text: #1a202c;
-      --color-text-muted: #4a5568;
-      --color-blueprint: #2c5282;
-      --color-blueprint-light: rgba(44, 82, 130, 0.09);
-      --color-accent: #d69e2e;
-      --color-accent-hover: #b7791f;
-      --color-success: #276749;
-      --color-danger: #c53030;
-      
-      --border-sketch: 2.5px solid #1a202c;
-      --border-blueprint: 1.5px dashed var(--color-blueprint);
-      --shadow-sketch: 5px 5px 0px #1a202c;
-      --shadow-sketch-hover: 8px 8px 0px #1a202c;
-      --shadow-card-sm: 3px 3px 0px #1a202c;
-      
-      --radius-s1: 255px 15px 225px 15px / 15px 225px 15px 255px;
-      --radius-s2: 15px 225px 15px 255px / 255px 15px 225px 15px;
-      
-      --font-heading: 'Plus Jakarta Sans', sans-serif;
-      --font-body: 'Inter', sans-serif;
-      --transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
-    }
-
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html, body {
-      height: 100vh;
-      width: 100vw;
-      font-family: var(--font-body);
-      background-color: var(--bg-primary);
-      color: var(--color-text);
-      overflow: hidden;
-    }
-
-    /* Blueprint grid paper background texture */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background-image: 
-        linear-gradient(to right, rgba(44, 82, 130, 0.05) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(44, 82, 130, 0.05) 1px, transparent 1px);
-      background-size: 28px 28px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* Top Navigation Bar - 80% proportional sizing */
-    .top-bar {
-      position: relative;
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 82vw;
-      max-width: 1260px;
-      margin: 0 auto;
-      padding: 8px 12px 4px;
-      height: 44px;
-    }
-
-    .top-brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-    }
-
-    .brand-logo {
-      height: 30px;
-      width: auto;
-      object-fit: contain;
-    }
-
-    .brand-badge {
-      font-family: var(--font-heading);
-      font-size: 0.68rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--color-blueprint);
-      background: var(--color-blueprint-light);
-      border: var(--border-blueprint);
-      padding: 2px 10px;
-      border-radius: 100px;
-    }
-
-    .skip-btn {
-      font-family: var(--font-heading);
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: var(--color-text);
-      text-decoration: none;
-      background: var(--bg-card);
-      border: 1.5px solid #1a202c;
-      box-shadow: 2px 2px 0px #1a202c;
-      padding: 4px 12px;
-      border-radius: 100px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      transition: var(--transition);
-    }
-    .skip-btn:hover {
-      transform: translate(-1px, -1px);
-      box-shadow: 3px 3px 0px #1a202c;
-      background: var(--bg-white);
-    }
-
-    /* Expanded Layout Container for 16:9 Video & Balanced Stage */
-    .landing-wrapper {
-      position: relative;
-      z-index: 5;
-      width: 88vw;
-      max-width: 1360px;
-      margin: 0 auto;
-      padding: 22px 14px 24px;
-      height: calc(100vh - 44px);
-      display: flex;
-      flex-direction: column;
-      gap: 22px;
-    }
-
-    /* Headline */
-    .headline-wrap {
-      text-align: center;
-      padding: 0 8px;
-      flex-shrink: 0;
-    }
-
-    .main-headline {
-      font-family: var(--font-heading);
-      font-size: clamp(1.1rem, 1.7vw, 1.5rem);
-      font-weight: 800;
-      line-height: 1.2;
-      color: var(--color-text);
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .highlight-blueprint { color: var(--color-blueprint); }
-    .highlight-accent {
-      color: var(--color-accent-hover);
-      background: rgba(214, 158, 46, 0.14);
-      padding: 0 5px;
-      border-radius: 5px;
-    }
-
-    /* Central Stage Container - 20% smaller footprint */
-    .main-stage {
-      flex: 1;
-      min-height: 0;
-      width: 100%;
-      background: var(--bg-card);
-      border: var(--border-sketch);
-      border-radius: 16px;
-      box-shadow: var(--shadow-sketch);
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      overflow: hidden;
-    }
-
-    /* Left Column: Media & Founder Voice */
-    .stage-left {
-      padding: 18px 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 14px;
-      border-right: var(--border-sketch);
-      background: var(--bg-white);
-      overflow: hidden;
-    }
-
-    .video-frame-container {
-      position: relative;
-      width: 100%;
-      height: 0;
-      padding-bottom: 56.25%;
-      flex-shrink: 0;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 2px solid #1a202c;
-      box-shadow: var(--shadow-card-sm);
-      background: #000;
-    }
-
-    .video-frame-container iframe {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    /* Founder Quote */
-    .founder-quote-box {
-      background: var(--bg-card);
-      border: 1.5px solid #1a202c;
-      border-left: 4px solid var(--color-blueprint);
-      border-radius: 8px;
-      padding: 7px 12px;
-      box-shadow: 2px 2px 0px #1a202c;
-      flex-shrink: 0;
-    }
-
-    .founder-quote-text {
-      font-size: clamp(0.72rem, 0.8vw, 0.78rem);
-      font-style: italic;
-      color: var(--color-text);
-      line-height: 1.35;
-      margin-bottom: 2px;
-    }
-
-    .founder-quote-author {
-      font-size: 0.68rem;
-      font-weight: 700;
-      color: var(--color-blueprint);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    .social-proof-bar {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 5px 12px;
-      background: var(--color-blueprint-light);
-      border: var(--border-blueprint);
-      border-radius: 8px;
-      flex-shrink: 0;
-    }
-
-    .avatars-cluster { display: flex; }
-    .mini-avatar {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      border: 1.5px solid #1a202c;
-      margin-left: -7px;
-      background: var(--color-blueprint);
-      color: #fff;
-      font-size: 0.55rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .mini-avatar:first-child { margin-left: 0; background: var(--color-accent); color: #1a202c; }
-    .mini-avatar:nth-child(2) { background: #276749; }
-
-    .proof-copy {
-      font-size: clamp(0.7rem, 0.8vw, 0.76rem);
-      color: var(--color-text-muted);
-      line-height: 1.25;
-    }
-    .proof-copy strong { color: var(--color-text); }
-
-    /* Right Column: Priority Voting & Inline Form */
-    .stage-right {
-      padding: 18px 22px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 14px;
-      background: var(--bg-card);
-      overflow-y: auto;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(26,32,44,0.25) transparent;
-    }
-
-    .right-header { flex-shrink: 0; margin-bottom: 2px; }
-    .eyebrow-tag {
-      font-family: var(--font-heading);
-      font-size: 0.68rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--color-blueprint);
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      margin-bottom: 1px;
-    }
-
-    .right-subtitle {
-      font-size: clamp(0.72rem, 0.82vw, 0.78rem);
-      color: var(--color-text-muted);
-      line-height: 1.3;
-    }
-
-    /* Priority Cards Box */
-    .priority-cards-box {
-      background: var(--bg-white);
-      border: 1.5px solid #1a202c;
-      border-radius: 10px;
-      box-shadow: var(--shadow-card-sm);
-      padding: 8px 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      flex-shrink: 0;
-    }
-
-    .vote-box-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: var(--font-heading);
-      font-size: 0.7rem;
-      font-weight: 800;
-      color: var(--color-blueprint);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      flex-shrink: 0;
-    }
-
-    .vote-hint {
-      font-size: 0.66rem;
-      font-weight: 600;
-      color: var(--color-accent-hover);
-      text-transform: none;
-      letter-spacing: normal;
-    }
-
-    .priority-cards {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .priority-card {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--bg-card);
-      border: 1.5px solid #1a202c;
-      border-radius: 8px;
-      padding: 8px 10px;
-      cursor: pointer;
-      position: relative;
-      transition: var(--transition);
-      user-select: none;
-      box-shadow: 1.5px 1.5px 0px #1a202c;
-    }
-
-    .priority-card:hover {
-      transform: translate(-1px, -1px);
-      box-shadow: 3px 3px 0px #1a202c;
-      background: #fff;
-    }
-
-    .priority-card.selected {
-      background: rgba(44, 82, 130, 0.09);
-      border-color: var(--color-blueprint);
-      box-shadow: 2.5px 2.5px 0px var(--color-blueprint);
-    }
-
-    .priority-card input[type="checkbox"] { display: none; }
-
-    .priority-thumb {
-      width: 56px;
-      height: 40px;
-      border-radius: 5px;
-      object-fit: cover;
-      flex-shrink: 0;
-      border: 1.5px solid #1a202c;
-    }
-
-    .priority-meta {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .priority-title {
-      font-family: var(--font-heading);
-      font-size: clamp(0.78rem, 0.9vw, 0.85rem);
-      font-weight: 800;
-      color: var(--color-text);
-      margin-bottom: 2px;
-    }
-
-    .priority-desc {
-      font-size: clamp(0.68rem, 0.78vw, 0.73rem);
-      color: var(--color-text-muted);
-      line-height: 1.3;
-      white-space: normal;
-      overflow: visible;
-    }
-
-    .check-indicator {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      border: 1.5px solid #1a202c;
-      background: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: var(--transition);
-      color: transparent;
-      font-size: 0.65rem;
-      font-weight: 800;
-    }
-
-    .priority-card.selected .check-indicator {
-      background: var(--color-blueprint);
-      border-color: var(--color-blueprint);
-      color: #fff;
-    }
-
-    .vote-alert {
-      font-size: 0.69rem;
-      font-weight: 600;
-      color: var(--color-danger);
-      text-align: center;
-      display: none;
-      padding-top: 2px;
-      padding-bottom: 1px;
-    }
-    .vote-alert.show { display: block; }
-
-    /* Step 1 "Cast My Vote" button */
-    .btn-cast-vote {
-      display: block;
-      width: 100%;
-      margin-top: 0;
-      padding: 12px 20px;
-      background: var(--color-text);
-      color: #fff;
-      font-family: var(--font-heading);
-      font-size: 0.9rem;
-      font-weight: 900;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      border: 2px solid var(--color-text);
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background 0.18s, color 0.18s, transform 0.12s;
-    }
-    .btn-cast-vote:hover {
-      background: var(--color-accent, #e8a000);
-      border-color: var(--color-accent, #e8a000);
-      color: #1a202c;
-    }
-    .btn-cast-vote:active { transform: scale(0.98); }
-
-    /* Step 2 reveal panel */
-    .reveal-contact {
-      display: none;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.35s ease, transform 0.35s ease;
-    }
-    .reveal-contact.visible {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .reveal-contact.animating {
-      display: block;
-    }
-    .reveal-headline {
-      font-family: var(--font-heading);
-      font-size: 0.9rem;
-      font-weight: 900;
-      color: var(--color-text);
-      margin: 6px 0 6px;
-      text-align: center;
-      line-height: 1.3;
-    }
-    .reveal-headline span {
-      color: var(--color-accent, #e8a000);
-    }
-
-    /* Inline Lead Capture Form */
-    .inline-form {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      flex-shrink: 0;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6px;
-    }
-
-    .input-wrapper { position: relative; }
-
-    .form-control {
-      width: 100%;
-      background: #ffffff;
-      border: 1.5px solid #1a202c;
-      border-radius: 7px;
-      padding: 7px 10px;
-      font-family: var(--font-body);
-      font-size: 0.78rem;
-      color: var(--color-text);
-      outline: none;
-      box-shadow: 1.5px 1.5px 0px #1a202c;
-      transition: var(--transition);
-    }
-
-    .form-control::placeholder {
-      color: #718096;
-      font-size: 0.76rem;
-    }
-
-    .form-control:focus {
-      border-color: var(--color-blueprint);
-      box-shadow: 0 0 0 3px rgba(44, 82, 130, 0.18), 1.5px 1.5px 0px var(--color-blueprint);
-    }
-
-    .form-control.error {
-      border-color: var(--color-danger);
-      background: #fff5f5;
-    }
-
-    /* Signature McBride Gold Button */
-    .btn-submit-funnel {
-      display: block;
-      width: 100%;
-      font-family: var(--font-heading);
-      font-size: 0.85rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      text-align: center;
-      padding: 9px 14px;
-      background: var(--color-accent);
-      color: #1a202c;
-      border: var(--border-sketch);
-      border-radius: var(--radius-s1);
-      box-shadow: var(--shadow-sketch);
-      cursor: pointer;
-      transition: var(--transition);
-      margin-top: 1px;
-    }
-
-    .btn-submit-funnel:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: var(--shadow-sketch-hover);
-      background: var(--color-accent-hover);
-    }
-
-    .btn-submit-funnel:active {
-      transform: translate(0, 0);
-      box-shadow: 2px 2px 0px #1a202c;
-    }
-
-    .footer-guarantee {
-      text-align: center;
-      font-size: 0.65rem;
-      color: var(--color-text-muted);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      margin-top: 2px;
-    }
-
-    .spinner {
-      display: inline-block;
-      width: 12px;
-      height: 12px;
-      border: 2px solid rgba(26, 32, 44, 0.3);
-      border-top-color: #1a202c;
-      border-radius: 50%;
-      animation: spin 0.6s linear infinite;
-      vertical-align: middle;
-      margin-right: 5px;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    /* Responsive fallbacks */
-    @media (max-width: 1024px) {
-      html, body {
-        height: auto;
-        overflow-y: auto;
-      }
-      .top-bar, .landing-wrapper {
-        width: 100%;
-        max-width: 100%;
-        padding-left: 20px;
-        padding-right: 20px;
-      }
-      .landing-wrapper {
-        height: auto;
-        padding-bottom: 30px;
-      }
-      .main-stage {
-        grid-template-columns: 1fr;
-      }
-      .stage-left {
-        border-right: none;
-        border-bottom: var(--border-sketch);
-      }
-      .video-frame-container {
-        min-height: 260px;
-      }
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The McBride Impact - Advocating for trust, systemic accountability, reform, and justice to create safer and fairer communities.">
+  <title>The McBride Impact</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/favicon.png">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- Top Header Navigation -->
-  <header class="top-bar">
-    <a href="/" class="top-brand">
-      <img src="assets/McBride Impact Logo (Transparent Background).png" alt="McBride Impact" class="brand-logo" />
-      <span class="brand-badge">John McBride Impact Project</span>
-    </a>
-    <a href="home.html" class="skip-btn" title="Explore full McBride Impact organization">
-      Enter Full Homepage <span>&rarr;</span>
-    </a>
+  <!-- NAVIGATION HEADER -->
+  <header class="main-header" id="home">
+    <div class="container nav-container">
+      <a href="#home" class="logo-link">
+        <img src="assets/McBride Impact Logo (Transparent Background).png" alt="McBride Impact Logo" class="logo-img">
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="nav-links">
+          <li class="nav-item"><a href="/signup">Sign Up</a></li>
+          <li class="nav-item"><a href="/#impacts">The Impacts</a></li>
+          <li class="nav-item"><a href="/scholarship">Scholarship Fund</a></li>
+          <li class="nav-item"><a href="/whoweare">Who We Are</a></li>
+          <li class="nav-item dropdown">
+            <a href="#" class="dropdown-toggle">What We Do <span class="arrow">&#9662;</span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/kidskreation">Kids Kreation</a></li>
+              <li><a href="/events">Events</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="/coloradouniversity">Colorado University</a></li>
+          <li class="nav-item"><a href="/bigpictureproject">The Big Picture Project</a></li>
+          <li class="nav-item"><a href="/gallery">Gallery</a></li>
+          <li class="nav-item"><a href="/assistance">Assistance</a></li>
+          <li class="nav-item"><a href="/volunteer">Volunteer</a></li>
+        </ul>
+      </nav>
+
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle Navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </header>
 
-  <div class="landing-wrapper">
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <video autoplay muted loop playsinline preload="auto" class="hero-bg-video" id="hero-bg-video">
+      <source src="assets/Hero Looping Page Background.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
 
-    <!-- McBride Architectural Blueprint Headline -->
-    <div class="headline-wrap">
-      <h1 class="main-headline">
-        Help Direct <span class="highlight-accent">$10,000,000+</span> in Colorado Settlement Funds<br>to Cut Youth Violence by <span class="highlight-blueprint">50%</span> with the <span class="highlight-blueprint">JOHN MCBRIDE</span> Blueprint
-      </h1>
-    </div>
-
-    <!-- Central Split Stage Container - 20% Smaller Proportion -->
-    <main class="main-stage">
-
-      <!-- LEFT: Jason McBride Video Player & Founder Quote -->
-      <section class="stage-left">
-        <div class="video-frame-container">
-          <iframe
-            src="https://www.youtube.com/embed/AjiLfebHYiQ?rel=0&modestbranding=1"
-            title="Jason McBride — Introduction to the John McBride Impact Project"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-          </iframe>
-        </div>
-
-        <div class="founder-quote-box">
-          <p class="founder-quote-text">
-            &ldquo;Our youth don&rsquo;t need more empty promises. They need a vision of their future&hellip; they need real tools to build it.&rdquo;
-          </p>
-          <div class="founder-quote-author">
-            &mdash; <strong>Jason McBride</strong>, Project Director
-          </div>
-        </div>
-
-        <div class="social-proof-bar">
-          <div class="avatars-cluster">
-            <div class="mini-avatar">JM</div>
-            <div class="mini-avatar">KR</div>
-            <div class="mini-avatar">+</div>
-          </div>
-          <p class="proof-copy">
-            <strong>2,847+ community members</strong> have already cast their votes to guide Colorado funding.
-          </p>
-        </div>
-      </section>
-
-      <!-- RIGHT: Interactive Priority Cards & Inline Lead Capture Form -->
-      <section class="stage-right">
-        <div class="right-header">
-          <div class="eyebrow-tag">
-            <span>🗳️</span> COMMUNITY ALLOCATION VOTE
-          </div>
-          <p class="right-subtitle">
-            Select the priorities you want funded first, then see how your vote compares across Colorado.
-          </p>
-        </div>
-
-        <!-- Priority Cards (Choose 1 or more) -->
-        <div class="priority-cards-box" role="group" aria-label="Community Priority Selection">
-          <div class="vote-box-header">
-            <span>Community Priorities</span>
-            <span class="vote-hint">Select 1 or more options &darr;</span>
-          </div>
-
-          <div class="priority-cards">
-            <!-- Card 1: School Culture -->
-            <label class="priority-card" id="card-school" for="chk-school">
-              <input type="checkbox" id="chk-school" name="vote" value="school_culture" />
-              <img class="priority-thumb" src="assets/vote_school_culture.jpg" alt="School Culture" />
-              <div class="priority-meta">
-                <div class="priority-title">🏫 Transform School Culture</div>
-                <div class="priority-desc">Turn school environments into safe sanctuaries where students thrive.</div>
-              </div>
-              <div class="check-indicator">&check;</div>
-            </label>
-
-            <!-- Card 2: Empowered Coaches (NO AI MENTION) -->
-            <label class="priority-card" id="card-coaches" for="chk-coaches">
-              <input type="checkbox" id="chk-coaches" name="vote" value="empowered_coaches" />
-              <img class="priority-thumb" src="assets/vote_empowered_coaches.jpg" alt="Empowered Coaches" />
-              <div class="priority-meta">
-                <div class="priority-title">⚡ Empower Coaches</div>
-                <div class="priority-desc">Equip mentors with cutting-edge digital tools for real-time problem-solving.</div>
-              </div>
-              <div class="check-indicator">&check;</div>
-            </label>
-
-            <!-- Card 3: Community Healing -->
-            <label class="priority-card" id="card-healing" for="chk-healing">
-              <input type="checkbox" id="chk-healing" name="vote" value="community_healing" />
-              <img class="priority-thumb" src="assets/vote_community_healing.jpg" alt="Community Healing" />
-              <div class="priority-meta">
-                <div class="priority-title">💛 Heal Our Communities</div>
-                <div class="priority-desc">Root-level trauma recovery for inner-city youth, parents, and neighborhoods.</div>
-              </div>
-              <div class="check-indicator">&check;</div>
-            </label>
-          </div>
-
-          <div class="vote-alert" id="vote-alert">&bull; Please select at least one priority before unlocking results.</div>
-        </div>
-
-        <!-- Step 1: Cast My Vote button (always visible) -->
-        <button type="button" class="btn-cast-vote" id="btn-cast-vote">
-          Submit Vote &rarr;
-        </button>
-
-        <!-- Step 2: Contact fields revealed after vote is cast -->
-        <form class="inline-form" id="funnel-form" novalidate>
-          <div class="reveal-contact" id="reveal-contact">
-            <p class="reveal-headline">See how your vote compares &mdash;<br><span>enter your info to unlock the results.</span></p>
-
-            <div class="form-row">
-              <div class="input-wrapper">
-                <input type="text" class="form-control" id="inp-name" name="name" placeholder="Full Name *" autocomplete="name" required />
-              </div>
-              <div class="input-wrapper">
-                <input type="text" class="form-control" id="inp-company" name="company" placeholder="Organization / School / Business *" autocomplete="organization" required />
-              </div>
+    <!-- Floating Form Overlay -->
+    <div class="hero-floating-overlay">
+      <div class="hero-form-card">
+        <h2 class="hero-form-title">Can you imagine a world where youth violence is cut in half in one year? <span class="highlight-blue">We can.</span></h2>
+        <p class="hero-form-desc">We created a blueprint called <strong>“Impact for Change”</strong> to reduce youth violence by 50% in one year. We combine old school street wisdom with new school social technology. We are building a national network of change makers. Sign up to receive the “Impact for Change” blueprint.</p>
+        
+        <form class="hero-blueprint-form" id="hero-blueprint-form" action="#" method="POST">
+          <div class="hero-form-grid">
+            <div class="form-field">
+              <label for="hero-name">Name</label>
+              <input type="text" id="hero-name" name="name" placeholder="Your Name" required class="hero-input">
             </div>
-
-            <div class="form-row">
-              <div class="input-wrapper">
-                <input type="email" class="form-control" id="inp-email" name="email" placeholder="Email Address *" autocomplete="email" required />
-              </div>
-              <div class="input-wrapper">
-                <input type="tel" class="form-control" id="inp-phone" name="phone" placeholder="Phone Number (Optional)" autocomplete="tel" />
-              </div>
+            <div class="form-field">
+              <label for="hero-org">Organization</label>
+              <input type="text" id="hero-org" name="organization" placeholder="Organization Name" class="hero-input">
             </div>
-
-            <!-- Signature McBride Gold Button -->
-            <button type="submit" class="btn-submit-funnel" id="btn-submit">
-              Show Me How My Vote Compares &rarr;
-            </button>
-
-            <div class="footer-guarantee">
-              <span>&#128274; Community data is protected. Your vote directly impacts state funding applications.</span>
+            <div class="form-field">
+              <label for="hero-email">Email</label>
+              <input type="email" id="hero-email" name="email" placeholder="your.email@example.com" required class="hero-input">
             </div>
+            <div class="form-field">
+              <label for="hero-phone">Phone <span class="opt-tag">(optional)</span></label>
+              <input type="tel" id="hero-phone" name="phone" placeholder="(303) 865-0051" class="hero-input">
+            </div>
+          </div>
+          
+          <div class="hero-form-btn-wrapper">
+            <button type="submit" class="btn-hero-blueprint" id="hero-blueprint-btn">Send Me the Blueprint</button>
+          </div>
+
+          <div class="hero-form-success" id="hero-form-success" style="display: none;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="success-icon"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Thank you! Your "Impact for Change" blueprint is on its way to your inbox.</span>
           </div>
         </form>
-      </section>
+      </div>
+    </div>
+  </section>
 
-    </main>
+
+  <!-- THREE PILLARS SECTION -->
+  <section class="pillars-section reveal-on-scroll" id="pillars">
+    <div class="container">
+      <div class="text-center" style="margin-bottom: 50px;">
+        <h2 class="section-title-lg">The Three "Impact for Change" Components</h2>
+      </div>
+      <div class="pillars-grid">
+        <!-- Component 1 -->
+        <div class="card-premium text-center" style="padding: 32px 18px;">
+          <img src="assets/Section 2 Assets/Section 2, Hyper-Engaging Curriculum Photo.png" alt="Hyper-Engaging Curriculum" class="component-img" style="margin: 0 auto; display: block;">
+          <h3 class="card-title-lg" style="margin: 20px 0 10px; text-align: center; font-size: 1.25rem; white-space: nowrap;">Hyper-Engaging Curriculum</h3>
+          <p class="body-lg" style="font-size: 1rem; color: var(--color-text-light); text-align: center;">Immersive Story-Based Curriculum that teaches goal achievement and problem-solving that keeps students hooked.</p>
+        </div>
+        <!-- Component 2 -->
+        <div class="card-premium text-center" style="padding: 32px 18px;">
+          <img src="assets/Section 2 Assets/Section 2, Deep Trauma Intervention Photo.png" alt="Deep Trauma Intervention" class="component-img" style="margin: 0 auto; display: block;">
+          <h3 class="card-title-lg" style="margin: 20px 0 10px; text-align: center; font-size: 1.25rem; white-space: nowrap;">Deep Trauma Intervention</h3>
+          <p class="body-lg" style="font-size: 1rem; color: var(--color-text-light); text-align: center;">Healing trauma at the root level so inner-city kids can actually thrive, not just survive.</p>
+        </div>
+        <!-- Component 3 -->
+        <div class="card-premium text-center" style="padding: 32px 18px;">
+          <img src="assets/Section 2 Assets/Section 2, The  22Big Picture 22 Project Photo.png" alt="The 'Big Picture' Project" class="component-img" style="margin: 0 auto; display: block;">
+          <h3 class="card-title-lg" style="margin: 20px 0 10px; text-align: center; font-size: 1.25rem; white-space: nowrap;">The "Big Picture" Project</h3>
+          <p class="body-lg" style="font-size: 1rem; color: var(--color-text-light); text-align: center;">We're building the world's largest anti-violence poster to make a massive visual statement the world can't ignore.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WATCH VIDEO SECTION -->
+  <section class="learn-more-section reveal-on-scroll" id="learn-more">
+    <div class="container">
+      <div class="text-center" style="margin-bottom: 40px;">
+        <h2 class="section-title-lg">Watch the Video to Learn More</h2>
+      </div>
+      <div class="video-embed-wrapper">
+        <iframe class="embed-iframe" src="https://www.youtube.com/embed/AjiLfebHYiQ" title="After takeover concerns, Aurora teens choose ice cream over chaos" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+      <div class="text-center" style="margin-top: 40px;">
+        <h3 class="card-title-lg" style="font-size: 1.8rem; margin-bottom: 8px;">We can't do it without you!</h3>
+        <p class="body-lg" style="margin-bottom: 24px;">This has never been done before. Join the movement!</p>
+        <div>
+          <a href="mailto:admin@mcbrideimpact.org?subject=Book%20a%20Call%20Request" class="btn-accent" style="padding: 14px 36px; font-size: 1.1rem; letter-spacing: 0.5px;">Book a Call</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION SECTION -->
+  <section class="mission-section reveal-on-scroll" id="mission">
+    <div class="container text-center">
+      <div class="mission-header">
+        <h2 class="section-title-lg" style="margin-bottom: 16px;">Our Mission</h2>
+        <p class="body-lg" style="margin-bottom: 40px;">Empower people of color through sustainable pillar initiatives</p>
+      </div>
+      <div class="mission-grid">
+        <!-- Education -->
+        <div class="card-premium text-center">
+          <img src="assets/Section 4/Education Icon.png" alt="Education" class="mission-icon">
+          <h3 class="card-title-lg" style="margin-top: 15px;">EDUCATION</h3>
+        </div>
+        <!-- Employment -->
+        <div class="card-premium text-center">
+          <img src="assets/Section 4/Employment Icon.png" alt="Employment" class="mission-icon">
+          <h3 class="card-title-lg" style="margin-top: 15px;">EMPLOYMENT</h3>
+        </div>
+        <!-- Equality -->
+        <div class="card-premium text-center">
+          <img src="assets/Section 4/Equality Icon.png" alt="Equality" class="mission-icon">
+          <h3 class="card-title-lg" style="margin-top: 15px;">EQUALITY</h3>
+        </div>
+        <!-- Equity -->
+        <div class="card-premium text-center">
+          <img src="assets/Section 4/Equity Icon.png" alt="Equity" class="mission-icon">
+          <h3 class="card-title-lg" style="margin-top: 15px;">EQUITY</h3>
+        </div>
+      </div>
+      <div class="mission-action" style="margin-top: 40px;">
+        <a href="https://checkout.square.site/merchant/JS0VXB3G6SZMD/checkout/AMPVVR5JKI3JC3L2MYRD7PNT" target="_blank" rel="noopener noreferrer" class="btn-donate-gold">Donate Today</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCHOLARSHIP SECTION -->
+  <section class="scholarship-section reveal-on-scroll" id="scholarship">
+    <div class="container text-center">
+      <a href="/scholarship" style="text-decoration: none; color: inherit; display: inline-block; cursor: pointer;">
+        <div class="scholarship-content">
+          <img src="assets/Section 5/John McBride Memorial Scholarship Fund Logo.png" alt="John McBride Memorial Scholarship Fund Logo" class="scholarship-logo">
+          <div class="scholarship-title-box">
+            <h2>For Outstanding Student of Color</h2>
+          </div>
+          <div class="scholarship-action">
+            <span class="btn-learn-more-flat">Learn more</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- QR REGISTER SECTION -->
+  <section class="qr-register-section reveal-on-scroll" id="qr-register">
+    <div class="container text-center">
+      <div class="qr-register-header">
+        <div class="qr-text-wrapper">
+          <h2 class="section-title-lg">Register for McBride Impact Programs</h2>
+        </div>
+        <p class="body-lg" style="margin-top: 10px;">Scan to begin your transformation journey</p>
+      </div>
+      <div class="qr-image-container">
+        <img src="assets/Register for McBride Impact Programs QR.png" alt="Register for McBride Impact Programs QR" class="qr-register-img">
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACT PROGRAMS VISUAL JOURNEY TIMELINE -->
+  <section class="programs-section reveal-on-scroll" id="programs">
+    <div class="container">
+      <div class="text-center">
+        <h2 class="section-title-lg" style="text-align: center;">Impact Programs</h2>
+        <p class="body-lg" style="max-width: 650px; margin: 12px auto 0;">A guided progression path empowering youth from mentorship to leadership.</p>
+      </div>
+
+      <div class="timeline-journey">
+        <!-- Step 1: P.R.E.P. -->
+        <div class="timeline-step">
+          <div class="timeline-step-node"></div>
+          <div class="timeline-step-card">
+            <div class="program-img-wrapper" style="margin-bottom: 14px;">
+              <img src="assets/Program Section/PREP Icon.png" alt="P.R.E.P. Program Icon" class="program-img">
+            </div>
+            <h3 class="card-title-lg">P.R.E.P.</h3>
+            <p class="caption-sm" style="color: var(--color-blueprint); font-weight: 600; margin: 4px 0 10px;">Peer Run Exit Program</p>
+            <p class="body-lg" style="font-size: 0.95rem;">Empowering youth through peer-led exit strategies and community support systems.</p>
+            <a href="mailto:admin@mcbrideimpact.org?subject=Get%20Involved%20Inquiry%20-%20PREP" class="btn-program-learn" style="margin-top: 15px; display: inline-block;">Get Involved</a>
+          </div>
+        </div>
+
+        <!-- Step 2: F.R.E.S.H. 101 -->
+        <div class="timeline-step">
+          <div class="timeline-step-node"></div>
+          <div class="timeline-step-card">
+            <div class="program-img-wrapper" style="margin-bottom: 14px;">
+              <img src="assets/Program Section/F.R.E.S.H. 101 Icon.png" alt="F.R.E.S.H. 101 Program Icon" class="program-img">
+            </div>
+            <h3 class="card-title-lg">F.R.E.S.H. 101</h3>
+            <p class="caption-sm" style="color: var(--color-blueprint); font-weight: 600; margin: 4px 0 10px;">School Supplies & Haircuts</p>
+            <p class="body-lg" style="font-size: 0.95rem;">Building confidence and dignity through essential school readiness tools.</p>
+            <a href="mailto:admin@mcbrideimpact.org?subject=Get%20Involved%20Inquiry%20-%20FRESH101" class="btn-program-learn" style="margin-top: 15px; display: inline-block;">Get Involved</a>
+          </div>
+        </div>
+
+        <!-- Step 3: City-Wide Network -->
+        <div class="timeline-step">
+          <div class="timeline-step-node"></div>
+          <div class="timeline-step-card">
+            <div class="program-img-wrapper" style="margin-bottom: 14px;">
+              <img src="assets/Program Section/City-Wide Network Icon.png" alt="City-Wide Network Program Icon" class="program-img">
+            </div>
+            <h3 class="card-title-lg">City-Wide Network</h3>
+            <p class="caption-sm" style="color: var(--color-blueprint); font-weight: 600; margin: 4px 0 10px;">After School Program</p>
+            <p class="body-lg" style="font-size: 0.95rem;">Safe spaces, academic support, and creative enrichment across city neighborhoods.</p>
+            <a href="mailto:admin@mcbrideimpact.org?subject=Get%20Involved%20Inquiry%20-%20City-Wide%20Network" class="btn-program-learn" style="margin-top: 15px; display: inline-block;">Get Involved</a>
+          </div>
+        </div>
+
+        <!-- Step 4: 10 for 10 -->
+        <div class="timeline-step">
+          <div class="timeline-step-node"></div>
+          <div class="timeline-step-card">
+            <div class="program-img-wrapper" style="margin-bottom: 14px;">
+              <img src="assets/Program Section/10 for 10 Icon.png" alt="10 for 10 Program Icon" class="program-img">
+            </div>
+            <h3 class="card-title-lg">10 for 10</h3>
+            <p class="caption-sm" style="color: var(--color-blueprint); font-weight: 600; margin: 4px 0 10px;">Youth Leadership Academy</p>
+            <p class="body-lg" style="font-size: 0.95rem;">Developing next-generation community leaders and change makers.</p>
+            <a href="mailto:admin@mcbrideimpact.org?subject=Get%20Involved%20Inquiry%20-%2010for10" class="btn-program-learn" style="margin-top: 15px; display: inline-block;">Get Involved</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIFESTYLE MERCHANDISE STOREFRONT SECTION -->
+  <section class="tshirt-section reveal-on-scroll" id="tshirt-sale">
+    <div class="container">
+      <div class="text-center" style="margin-bottom: 30px;">
+        <h2 class="section-title-lg">McBride Impact Storefront</h2>
+        <p class="body-lg" style="margin-top: 8px;">Wear the movement. Every purchase directly funds our youth programs.</p>
+      </div>
+
+      <div class="merch-storefront-grid">
+        <!-- Merch Item 1 -->
+        <div class="merch-card">
+          <div class="merch-img-wrapper">
+            <span class="price-badge">$20.00</span>
+            <img src="assets/Tshirt Section/Tshirt Icon.png" alt="McBride Impact Official T-Shirt">
+          </div>
+          <div class="merch-info">
+            <h3 class="merch-item-title">Official T-Shirt</h3>
+            <p class="merch-item-desc">Premium soft-cotton tee featuring the iconic McBride Impact emblem. Available in all sizes & colors.</p>
+            <a href="mailto:admin@mcbrideimpact.org?subject=Official%20T-Shirt%20Order%20Request" class="btn-signup-submit" style="width: 100%; text-align: center;">Order Shirt</a>
+          </div>
+        </div>
+
+        <!-- Merch Item 2 -->
+        <div class="merch-card">
+          <div class="merch-img-wrapper">
+            <span class="price-badge">$55.00</span>
+            <img src="assets/Tshirt Section/Hoodies Icon .png" alt="McBride Impact Hoodie">
+          </div>
+          <div class="merch-info">
+            <h3 class="merch-item-title">Impact Pullover Hoodie</h3>
+            <p class="merch-item-desc">Heavyweight comfortable fleece hoodie designed for everyday warmth and community pride.</p>
+            <a href="mailto:admin@mcbrideimpact.org?subject=Impact%20Pullover%20Hoodie%20Order%20Request" class="btn-signup-submit" style="width: 100%; text-align: center;">Order Hoodie</a>
+          </div>
+        </div>
+
+        <!-- Merch Item 3 -->
+        <div class="merch-card">
+          <div class="merch-img-wrapper">
+            <span class="price-badge">Custom</span>
+            <img src="assets/Tshirt Section/McBride Tshirt Kids.png" alt="Youth Apparel & Custom Orders">
+          </div>
+          <div class="merch-info">
+            <h3 class="merch-item-title">Youth & Custom Collection</h3>
+            <p class="merch-item-desc">Specialty youth sizes ($40.00) and custom organizational group orders available upon request.</p>
+            <a href="mailto:admin@mcbrideimpact.org?subject=Custom%20Apparel%20Order%20Request" class="btn-signup-submit" style="width: 100%; text-align: center;">Custom Request</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMOTIONAL DONATION FEATURE BANNER -->
+  <section class="donation-feature-banner reveal-on-scroll" id="donate-showcase">
+    <div class="donation-banner-content">
+      <h2 class="donation-banner-title">One Donation. One Student. One Future Changed.</h2>
+      <p class="donation-banner-desc">Your generosity fuels trauma intervention, education equity, and youth empowerment. Stand with us to build a violence-free community.</p>
+      <a href="https://checkout.square.site/merchant/JS0VXB3G6SZMD/checkout/AMPVVR5JKI3JC3L2MYRD7PNT" target="_blank" rel="noopener noreferrer" class="btn-donate-gold">Donate Today & Make an Impact</a>
+    </div>
+  </section>
+
+  <!-- EDITORIAL QUOTE SECTION -->
+  <section class="editorial-quote-section reveal-on-scroll" id="proverb-quote">
+    <div class="quote-container">
+      <span class="quote-mark">“</span>
+      <blockquote class="quote-text">
+        If you want to know what's on the road ahead, ask a man who is walking back.
+      </blockquote>
+      <cite class="quote-author">— Chinese Proverb</cite>
+    </div>
+  </section>
+
+  <!-- GALLERY SHOWCASE SECTION -->
+  <section class="gallery-section reveal-on-scroll" id="gallery">
+    <div class="container text-center">
+      <h2 class="section-title-lg">Photo Gallery</h2>
+      <p class="body-lg" style="margin-top: 10px;">Visual stories of transformation across our community programs</p>
+    </div>
+    
+    <div class="gallery-slider-container">
+      <button class="gallery-arrow gallery-arrow-left" id="gallery-prev" aria-label="Previous image">
+        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      
+      <div class="gallery-slider-track-wrapper">
+        <div class="gallery-slider-track" id="gallery-track">
+          <div class="gallery-slide">
+            <img src="assets/Gallery Photos 1/aj0y9ovw0ethwib13m53.png" alt="McBride Impact Community Event">
+          </div>
+          <div class="gallery-slide">
+            <img src="assets/Gallery Photos 1/ddyaftidvlnapobma4yz.png" alt="McBride Impact Community Event">
+          </div>
+          <div class="gallery-slide">
+            <img src="assets/Gallery Photos 1/gjnqpyuopwj0da24ldfr.png" alt="McBride Impact Community Event">
+          </div>
+          <div class="gallery-slide">
+            <img src="assets/Gallery Photos 1/gqncj1i1qppvix1cvatv.png" alt="McBride Impact Community Event">
+          </div>
+          <div class="gallery-slide">
+            <img src="assets/Gallery Photos 1/j7hawdoev2x14uekjsch.png" alt="McBride Impact Community Event">
+          </div>
+          <div class="gallery-slide">
+            <img src="assets/Gallery Photos 1/nep24q6tulxnuhsawf9b.png" alt="McBride Impact Community Event">
+          </div>
+        </div>
+      </div>
+      
+      <button class="gallery-arrow gallery-arrow-right" id="gallery-next" aria-label="Next image">
+        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- OUR SUPPORTERS SHOWCASE SECTION -->
+  <section class="supporters-section reveal-on-scroll" id="supporters-showcase">
+    <div class="container text-center">
+      <h2 class="section-title-lg">Our Partners & Supporters</h2>
+      <p class="body-lg" style="margin-top: 8px;">Proudly partnering with community leaders and organizations.</p>
+      
+      <div class="supporters-grid">
+        <div class="supporter-logo-item">
+          <img src="assets/Our Sponsors/GRASP Icon.png" alt="GRASP">
+        </div>
+        <div class="supporter-logo-item">
+          <img src="assets/Our Sponsors/JCP Icon.png" alt="JCP">
+        </div>
+        <div class="supporter-logo-item">
+          <img src="assets/Our Sponsors/KAE Icon.png" alt="Kids Above Everything">
+        </div>
+        <div class="supporter-logo-item">
+          <img src="assets/Our Sponsors/Toys for Tots Icon.png" alt="Toys for Tots">
+        </div>
+        <div class="supporter-logo-item">
+          <img src="assets/Our Sponsors/Target Icon.png" alt="Target">
+        </div>
+        <div class="supporter-logo-item">
+          <img src="assets/Our Sponsors/Walmart Icon.png" alt="Walmart">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AWARDS & RECOGNITION GALLERY SECTION -->
+  <section class="awards-recognition-section reveal-on-scroll" id="awards-recognition">
+    <div class="container text-center">
+      <h2 class="section-title-lg">Awards and Recognition</h2>
+    </div>
+    
+    <div class="awards-slider-container">
+      <button class="awards-arrow awards-arrow-left" id="awards-prev" aria-label="Previous image">
+        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      
+      <div class="awards-slider-track-wrapper">
+        <div class="awards-slider-track" id="awards-track">
+          <div class="awards-slide">
+            <img src="assets/Gallery 2/mkz35riehd6calz0jmb7.png" alt="McBride Impact Award">
+          </div>
+          <div class="awards-slide">
+            <img src="assets/Gallery 2/ufkthckrftvbphgeszq1.png" alt="McBride Impact Award">
+          </div>
+          <div class="awards-slide">
+            <img src="assets/Gallery 2/ybxqkcpmkh5cp83qk0o3.png" alt="McBride Impact Award">
+          </div>
+          <div class="awards-slide">
+            <img src="assets/Gallery 2/zjki3c3ixo8cmepcsmbt.png" alt="McBride Impact Award">
+          </div>
+        </div>
+      </div>
+      
+      <button class="awards-arrow awards-arrow-right" id="awards-next" aria-label="Next image">
+        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- COMPREHENSIVE MODERN NONPROFIT FOOTER -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-grid-4col">
+        <!-- Col 1: About & Logo -->
+        <div class="footer-col">
+          <a href="/" class="logo-link">
+            <img src="assets/McBride Impact Logo (Transparent Background).png" alt="McBride Impact Logo" style="height: 50px; width: auto; margin-bottom: 16px;">
+          </a>
+          <p class="caption-sm" style="color: #2d3748; margin-bottom: 20px; line-height: 1.6; font-weight: 500;">The McBride Impact is a registered 501(c)(3) non-profit organization dedicated to youth violence prevention, trauma intervention, and educational empowerment.</p>
+          <p class="caption-sm footer-call-text" style="color: #1a202c; font-weight: 700;">CALL 303-865-0051</p>
+        </div>
+
+        <!-- Col 2: Navigation -->
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-col-links">
+            <li><a href="/whoweare">Who We Are</a></li>
+            <li><a href="/scholarship">Scholarship Fund</a></li>
+            <li><a href="/coloradouniversity">Colorado University</a></li>
+            <li><a href="/bigpictureproject">Big Picture Project</a></li>
+            <li><a href="/gallery">Gallery & Media</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Programs & Action -->
+        <div class="footer-col">
+          <h4>Get Involved</h4>
+          <ul class="footer-col-links">
+            <li><a href="/kidskreation">Kids Kreation</a></li>
+            <li><a href="/events">Events</a></li>
+            <li><a href="/assistance">Assistance</a></li>
+            <li><a href="/volunteer">Volunteer</a></li>
+            <li><a href="/signup">Sign Up</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Newsletter -->
+        <div class="footer-col">
+          <h4>Newsletter</h4>
+          <p class="caption-sm" style="color: #2d3748; font-weight: 500;">Subscribe for weekly impact reports and updates.</p>
+          <form class="footer-newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+            <input type="email" placeholder="Your email address" required class="footer-newsletter-input">
+            <button type="submit" class="btn-newsletter-submit">Join</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p>© 2026 The McBride Impact. 501(c)(3) Non-Profit Organization. All Rights Reserved.</p>
+        <div class="footer-bottom-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Accessibility</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX MODAL FOR GALLERY IMAGES -->
+  <div class="lightbox-modal" id="lightbox-modal">
+    <span class="lightbox-close" id="lightbox-close">&times;</span>
+    <img src="" alt="Enlarged view" class="lightbox-content" id="lightbox-img">
   </div>
 
-  <script>
-    // Priority card toggle interaction
-    document.querySelectorAll('.priority-card').forEach(card => {
-      card.addEventListener('click', (e) => {
-        const cb = card.querySelector('input[type="checkbox"]');
-        cb.checked = !cb.checked;
-        card.classList.toggle('selected', cb.checked);
-        document.getElementById('vote-alert').classList.remove('show');
-      });
-    });
 
-    // ── STEP 1: "Cast My Vote" reveals the contact fields ──────────────────
-    const btnCastVote   = document.getElementById('btn-cast-vote');
-    const revealContact = document.getElementById('reveal-contact');
-    const voteAlert     = document.getElementById('vote-alert');
+  <!-- VIDEO LIGHTBOX MODAL -->
+  <div class="lightbox-modal" id="video-lightbox">
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightbox-close-btn">&times; Close</button>
+      <iframe class="lightbox-iframe" id="lightbox-iframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
 
-    btnCastVote.addEventListener('click', () => {
-      const checked = document.querySelectorAll('input[name="vote"]:checked');
-      if (checked.length === 0) {
-        voteAlert.classList.add('show');
-        return;
-      }
-      // Hide the cast button, reveal contact panel with animation
-      btnCastVote.style.display = 'none';
-      revealContact.classList.add('animating');
-      // Trigger reflow so transition fires
-      revealContact.getBoundingClientRect();
-      revealContact.classList.add('visible');
-    });
+  <!-- SUCCESS STATE MODAL -->
+  <div class="success-modal" id="success-modal">
+    <div class="success-card">
+      <div class="success-icon-wrapper">
+        <svg class="success-icon" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <h3 class="success-title">Submission Received!</h3>
+      <p class="success-desc">Thank you for joining the movement. We will keep you updated on key policy implementations and action items in your area.</p>
+      <button class="btn-primary" id="success-close-btn" style="width: 100%;">Return to Site</button>
+    </div>
+  </div>
 
-    // ── STEP 2: Full form submission & validation ───────────────────────────
-    const funnelForm = document.getElementById('funnel-form');
-    const btnSubmit  = document.getElementById('btn-submit');
-    // Form Submission & Validation
-
-    funnelForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      // Check priority selection
-      const checkedBoxes = document.querySelectorAll('input[name="vote"]:checked');
-      if (checkedBoxes.length === 0) {
-        voteAlert.classList.add('show');
-        return;
-      }
-
-      // Validate inputs
-      const nameInput    = document.getElementById('inp-name');
-      const companyInput = document.getElementById('inp-company');
-      const emailInput   = document.getElementById('inp-email');
-      const phoneInput   = document.getElementById('inp-phone');
-
-      const nameVal    = nameInput.value.trim();
-      const companyVal = companyInput.value.trim();
-      const emailVal   = emailInput.value.trim();
-      const phoneVal   = phoneInput.value.trim();
-      const emailRx    = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-      let valid = true;
-
-      nameInput.classList.toggle('error', !nameVal);
-      if (!nameVal) valid = false;
-
-      companyInput.classList.toggle('error', !companyVal);
-      if (!companyVal) valid = false;
-
-      emailInput.classList.toggle('error', !emailRx.test(emailVal));
-      if (!emailRx.test(emailVal)) valid = false;
-
-      if (!valid) return;
-
-      const votes = Array.from(checkedBoxes).map(cb => cb.value);
-
-      // Loading state
-      btnSubmit.disabled = true;
-      btnSubmit.innerHTML = '<span class="spinner"></span> Generating Your Results...';
-
-      // Vision Control CRM webhook (Fail-open)
-      const CRM_ENDPOINT = 'https://hooks.visioncontrolcrm.com/api/v1/lead';
-      const payload = {
-        source: 'john_mcbride_impact_funnel_p1',
-        name: nameVal,
-        company: companyVal,
-        email: emailVal,
-        phone: phoneVal,
-        vote_selections: votes,
-        submitted_at: new Date().toISOString(),
-        page_url: window.location.href
-      };
-
-      try {
-        await fetch(CRM_ENDPOINT, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-          mode: 'no-cors'
-        });
-      } catch (err) {
-        console.warn('CRM non-blocking submission note:', err);
-      }
-
-      // Persist in sessionStorage for Page 2
-      sessionStorage.setItem('mcb_votes',   JSON.stringify(votes));
-      sessionStorage.setItem('mcb_name',    nameVal);
-      sessionStorage.setItem('mcb_company', companyVal);
-      sessionStorage.setItem('mcb_email',   emailVal);
-      sessionStorage.setItem('mcb_phone',   phoneVal);
-
-      window.location.href = 'johnmcbride-results.html';
-    });
-
-    ['inp-name', 'inp-company', 'inp-email'].forEach(id => {
-      document.getElementById(id).addEventListener('input', function() {
-        this.classList.remove('error');
-      });
-    });
-  </script>
+  <script src="app.js"></script>
 </body>
 </html>
