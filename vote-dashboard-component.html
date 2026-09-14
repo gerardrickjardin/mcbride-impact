@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Community Voting Dashboard Component — McBride Impact</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-cream: #fbf8f2;
+      --bg-card: #fdfbf7;
+      --bg-track: #eae4d5;
+      --color-navy: #0d1b2a;
+      --color-navy-muted: #1a2b49;
+      --color-blueprint: #2b6cb0;
+      --color-yellow: #f59e0b;
+      --color-yellow-light: #fbbf24;
+      --color-yellow-dark: #d97706;
+      --border-sketch: 2px solid #0d1b2a;
+      --border-sketch-sm: 1.5px solid #0d1b2a;
+      --shadow-sketch: 4px 4px 0px #0d1b2a;
+      --shadow-sketch-sm: 2px 2px 0px #0d1b2a;
+      --shadow-sketch-hover: 6px 6px 0px #0d1b2a;
+      --font-heading: 'Syne', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-cream);
+      color: var(--color-navy);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      line-height: 1.45;
+    }
+
+    /* Page Header */
+    .component-header {
+      text-align: center;
+      max-width: 760px;
+      margin-bottom: 20px;
+    }
+
+    .component-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-blueprint);
+      background: rgba(43, 108, 176, 0.1);
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(43, 108, 176, 0.3);
+      margin-bottom: 8px;
+    }
+
+    .component-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.4rem, 2.4vw, 2rem);
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--color-navy);
+    }
+
+    /* Main Transition Container (starts compact, smoothly widens) */
+    .main-transition-container {
+      width: 100%;
+      max-width: 640px;
+      background: var(--bg-card);
+      border: var(--border-sketch);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sketch);
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+      transition: max-width 0.65s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+    }
+
+    /* Widened state after submission */
+    .main-transition-container.is-widened {
+      max-width: 1200px;
+      box-shadow: 6px 6px 0px #0d1b2a;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       STATE 1: FORM COMPONENT VIEW
+       ═══════════════════════════════════════════════════════════════════ */
+    .form-view-panel {
+      width: 100%;
+      transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Upward fade-out transition */
+    .form-view-panel.fading-out {
+      opacity: 0 !important;
+      transform: translateY(-15px) !important;
+      pointer-events: none !important;
+    }
+
+    .form-header {
+      margin-bottom: 16px;
+    }
+
+    .form-eyebrow {
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--color-blueprint);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .form-heading {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--color-navy);
+      line-height: 1.25;
+      margin-bottom: 4px;
+    }
+
+    .form-desc {
+      font-size: 0.82rem;
+      color: var(--color-navy-muted);
+    }
+
+    /* Priority checklist */
+    .priority-list-box {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .priority-checkbox-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: #ffffff;
+      border: var(--border-sketch-sm);
+      border-radius: 8px;
+      padding: 10px 14px;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 1.5px 1.5px 0px #0d1b2a;
+      transition: transform 0.15s, box-shadow 0.15s, background-color 0.15s;
+    }
+
+    .priority-checkbox-card:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0px #0d1b2a;
+    }
+
+    .priority-checkbox-card.selected {
+      background: rgba(43, 108, 176, 0.08);
+      border-color: var(--color-blueprint);
+      box-shadow: 2.5px 2.5px 0px var(--color-blueprint);
+    }
+
+    .priority-checkbox-card input[type="checkbox"] {
+      display: none;
+    }
+
+    .priority-card-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .priority-card-title {
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--color-navy);
+      margin-bottom: 2px;
+    }
+
+    .priority-card-desc {
+      font-size: 0.76rem;
+      color: var(--color-navy-muted);
+      line-height: 1.3;
+    }
+
+    .priority-check-box {
+      width: 20px;
+      height: 20px;
+      border: var(--border-sketch-sm);
+      border-radius: 4px;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: transparent;
+      transition: all 0.15s;
+      flex-shrink: 0;
+    }
+
+    .priority-checkbox-card.selected .priority-check-box {
+      background: var(--color-blueprint);
+      color: #ffffff;
+      border-color: var(--color-blueprint);
+    }
+
+    /* Contact inputs */
+    .form-inputs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .input-field-wrap {
+      position: relative;
+    }
+
+    .form-input {
+      width: 100%;
+      height: 42px;
+      padding: 0 12px;
+      font-family: var(--font-body);
+      font-size: 0.84rem;
+      color: var(--color-navy);
+      background: #ffffff;
+      border: var(--border-sketch-sm);
+      border-radius: 6px;
+      outline: none;
+      box-shadow: 1.5px 1.5px 0px #0d1b2a;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .form-input::placeholder {
+      color: #718096;
+      font-size: 0.8rem;
+    }
+
+    .form-input:focus {
+      border-color: var(--color-blueprint);
+      box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.15), 1.5px 1.5px 0px var(--color-blueprint);
+    }
+
+    .form-input.error {
+      border-color: #e53e3e;
+      background: #fff5f5;
+    }
+
+    .btn-submit-vote {
+      width: 100%;
+      padding: 12px 18px;
+      background: var(--color-yellow);
+      color: var(--color-navy);
+      border: var(--border-sketch);
+      border-radius: 8px;
+      font-family: var(--font-heading);
+      font-size: 0.92rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      box-shadow: var(--shadow-sketch-sm);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.18s ease;
+    }
+
+    .btn-submit-vote:hover {
+      background: var(--color-yellow-light);
+      transform: translate(-2px, -2px);
+      box-shadow: 4px 4px 0px #0d1b2a;
+    }
+
+    .btn-submit-vote:active {
+      transform: translate(0, 0);
+      box-shadow: 1px 1px 0px #0d1b2a;
+    }
+
+    .form-alert-msg {
+      display: none;
+      font-size: 0.75rem;
+      color: #c53030;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .form-alert-msg.show {
+      display: block;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       STATE 2: TWO-COLUMN RESULTS DASHBOARD
+       ═══════════════════════════════════════════════════════════════════ */
+    .results-dashboard-panel {
+      display: none;
+      opacity: 0;
+      transform: translateY(15px);
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      width: 100%;
+    }
+
+    .results-dashboard-panel.is-active {
+      display: block;
+    }
+
+    .results-dashboard-panel.fade-in {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    .results-two-col-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    /* LEFT COLUMN: Thank you, Progress Bars, Two Full-Width Buttons */
+    .dashboard-left-col {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .greeting-banner {
+      background: #ffffff;
+      border: var(--border-sketch-sm);
+      border-radius: 8px;
+      padding: 14px 16px;
+      box-shadow: var(--shadow-sketch-sm);
+    }
+
+    .greeting-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--font-heading);
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-blueprint);
+      background: rgba(43, 108, 176, 0.1);
+      padding: 3px 8px;
+      border-radius: 999px;
+      margin-bottom: 6px;
+    }
+
+    .greeting-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.05rem, 1.3vw, 1.3rem);
+      font-weight: 800;
+      color: var(--color-navy);
+      line-height: 1.25;
+      margin-bottom: 4px;
+    }
+
+    .greeting-subtext {
+      font-size: 0.78rem;
+      color: var(--color-navy-muted);
+      line-height: 1.35;
+    }
+
+    .greeting-subtext strong {
+      color: var(--color-navy);
+    }
+
+    /* Progress bars container */
+    .progress-bars-container {
+      background: #ffffff;
+      border: var(--border-sketch-sm);
+      border-radius: 10px;
+      padding: 14px 16px;
+      box-shadow: var(--shadow-sketch-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .progress-bar-card {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .progress-bar-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .bar-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .bar-label-title {
+      font-family: var(--font-heading);
+      font-size: 0.84rem;
+      font-weight: 800;
+      color: var(--color-navy);
+    }
+
+    /* Distinct 'Your Vote' Badge */
+    .your-vote-tag {
+      display: none;
+      align-items: center;
+      gap: 3px;
+      background: var(--color-navy);
+      color: var(--color-yellow-light);
+      border: 1px solid var(--color-navy);
+      border-radius: 999px;
+      padding: 1px 7px;
+      font-size: 0.62rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      box-shadow: 1px 1px 0px rgba(13, 27, 42, 0.35);
+      animation: badgePop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes badgePop {
+      0% { transform: scale(0.6); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .bar-pct-number {
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--color-navy);
+    }
+
+    .bar-track-outer {
+      background: var(--bg-track);
+      border: var(--border-sketch-sm);
+      border-radius: 999px;
+      height: 16px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.08);
+    }
+
+    .bar-track-fill {
+      background: linear-gradient(90deg, var(--color-yellow) 0%, var(--color-yellow-light) 100%);
+      height: 100%;
+      border-radius: 999px;
+      width: 0%;
+      transition: width 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 1px 0 4px rgba(245, 158, 11, 0.4);
+    }
+
+    .progress-bar-card.user-selected .bar-track-outer {
+      border-color: var(--color-navy);
+      box-shadow: 0 0 0 1.5px rgba(245, 158, 11, 0.5);
+    }
+
+    /* Two Full-Width Buttons */
+    .left-actions-cluster {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn-blueprint-pdf {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 12px 18px;
+      background: var(--color-yellow);
+      color: var(--color-navy);
+      border: var(--border-sketch);
+      border-radius: 8px;
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      box-shadow: var(--shadow-sketch-sm);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      text-align: center;
+    }
+
+    .btn-blueprint-pdf:hover {
+      background: var(--color-yellow-light);
+      transform: translate(-2px, -2px);
+      box-shadow: 4px 4px 0px #0d1b2a;
+      color: var(--color-navy);
+    }
+
+    .btn-blueprint-pdf:active {
+      transform: translate(0, 0);
+      box-shadow: 1px 1px 0px #0d1b2a;
+    }
+
+    .btn-explore-homepage {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 11px 18px;
+      background: #ffffff;
+      color: var(--color-blueprint);
+      border: var(--border-sketch);
+      border-radius: 8px;
+      font-family: var(--font-heading);
+      font-size: 0.86rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      box-shadow: var(--shadow-sketch-sm);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      text-align: center;
+    }
+
+    .btn-explore-homepage:hover {
+      background: #f7fafc;
+      transform: translate(-2px, -2px);
+      box-shadow: 4px 4px 0px #0d1b2a;
+      color: #1a365d;
+    }
+
+    .btn-explore-homepage:active {
+      transform: translate(0, 0);
+      box-shadow: 1px 1px 0px #0d1b2a;
+    }
+
+    /* RIGHT COLUMN: 16:9 Video & Share to Network */
+    .dashboard-right-col {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* 16:9 Video Player */
+    .video-card-wrap {
+      background: #ffffff;
+      border: var(--border-sketch-sm);
+      border-radius: 10px;
+      padding: 12px;
+      box-shadow: var(--shadow-sketch-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .video-responsive-16-9 {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      border-radius: 6px;
+      overflow: hidden;
+      border: var(--border-sketch-sm);
+      background: #000000;
+    }
+
+    .video-responsive-16-9 iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .video-card-caption {
+      font-size: 0.76rem;
+      color: var(--color-navy-muted);
+      line-height: 1.35;
+    }
+
+    .video-card-caption strong {
+      color: var(--color-navy);
+    }
+
+    /* Share to Network Section */
+    .share-network-card {
+      background: #ffffff;
+      border: var(--border-sketch-sm);
+      border-radius: 10px;
+      padding: 14px 16px;
+      box-shadow: var(--shadow-sketch-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .share-header {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .share-eyebrow {
+      font-family: var(--font-heading);
+      font-size: 0.68rem;
+      font-weight: 800;
+      color: var(--color-blueprint);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .share-title {
+      font-family: var(--font-heading);
+      font-size: 0.94rem;
+      font-weight: 800;
+      color: var(--color-navy);
+      line-height: 1.25;
+    }
+
+    .share-copy-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .share-link-input {
+      flex: 1;
+      height: 38px;
+      padding: 0 10px;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      color: var(--color-navy);
+      background: #f7fafc;
+      border: var(--border-sketch-sm);
+      border-radius: 6px;
+      outline: none;
+    }
+
+    .btn-copy-link {
+      padding: 0 14px;
+      background: var(--color-navy);
+      color: #ffffff;
+      border: var(--border-sketch-sm);
+      border-radius: 6px;
+      font-family: var(--font-heading);
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      box-shadow: 1.5px 1.5px 0px #0d1b2a;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+
+    .btn-copy-link:hover {
+      background: var(--color-blueprint);
+      transform: translate(-1px, -1px);
+      box-shadow: 2.5px 2.5px 0px #0d1b2a;
+    }
+
+    .btn-copy-link.copied {
+      background: #276749;
+    }
+
+    /* Social buttons */
+    .social-buttons-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+
+    .btn-social {
+      padding: 8px 10px;
+      border: var(--border-sketch-sm);
+      border-radius: 6px;
+      font-family: var(--font-heading);
+      font-size: 0.74rem;
+      font-weight: 800;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 1.5px 1.5px 0px #0d1b2a;
+      cursor: pointer;
+      transition: all 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .btn-social.facebook {
+      background: #1877f2;
+      color: #ffffff;
+    }
+
+    .btn-social.instagram {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: #ffffff;
+    }
+
+    .btn-social.tiktok {
+      background: #000000;
+      color: #ffffff;
+    }
+
+    .btn-social:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 2.5px 2.5px 0px #0d1b2a;
+      opacity: 0.92;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       RESPONSIVE DESIGN (MOBILE STACKING)
+       ═══════════════════════════════════════════════════════════════════ */
+    @media (max-width: 960px) {
+      body {
+        padding: 16px 12px;
+      }
+
+      .main-transition-container {
+        padding: 18px 16px;
+      }
+
+      /* Stack left and right columns vertically on tablets & mobile */
+      .results-two-col-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .form-inputs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .social-buttons-row {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .social-buttons-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Component Demonstration Header -->
+  <header class="component-header">
+    <div class="component-badge">
+      <span>🗳️</span> McBride Impact Interactive Component
+    </div>
+    <h1 class="component-title">
+      Community Allocation Voting &amp; Results Dashboard
+    </h1>
+  </header>
+
+  <!-- Main Transition Container (smoothly widens on submit) -->
+  <main class="main-transition-container" id="main-transition-container">
+
+    <!-- ── STATE 1: FORM COMPONENT VIEW ── -->
+    <div class="form-view-panel" id="form-view-panel">
+      <div class="form-header">
+        <div class="form-eyebrow">
+          <span>🗳️</span> Colorado Settlement Priority Vote
+        </div>
+        <h2 class="form-heading">Choose Where Settlement Funds Should Go First</h2>
+        <p class="form-desc">Select one or more priorities below and cast your vote to see live Colorado community results.</p>
+      </div>
+
+      <form id="interactive-vote-form" novalidate>
+        <!-- Three Priority Cards -->
+        <div class="priority-list-box" role="group" aria-label="Community Priorities">
+          <!-- Card 1: 5 to THRIVE -->
+          <label class="priority-checkbox-card" id="card-p1" for="vote-p1">
+            <input type="checkbox" id="vote-p1" name="vote" value="school_culture" />
+            <div class="priority-card-content">
+              <div class="priority-card-title">🏫 The "5 to THRIVE" Process</div>
+              <div class="priority-card-desc">Story-driven personal mastery curriculum teaching students goal achievement, emotional control, and life problem-solving.</div>
+            </div>
+            <div class="priority-check-box">&check;</div>
+          </label>
+
+          <!-- Card 2: Student Hope Squads -->
+          <label class="priority-checkbox-card" id="card-p2" for="vote-p2">
+            <input type="checkbox" id="vote-p2" name="vote" value="empowered_coaches" />
+            <div class="priority-card-content">
+              <div class="priority-card-title">🤝 Student Hope Squads</div>
+              <div class="priority-card-desc">Student-led peer networks and trusted adult mentors trained to intercept bullying, prevent violence, and support peers.</div>
+            </div>
+            <div class="priority-check-box">&check;</div>
+          </label>
+
+          <!-- Card 3: Big Picture Movement -->
+          <label class="priority-checkbox-card" id="card-p3" for="vote-p3">
+            <input type="checkbox" id="vote-p3" name="vote" value="community_healing" />
+            <div class="priority-card-content">
+              <div class="priority-card-title">🎬 The "Big Picture" Movement</div>
+              <div class="priority-card-desc">The world’s largest collaborative anti-violence poster campaign paired with Netflix-caliber documentary storytelling.</div>
+            </div>
+            <div class="priority-check-box">&check;</div>
+          </label>
+        </div>
+
+        <div class="form-alert-msg" id="form-alert">&bull; Please select at least one priority before submitting.</div>
+
+        <!-- Contact Fields -->
+        <div class="form-inputs-grid">
+          <div class="input-field-wrap">
+            <input type="text" class="form-input" id="field-name" name="name" placeholder="Full Name *" autocomplete="name" required />
+          </div>
+          <div class="input-field-wrap">
+            <input type="text" class="form-input" id="field-org" name="organization" placeholder="Organization *" autocomplete="organization" required />
+          </div>
+          <div class="input-field-wrap">
+            <input type="email" class="form-input" id="field-email" name="email" placeholder="Email Address *" autocomplete="email" required />
+          </div>
+          <div class="input-field-wrap">
+            <input type="tel" class="form-input" id="field-phone" name="phone" placeholder="Phone Number (Optional)" autocomplete="tel" />
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit-vote" id="btn-submit-vote">
+          Submit Vote &amp; View Live Results &rarr;
+        </button>
+      </form>
+    </div>
+
+    <!-- ── STATE 2: TWO-COLUMN RESULTS DASHBOARD ── -->
+    <div class="results-dashboard-panel" id="results-dashboard-panel" aria-live="polite">
+      <div class="results-two-col-grid">
+
+        <!-- LEFT COLUMN -->
+        <div class="dashboard-left-col">
+          <!-- Thank You Message -->
+          <div class="greeting-banner">
+            <div class="greeting-pill">
+              <span>&check;</span> Vote Verified &amp; Recorded
+            </div>
+            <h2 class="greeting-title" id="dyn-greeting-title">Thank You for Your Vote!</h2>
+            <p class="greeting-subtext" id="dyn-greeting-sub">
+              Your voice joins <strong>2,848+ verified community members</strong> guiding Colorado settlement funds directly where youth need them most.
+            </p>
+          </div>
+
+          <!-- Three Progress Bars -->
+          <div class="progress-bars-container">
+            <!-- Progress Bar 1: The '5 to THRIVE' Process (90%) -->
+            <div class="progress-bar-card" id="card-res-school">
+              <div class="progress-bar-meta">
+                <div class="bar-title-wrap">
+                  <span class="bar-label-title">🏫 The "5 to THRIVE" Process</span>
+                  <span class="your-vote-tag" id="tag-school">★ Your Vote</span>
+                </div>
+                <span class="bar-pct-number">90%</span>
+              </div>
+              <div class="bar-track-outer">
+                <div class="bar-track-fill" id="fill-school" data-target="90"></div>
+              </div>
+            </div>
+
+            <!-- Progress Bar 2: Student Hope Squads (85%) -->
+            <div class="progress-bar-card" id="card-res-coaches">
+              <div class="progress-bar-meta">
+                <div class="bar-title-wrap">
+                  <span class="bar-label-title">🤝 Student Hope Squads</span>
+                  <span class="your-vote-tag" id="tag-coaches">★ Your Vote</span>
+                </div>
+                <span class="bar-pct-number">85%</span>
+              </div>
+              <div class="bar-track-outer">
+                <div class="bar-track-fill" id="fill-coaches" data-target="85"></div>
+              </div>
+            </div>
+
+            <!-- Progress Bar 3: The 'Big Picture' Movement (72%) -->
+            <div class="progress-bar-card" id="card-res-healing">
+              <div class="progress-bar-meta">
+                <div class="bar-title-wrap">
+                  <span class="bar-label-title">🎬 The "Big Picture" Movement</span>
+                  <span class="your-vote-tag" id="tag-healing">★ Your Vote</span>
+                </div>
+                <span class="bar-pct-number">72%</span>
+              </div>
+              <div class="bar-track-outer">
+                <div class="bar-track-fill" id="fill-healing" data-target="72"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Two Full-Width Buttons -->
+          <div class="left-actions-cluster">
+            <a href="mailto:admin@mcbrideimpact.org?subject=Download%20Colorado%20Impact%20Blueprint&body=Please%20send%20me%20the%20complete%20Colorado%20Impact%20Blueprint%20PDF." class="btn-blueprint-pdf" id="btn-blueprint-pdf" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              Download Blueprint PDF
+            </a>
+
+            <a href="/home" class="btn-explore-homepage">
+              Explore Homepage &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="dashboard-right-col">
+          <!-- 16:9 Video Player -->
+          <div class="video-card-wrap">
+            <div class="video-responsive-16-9">
+              <iframe
+                src="https://www.youtube.com/embed/EOht_WR8oX4?rel=0&modestbranding=1"
+                title="The John McBride Impact Project — Full Documentary (5:50)"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+            </div>
+            <div class="video-card-caption">
+              <strong>The John McBride Impact Project (5:50)</strong> — Explore the lived experiences and community solutions shaping Colorado's youth violence prevention blueprint.
+            </div>
+          </div>
+
+          <!-- Share to Network Section -->
+          <div class="share-network-card">
+            <div class="share-header">
+              <div class="share-eyebrow">📣 SHARE TO NETWORK</div>
+              <h3 class="share-title">Blast This to Your Network — Every Vote Counts!</h3>
+            </div>
+
+            <div class="share-copy-row">
+              <input type="text" class="share-link-input" id="share-link-input" value="https://mcbrideimpact.org" readonly />
+              <button type="button" class="btn-copy-link" id="btn-copy-share">Copy Link</button>
+            </div>
+
+            <div class="social-buttons-row">
+              <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmcbrideimpact.org" target="_blank" rel="noopener" class="btn-social facebook">
+                Facebook
+              </a>
+              <a href="https://www.instagram.com" target="_blank" rel="noopener" class="btn-social instagram">
+                Instagram
+              </a>
+              <a href="https://www.tiktok.com" target="_blank" rel="noopener" class="btn-social tiktok">
+                TikTok
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    // Priority Card Selection Toggle
+    document.querySelectorAll('.priority-checkbox-card').forEach(card => {
+      card.addEventListener('click', (e) => {
+        const checkbox = card.querySelector('input[type="checkbox"]');
+        checkbox.checked = !checkbox.checked;
+        card.classList.toggle('selected', checkbox.checked);
+        document.getElementById('form-alert').classList.remove('show');
+      });
+    });
+
+    // Form Submission & Smooth Widening State-Transition
+    const voteForm = document.getElementById('interactive-vote-form');
+    const btnSubmit = document.getElementById('btn-submit-vote');
+    const mainContainer = document.getElementById('main-transition-container');
+    const formPanel = document.getElementById('form-view-panel');
+    const resultsPanel = document.getElementById('results-dashboard-panel');
+    const formAlert = document.getElementById('form-alert');
+
+    voteForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const checked = document.querySelectorAll('input[name="vote"]:checked');
+      if (checked.length === 0) {
+        formAlert.classList.add('show');
+        return;
+      }
+
+      const nameInp = document.getElementById('field-name');
+      const orgInp  = document.getElementById('field-org');
+      const emailInp= document.getElementById('field-email');
+
+      const nameVal = nameInp.value.trim();
+      const orgVal  = orgInp.value.trim();
+      const emailVal= emailInp.value.trim();
+      const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      let valid = true;
+      nameInp.classList.toggle('error', !nameVal);
+      if (!nameVal) valid = false;
+
+      orgInp.classList.toggle('error', !orgVal);
+      if (!orgVal) valid = false;
+
+      emailInp.classList.toggle('error', !emailRx.test(emailVal));
+      if (!emailRx.test(emailVal)) valid = false;
+
+      if (!valid) return;
+
+      const votes = Array.from(checked).map(c => c.value);
+
+      // Button feedback
+      btnSubmit.disabled = true;
+      btnSubmit.textContent = 'Verifying Vote...';
+
+      // Vision Control CRM webhook (Fail-open)
+      const CRM_ENDPOINT = 'https://hooks.visioncontrolcrm.com/api/v1/lead';
+      try {
+        fetch(CRM_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            source: 'mcbride_impact_component_vote',
+            name: nameVal,
+            organization: orgVal,
+            email: emailVal,
+            votes: votes,
+            submitted_at: new Date().toISOString()
+          }),
+          mode: 'no-cors'
+        }).catch(err => console.warn('CRM note:', err));
+      } catch (err) {
+        console.warn('CRM non-blocking note:', err);
+      }
+
+      // Populate results greeting
+      const firstName = nameVal.split(' ')[0] || 'Community Member';
+      document.getElementById('dyn-greeting-title').textContent = `Thank You, ${firstName}!`;
+      document.getElementById('dyn-greeting-sub').innerHTML =
+        `Your vote as part of <strong>${orgVal}</strong> joins <strong>2,848+ community voices</strong> guiding Colorado settlement funds.`;
+
+      // Set 'Your Vote' badges
+      if (votes.includes('school_culture')) {
+        document.getElementById('tag-school').style.display = 'inline-flex';
+        document.getElementById('card-res-school').classList.add('user-selected');
+      }
+      if (votes.includes('empowered_coaches')) {
+        document.getElementById('tag-coaches').style.display = 'inline-flex';
+        document.getElementById('card-res-coaches').classList.add('user-selected');
+      }
+      if (votes.includes('community_healing')) {
+        document.getElementById('tag-healing').style.display = 'inline-flex';
+        document.getElementById('card-res-healing').classList.add('user-selected');
+      }
+
+      // ── TRANSITION FLOW ──────────────────────────────────────────
+      // 1. Smoothly fade out form input fields upward
+      formPanel.classList.add('fading-out');
+
+      // 2. Widen the main container
+      mainContainer.classList.add('is-widened');
+
+      // 3. Switch views & fade in the two-column dashboard
+      setTimeout(() => {
+        formPanel.style.display = 'none';
+        resultsPanel.classList.add('is-active');
+        void resultsPanel.offsetHeight; // Force reflow
+        resultsPanel.classList.add('fade-in');
+
+        // 4. Staggered animate the progress bars
+        setTimeout(() => {
+          document.querySelectorAll('.bar-track-fill').forEach(fill => {
+            const target = fill.getAttribute('data-target') || '0';
+            fill.style.width = target + '%';
+          });
+        }, 120);
+      }, 350);
+    });
+
+    // Copy link helper with feedback
+    const btnCopy = document.getElementById('btn-copy-share');
+    const copyInput = document.getElementById('share-link-input');
+
+    btnCopy.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(copyInput.value);
+        btnCopy.textContent = 'Copied!';
+        btnCopy.classList.add('copied');
+        setTimeout(() => {
+          btnCopy.textContent = 'Copy Link';
+          btnCopy.classList.remove('copied');
+        }, 2000);
+      } catch (err) {
+        copyInput.select();
+        document.execCommand('copy');
+        btnCopy.textContent = 'Copied!';
+        setTimeout(() => { btnCopy.textContent = 'Copy Link'; }, 2000);
+      }
+    });
+
+    // Remove input error styling on typing
+    ['field-name', 'field-org', 'field-email'].forEach(id => {
+      document.getElementById(id).addEventListener('input', function() {
+        this.classList.remove('error');
+      });
+    });
+  </script>
+</body>
+</html>
