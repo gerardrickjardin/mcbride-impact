@@ -1070,8 +1070,8 @@
       }
 
       // Populate results greeting
-      const firstName = nameVal.split(' ')[0] || 'Community Member';
-      document.getElementById('dyn-greeting-title').textContent = `Thank You, ${firstName}!`;
+      const displayName = firstName || 'Community Member';
+      document.getElementById('dyn-greeting-title').textContent = `Thank You, ${displayName}!`;
       document.getElementById('dyn-greeting-sub').innerHTML =
         `Your vote as part of <strong>${orgVal}</strong> joins <strong>2,848+ community voices</strong> guiding Colorado settlement funds.`;
 

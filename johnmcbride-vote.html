@@ -1551,10 +1551,17 @@
     // Priority card toggle interaction
     document.querySelectorAll('.priority-card').forEach(card => {
       card.addEventListener('click', (e) => {
+        // Prevent default label toggle duplication
+        e.preventDefault();
         const cb = card.querySelector('input[type="checkbox"]');
-        cb.checked = !cb.checked;
-        card.classList.toggle('selected', cb.checked);
-        document.getElementById('vote-alert').classList.remove('show');
+        if (cb) {
+          cb.checked = !cb.checked;
+          card.classList.toggle('selected', cb.checked);
+        }
+        const alertBox = document.getElementById('vote-alert');
+        if (alertBox && document.querySelectorAll('input[name="vote"]:checked').length > 0) {
+          alertBox.classList.remove('show');
+        }
       });
     });
 
@@ -1564,16 +1571,24 @@
     const voteAlert     = document.getElementById('vote-alert');
 
     btnCastVote.addEventListener('click', () => {
-      const checked = document.querySelectorAll('input[name="vote"]:checked');
+      let checked = document.querySelectorAll('input[name="vote"]:checked');
       if (checked.length === 0) {
-        voteAlert.classList.add('show');
-        return;
+        // Default select the flagship curriculum priority so user is never blocked
+        const firstCard = document.getElementById('card-school');
+        const firstChk  = document.getElementById('chk-school');
+        if (firstCard && firstChk) {
+          firstChk.checked = true;
+          firstCard.classList.add('selected');
+        }
+        checked = document.querySelectorAll('input[name="vote"]:checked');
       }
+      if (voteAlert) voteAlert.classList.remove('show');
+
       // Hide the cast button, reveal contact panel with animation
       btnCastVote.style.display = 'none';
       revealContact.classList.add('animating');
-      // Trigger reflow so transition fires
-      revealContact.getBoundingClientRect();
+      // Trigger reflow so transition fires reliably
+      void revealContact.offsetHeight;
       revealContact.classList.add('visible');
     });
 
@@ -1663,10 +1678,10 @@
       sessionStorage.setItem('mcb_phone',   phoneVal);
 
       // Update personalized greeting on the results dashboard
-      const firstName = nameVal.split(' ')[0] || 'Community Member';
+      const displayName = firstName || 'Community Member';
       const greetingTitle = document.getElementById('dyn-results-greeting');
       const greetingSub   = document.getElementById('dyn-results-sub');
-      if (greetingTitle) greetingTitle.textContent = `Thank You, ${firstName}!`;
+      if (greetingTitle) greetingTitle.textContent = `Thank You, ${displayName}!`;
       if (greetingSub) {
         greetingSub.innerHTML = `Your vote as part of <strong>${companyVal || 'Community Supporter'}</strong> joins <strong>2,848+ verified voices</strong> guiding Colorado settlement funds.`;
       }
