@@ -279,11 +279,11 @@
 
     /* Right Column: Priority Voting & Inline Form */
     .stage-right {
-      padding: 18px 22px;
+      padding: 14px 20px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 14px;
+      gap: 10px;
       background: var(--bg-card);
       overflow-y: auto;
       scrollbar-width: thin;
@@ -478,16 +478,17 @@
     .reveal-contact.animating {
       display: flex;
       flex-direction: column;
-      gap: 7px;
+      gap: 6px;
       opacity: 1;
       transform: translateY(0);
+      margin-top: 10px;
     }
     .reveal-headline {
       font-family: var(--font-heading);
-      font-size: clamp(0.85rem, 0.95vw, 0.92rem);
+      font-size: clamp(0.82rem, 0.92vw, 0.88rem);
       font-weight: 800;
       color: var(--color-text);
-      margin: 0 0 2px;
+      margin: 2px 0 4px;
       text-align: center;
       line-height: 1.35;
     }
@@ -506,23 +507,29 @@
     .form-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 8px;
+      gap: 6px;
     }
 
-    .input-wrapper { position: relative; }
+    .form-row.full-width {
+      display: block;
+      width: 100%;
+    }
+
+    .input-wrapper { position: relative; width: 100%; }
 
     .form-control {
       width: 100%;
       background: #ffffff;
       border: 1.5px solid #1a202c;
       border-radius: 7px;
-      padding: 7px 10px;
+      padding: 6px 10px;
       font-family: var(--font-body);
       font-size: 0.78rem;
       color: var(--color-text);
       outline: none;
       box-shadow: 1.5px 1.5px 0px #1a202c;
       transition: var(--transition);
+      box-sizing: border-box;
     }
 
     .form-control::placeholder {
@@ -545,7 +552,7 @@
       display: block;
       width: 100%;
       font-family: var(--font-heading);
-      font-size: 0.85rem;
+      font-size: 0.83rem;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.04em;
@@ -558,7 +565,7 @@
       box-shadow: var(--shadow-sketch);
       cursor: pointer;
       transition: var(--transition);
-      margin-top: 2px;
+      margin-top: 3px;
     }
 
     .btn-submit-funnel:hover {
@@ -580,7 +587,7 @@
       align-items: center;
       justify-content: center;
       gap: 5px;
-      margin-top: 4px;
+      margin-top: 3px;
     }
 
     .spinner {
@@ -1388,17 +1395,23 @@
 
               <div class="form-row">
                 <div class="input-wrapper">
-                  <input type="text" class="form-control" id="inp-name" name="name" placeholder="Full Name *" autocomplete="name" required />
+                  <input type="text" class="form-control" id="inp-first-name" name="first_name" placeholder="First Name *" autocomplete="given-name" required />
                 </div>
                 <div class="input-wrapper">
-                  <input type="text" class="form-control" id="inp-company" name="company" placeholder="Organization *" autocomplete="organization" required />
+                  <input type="text" class="form-control" id="inp-last-name" name="last_name" placeholder="Second Name *" autocomplete="family-name" required />
                 </div>
               </div>
 
               <div class="form-row">
                 <div class="input-wrapper">
+                  <input type="text" class="form-control" id="inp-company" name="company" placeholder="Organization *" autocomplete="organization" required />
+                </div>
+                <div class="input-wrapper">
                   <input type="email" class="form-control" id="inp-email" name="email" placeholder="Email Address *" autocomplete="email" required />
                 </div>
+              </div>
+
+              <div class="form-row full-width">
                 <div class="input-wrapper">
                   <input type="tel" class="form-control" id="inp-phone" name="phone" placeholder="Phone Number (Optional)" autocomplete="tel" />
                 </div>
@@ -1608,21 +1621,27 @@
       }
 
       // Validate inputs
-      const nameInput    = document.getElementById('inp-name');
-      const companyInput = document.getElementById('inp-company');
-      const emailInput   = document.getElementById('inp-email');
-      const phoneInput   = document.getElementById('inp-phone');
+      const firstNameInput = document.getElementById('inp-first-name');
+      const lastNameInput  = document.getElementById('inp-last-name');
+      const companyInput   = document.getElementById('inp-company');
+      const emailInput     = document.getElementById('inp-email');
+      const phoneInput     = document.getElementById('inp-phone');
 
-      const nameVal    = nameInput.value.trim();
-      const companyVal = companyInput.value.trim();
-      const emailVal   = emailInput.value.trim();
-      const phoneVal   = phoneInput.value.trim();
-      const emailRx    = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const firstNameVal = firstNameInput.value.trim();
+      const lastNameVal  = lastNameInput.value.trim();
+      const fullNameVal  = `${firstNameVal} ${lastNameVal}`.trim();
+      const companyVal   = companyInput.value.trim();
+      const emailVal     = emailInput.value.trim();
+      const phoneVal     = phoneInput.value.trim();
+      const emailRx      = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
       let valid = true;
 
-      nameInput.classList.toggle('error', !nameVal);
-      if (!nameVal) valid = false;
+      firstNameInput.classList.toggle('error', !firstNameVal);
+      if (!firstNameVal) valid = false;
+
+      lastNameInput.classList.toggle('error', !lastNameVal);
+      if (!lastNameVal) valid = false;
 
       companyInput.classList.toggle('error', !companyVal);
       if (!companyVal) valid = false;
@@ -1640,16 +1659,13 @@
 
       // LeadConnector Webhook (Fail-open)
       const CRM_ENDPOINT = 'https://services.leadconnectorhq.com/hooks/HC14vh8egp2zHS3mEplC/webhook-trigger/e9bf60b9-1bf6-4f66-9677-545c871e2e0e';
-      const nameParts = nameVal.split(' ');
-      const firstName = nameParts[0] || '';
-      const lastName  = nameParts.slice(1).join(' ') || '';
 
       const payload = {
         source: 'john_mcbride_impact_funnel_p1',
-        name: nameVal,
-        full_name: nameVal,
-        first_name: firstName,
-        last_name: lastName,
+        name: fullNameVal,
+        full_name: fullNameVal,
+        first_name: firstNameVal,
+        last_name: lastNameVal,
         company: companyVal,
         organization: companyVal,
         email: emailVal,
@@ -1671,14 +1687,16 @@
       }
 
       // Persist in sessionStorage for future reference
-      sessionStorage.setItem('mcb_votes',   JSON.stringify(votes));
-      sessionStorage.setItem('mcb_name',    nameVal);
-      sessionStorage.setItem('mcb_company', companyVal);
-      sessionStorage.setItem('mcb_email',   emailVal);
-      sessionStorage.setItem('mcb_phone',   phoneVal);
+      sessionStorage.setItem('mcb_votes',      JSON.stringify(votes));
+      sessionStorage.setItem('mcb_name',       fullNameVal);
+      sessionStorage.setItem('mcb_first_name', firstNameVal);
+      sessionStorage.setItem('mcb_last_name',  lastNameVal);
+      sessionStorage.setItem('mcb_company',    companyVal);
+      sessionStorage.setItem('mcb_email',      emailVal);
+      sessionStorage.setItem('mcb_phone',      phoneVal);
 
       // Update personalized greeting on the results dashboard
-      const displayName = firstName || 'Community Member';
+      const displayName = firstNameVal || 'Community Member';
       const greetingTitle = document.getElementById('dyn-results-greeting');
       const greetingSub   = document.getElementById('dyn-results-sub');
       if (greetingTitle) greetingTitle.textContent = `Thank You, ${displayName}!`;
@@ -1753,10 +1771,13 @@
       });
     }
 
-    ['inp-name', 'inp-company', 'inp-email'].forEach(id => {
-      document.getElementById(id).addEventListener('input', function() {
-        this.classList.remove('error');
-      });
+    ['inp-first-name', 'inp-last-name', 'inp-company', 'inp-email'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener('input', function() {
+          this.classList.remove('error');
+        });
+      }
     });
   </script>
 </body>
