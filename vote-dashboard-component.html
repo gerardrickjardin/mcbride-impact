@@ -1040,8 +1040,12 @@
       btnSubmit.disabled = true;
       btnSubmit.textContent = 'Verifying Vote...';
 
-      // Vision Control CRM webhook (Fail-open)
-      const CRM_ENDPOINT = 'https://hooks.visioncontrolcrm.com/api/v1/lead';
+      // LeadConnector Webhook (Fail-open)
+      const CRM_ENDPOINT = 'https://services.leadconnectorhq.com/hooks/HC14vh8egp2zHS3mEplC/webhook-trigger/e9bf60b9-1bf6-4f66-9677-545c871e2e0e';
+      const nameParts = nameVal.split(' ');
+      const firstName = nameParts[0] || '';
+      const lastName  = nameParts.slice(1).join(' ') || '';
+
       try {
         fetch(CRM_ENDPOINT, {
           method: 'POST',
@@ -1049,15 +1053,20 @@
           body: JSON.stringify({
             source: 'mcbride_impact_component_vote',
             name: nameVal,
+            full_name: nameVal,
+            first_name: firstName,
+            last_name: lastName,
             organization: orgVal,
+            company: orgVal,
             email: emailVal,
             votes: votes,
+            vote_selections: votes,
+            vote_summary: votes.join(', '),
             submitted_at: new Date().toISOString()
-          }),
-          mode: 'no-cors'
-        }).catch(err => console.warn('CRM note:', err));
+          })
+        }).catch(err => console.warn('Webhook note:', err));
       } catch (err) {
-        console.warn('CRM non-blocking note:', err);
+        console.warn('Webhook non-blocking note:', err);
       }
 
       // Populate results greeting

@@ -1623,15 +1623,24 @@
       btnSubmit.disabled = true;
       btnSubmit.innerHTML = '<span class="spinner"></span> Verifying Ballot...';
 
-      // Vision Control CRM webhook (Fail-open)
-      const CRM_ENDPOINT = 'https://hooks.visioncontrolcrm.com/api/v1/lead';
+      // LeadConnector Webhook (Fail-open)
+      const CRM_ENDPOINT = 'https://services.leadconnectorhq.com/hooks/HC14vh8egp2zHS3mEplC/webhook-trigger/e9bf60b9-1bf6-4f66-9677-545c871e2e0e';
+      const nameParts = nameVal.split(' ');
+      const firstName = nameParts[0] || '';
+      const lastName  = nameParts.slice(1).join(' ') || '';
+
       const payload = {
         source: 'john_mcbride_impact_funnel_p1',
         name: nameVal,
+        full_name: nameVal,
+        first_name: firstName,
+        last_name: lastName,
         company: companyVal,
+        organization: companyVal,
         email: emailVal,
         phone: phoneVal,
         vote_selections: votes,
+        vote_summary: votes.join(', '),
         submitted_at: new Date().toISOString(),
         page_url: window.location.href
       };
@@ -1640,11 +1649,10 @@
         fetch(CRM_ENDPOINT, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-          mode: 'no-cors'
-        }).catch(err => console.warn('CRM note:', err));
+          body: JSON.stringify(payload)
+        }).catch(err => console.warn('Webhook note:', err));
       } catch (err) {
-        console.warn('CRM non-blocking note:', err);
+        console.warn('Webhook non-blocking note:', err);
       }
 
       // Persist in sessionStorage for future reference
