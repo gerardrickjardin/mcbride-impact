@@ -917,13 +917,13 @@
         <!-- Contact Fields -->
         <div class="form-inputs-grid">
           <div class="input-field-wrap">
-            <input type="text" class="form-input" id="field-name" name="name" placeholder="Full Name *" autocomplete="name" required />
+            <input type="text" class="form-input" id="field-name" name="name" placeholder="Full Name" autocomplete="name" required />
           </div>
           <div class="input-field-wrap">
-            <input type="text" class="form-input" id="field-org" name="organization" placeholder="Organization *" autocomplete="organization" required />
+            <input type="text" class="form-input" id="field-org" name="organization" placeholder="Organization (Optional)" autocomplete="organization" />
           </div>
           <div class="input-field-wrap">
-            <input type="email" class="form-input" id="field-email" name="email" placeholder="Email Address *" autocomplete="email" required />
+            <input type="email" class="form-input" id="field-email" name="email" placeholder="Email Address" autocomplete="email" required />
           </div>
           <div class="input-field-wrap">
             <input type="tel" class="form-input" id="field-phone" name="phone" placeholder="Phone Number (Optional)" autocomplete="tel" />
@@ -1105,9 +1105,6 @@
       let valid = true;
       nameInp.classList.toggle('error', !nameVal);
       if (!nameVal) valid = false;
-
-      orgInp.classList.toggle('error', !orgVal);
-      if (!orgVal) valid = false;
 
       emailInp.classList.toggle('error', !emailRx.test(emailVal));
       if (!emailRx.test(emailVal)) valid = false;

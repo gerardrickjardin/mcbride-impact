@@ -1599,19 +1599,19 @@
 
               <div class="form-row">
                 <div class="input-wrapper">
-                  <input type="text" class="form-control" id="inp-first-name" name="first_name" placeholder="First Name *" autocomplete="given-name" required />
+                  <input type="text" class="form-control" id="inp-first-name" name="first_name" placeholder="First Name" autocomplete="given-name" required />
                 </div>
                 <div class="input-wrapper">
-                  <input type="text" class="form-control" id="inp-last-name" name="last_name" placeholder="Second Name *" autocomplete="family-name" required />
+                  <input type="text" class="form-control" id="inp-last-name" name="last_name" placeholder="Second Name" autocomplete="family-name" required />
                 </div>
               </div>
 
               <div class="form-row">
                 <div class="input-wrapper">
-                  <input type="text" class="form-control" id="inp-company" name="company" placeholder="Organization *" autocomplete="organization" required />
+                  <input type="text" class="form-control" id="inp-company" name="company" placeholder="Organization (Optional)" autocomplete="organization" />
                 </div>
                 <div class="input-wrapper">
-                  <input type="email" class="form-control" id="inp-email" name="email" placeholder="Email Address *" autocomplete="email" required />
+                  <input type="email" class="form-control" id="inp-email" name="email" placeholder="Email Address" autocomplete="email" required />
                 </div>
               </div>
 
@@ -1905,9 +1905,6 @@
 
       lastNameInput.classList.toggle('error', !lastNameVal);
       if (!lastNameVal) valid = false;
-
-      companyInput.classList.toggle('error', !companyVal);
-      if (!companyVal) valid = false;
 
       emailInput.classList.toggle('error', !emailRx.test(emailVal));
       if (!emailRx.test(emailVal)) valid = false;
