@@ -693,8 +693,8 @@
       padding: 16px 20px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      gap: 10px;
+      justify-content: flex-start;
+      gap: 12px;
       border-right: var(--border-sketch);
       background: var(--bg-white);
       overflow-y: auto;
@@ -704,11 +704,11 @@
 
     /* Right Column of Results */
     .res-col-right {
-      padding: 16px 20px;
+      padding: 18px 20px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      gap: 10px;
+      justify-content: flex-start;
+      gap: 14px;
       background: var(--bg-card);
       overflow-y: auto;
       scrollbar-width: thin;
@@ -880,8 +880,15 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
-      margin-top: auto;
+      margin-top: 0;
       flex-shrink: 0;
+    }
+
+    .results-video-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 2px;
     }
 
     .btn-blueprint {
@@ -1560,7 +1567,7 @@
 
     <!-- TWO-COLUMN RESULTS DASHBOARD (Hidden initially, swaps smoothly on submit) -->
     <div class="two-col-results-stage" id="two-col-results-stage" aria-live="polite">
-      <!-- LEFT COLUMN -->
+      <!-- LEFT COLUMN: Greeting, Consensus Chart & Video -->
       <section class="res-col-left">
         <!-- Thank You Greeting -->
         <div class="greeting-box">
@@ -1624,6 +1631,30 @@
           </div>
         </div>
 
+        <!-- 16:9 Video Player (Impact Project Deeper Dive) -->
+        <div class="results-video-wrap">
+          <div class="video-header-wrap">
+            <span class="video-eyebrow">🎬 THE FULL STORY</span>
+            <h2 class="video-heading">The John McBride Impact Project — Full 5:50 Documentary</h2>
+          </div>
+
+          <div class="video-frame-container" style="padding-bottom: 56.25%;">
+            <iframe
+              src="https://www.youtube.com/embed/EOht_WR8oX4?rel=0&modestbranding=1"
+              title="The John McBride Impact Project — Full Documentary (5:50)"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+          </div>
+
+          <div class="doc-caption">
+            <strong>John McBride</strong> was a visionary community pillar whose legacy created this movement. This documentary highlights the neighborhood challenges and solutions shaping Colorado's youth violence prevention blueprint.
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT COLUMN: Funding Context, Action CTAs & Share to Network -->
+      <section class="res-col-right">
         <!-- Settlement Note -->
         <div class="settlement-card">
           <p>
@@ -1641,28 +1672,6 @@
           <a class="btn-secondary-home" href="/home">
             Explore Homepage &rarr;
           </a>
-        </div>
-      </section>
-
-      <!-- RIGHT COLUMN: 16:9 Video Player & Share to Network -->
-      <section class="res-col-right">
-        <div class="video-header-wrap">
-          <span class="video-eyebrow">🎬 THE FULL STORY</span>
-          <h2 class="video-heading">The John McBride Impact Project — Full 5:50 Documentary</h2>
-        </div>
-
-        <!-- 16:9 Video Player -->
-        <div class="video-frame-container" style="padding-bottom: 56.25%;">
-          <iframe
-            src="https://www.youtube.com/embed/EOht_WR8oX4?rel=0&modestbranding=1"
-            title="The John McBride Impact Project — Full Documentary (5:50)"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-          </iframe>
-        </div>
-
-        <div class="doc-caption">
-          <strong>John McBride</strong> was a visionary community pillar whose legacy created this movement. This documentary highlights the neighborhood challenges and solutions shaping Colorado's youth violence prevention blueprint.
         </div>
 
         <!-- Share to Network Section -->
