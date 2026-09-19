@@ -976,83 +976,6 @@
       text-align: center;
     }
 
-    /* Sizzle Video Placeholder */
-    .sizzle-placeholder-box {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 14px 18px;
-      background: radial-gradient(circle at center, #1b304f 0%, #0a1420 100%);
-      color: #fff;
-      overflow: hidden;
-    }
-
-    .sizzle-placeholder-box::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: 
-        linear-gradient(to right, rgba(214, 158, 46, 0.08) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(214, 158, 46, 0.08) 1px, transparent 1px);
-      background-size: 20px 20px;
-      pointer-events: none;
-    }
-
-    .sizzle-badge {
-      position: relative;
-      font-family: var(--font-heading);
-      font-size: 0.62rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--color-accent);
-      background: rgba(214, 158, 46, 0.16);
-      border: 1px solid rgba(214, 158, 46, 0.4);
-      padding: 3px 10px;
-      border-radius: 100px;
-      margin-bottom: 8px;
-    }
-
-    .sizzle-play-icon {
-      position: relative;
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.08);
-      border: 2px solid var(--color-accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 18px rgba(214, 158, 46, 0.35);
-      margin-bottom: 8px;
-    }
-
-    .sizzle-play-icon svg {
-      margin-left: 3px;
-    }
-
-    .sizzle-title {
-      position: relative;
-      font-family: var(--font-heading);
-      font-size: clamp(0.85rem, 1.05vw, 1rem);
-      font-weight: 800;
-      color: #ffffff;
-      margin-bottom: 3px;
-      letter-spacing: -0.01em;
-    }
-
-    .sizzle-desc {
-      position: relative;
-      font-size: clamp(0.65rem, 0.74vw, 0.72rem);
-      color: #cbd5e0;
-      line-height: 1.35;
-      max-width: 420px;
-      margin: 0 auto;
-    }
 
     .share-network-box {
       background: #ffffff;
@@ -1721,27 +1644,25 @@
         </div>
       </section>
 
-      <!-- RIGHT COLUMN: 16:9 Sizzle Video Placeholder & Share to Network -->
+      <!-- RIGHT COLUMN: 16:9 Video Player & Share to Network -->
       <section class="res-col-right">
         <div class="video-header-wrap">
-          <span class="video-eyebrow">🎬 SIZZLE REEL &bull; IN PROGRESS</span>
-          <h2 class="video-heading">The John McBride Impact Project — Official Sizzle Video</h2>
+          <span class="video-eyebrow">🎬 THE FULL STORY</span>
+          <h2 class="video-heading">The John McBride Impact Project — Full 5:50 Documentary</h2>
         </div>
 
-        <!-- 16:9 Sizzle Video Placeholder -->
+        <!-- 16:9 Video Player -->
         <div class="video-frame-container" style="padding-bottom: 56.25%;">
-          <div class="sizzle-placeholder-box">
-            <div class="sizzle-badge">⚡ NEW SIZZLE VIDEO IN PROGRESS</div>
-            <div class="sizzle-play-icon">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="#d69e2e" stroke="#1a202c" stroke-width="1.5"><polygon points="6 3 20 12 6 21 6 3"/></svg>
-            </div>
-            <h3 class="sizzle-title">Official Impact Sizzle Video</h3>
-            <p class="sizzle-desc">Our brand-new high-energy sizzle reel is currently in production. Check back soon for the official release highlighting real community stories, youth leaders, and proven solutions.</p>
-          </div>
+          <iframe
+            src="https://www.youtube.com/embed/EOht_WR8oX4?rel=0&modestbranding=1"
+            title="The John McBride Impact Project — Full Documentary (5:50)"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
         </div>
 
         <div class="doc-caption">
-          <strong>Official Sizzle Reel</strong> is currently in progress. Featuring on-the-ground youth voices and community solutions shaping Colorado's youth violence prevention blueprint.
+          <strong>John McBride</strong> was a visionary community pillar whose legacy created this movement. This documentary highlights the neighborhood challenges and solutions shaping Colorado's youth violence prevention blueprint.
         </div>
 
         <!-- Share to Network Section -->
