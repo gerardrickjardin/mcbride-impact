@@ -1079,8 +1079,8 @@
     .btn-soc-item.tt { background: #000; color: #fff; }
     .btn-soc-item:hover { transform: translate(-1px, -1px); opacity: 0.9; }
 
-    /* Re-vote & Watch Video Card in Right Column */
-    .revote-prompt-card {
+    /* Revote Voting Card in Right Column */
+    .revote-voting-card {
       background: var(--bg-white);
       border: 1.5px solid #1a202c;
       border-radius: 8px;
@@ -1088,12 +1088,18 @@
       padding: 14px 16px;
       display: flex;
       flex-direction: column;
-      gap: 7px;
+      gap: 10px;
+    }
+
+    .revote-header {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
     }
 
     .revote-badge {
       font-family: var(--font-heading);
-      font-size: 0.64rem;
+      font-size: 0.65rem;
       font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -1105,45 +1111,137 @@
 
     .revote-title {
       font-family: var(--font-heading);
-      font-size: 0.92rem;
+      font-size: 0.96rem;
       font-weight: 800;
       color: var(--color-text);
       line-height: 1.25;
     }
 
     .revote-desc {
-      font-size: 0.74rem;
+      font-size: 0.72rem;
       color: var(--color-text-muted);
       line-height: 1.35;
     }
 
-    .btn-vote-again {
-      display: inline-flex;
+    .revote-form {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .revote-q-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .revote-q-card {
+      background: #faf8f5;
+      border: 1.5px solid #1a202c;
+      border-radius: 7px;
+      padding: 8px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      transition: border-color 0.2s;
+    }
+
+    .revote-q-meta {
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-      gap: 6px;
-      width: 100%;
-      padding: 9px 14px;
-      background: var(--color-blueprint-light);
-      color: var(--color-blueprint);
+      font-size: 0.68rem;
+    }
+
+    .revote-q-tag {
       font-family: var(--font-heading);
-      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--color-blueprint);
+      letter-spacing: 0.04em;
+    }
+
+    .revote-q-feedback {
+      font-size: 0.66rem;
+      font-weight: 700;
+      color: #b7791f;
+    }
+
+    .revote-q-title {
+      font-size: 0.73rem;
+      font-weight: 600;
+      color: var(--color-text);
+      line-height: 1.3;
+    }
+
+    .revote-alert {
+      font-size: 0.69rem;
+      font-weight: 600;
+      color: var(--color-danger);
+      text-align: center;
+      display: none;
+    }
+    .revote-alert.show { display: block; }
+
+    .btn-submit-revote {
+      display: block;
+      width: 100%;
+      padding: 10px 16px;
+      background: var(--color-accent);
+      color: #1a202c;
+      font-family: var(--font-heading);
+      font-size: 0.84rem;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.04em;
-      border: 1.5px solid var(--color-blueprint);
-      border-radius: 6px;
-      box-shadow: 2px 2px 0px var(--color-blueprint);
+      border: var(--border-sketch);
+      border-radius: var(--radius-s1);
+      box-shadow: var(--shadow-sketch);
       cursor: pointer;
       transition: var(--transition);
-      margin-top: 4px;
+      text-align: center;
+      margin-top: 2px;
     }
 
-    .btn-vote-again:hover {
-      background: var(--color-blueprint);
-      color: #fff;
+    .btn-submit-revote:hover {
+      background: var(--color-accent-hover);
       transform: translate(-1px, -1px);
-      box-shadow: 3px 3px 0px #1a202c;
+      box-shadow: var(--shadow-sketch-hover);
+    }
+
+    .revote-toast {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: #f0fff4;
+      border: 1.5px solid #276749;
+      color: #22543d;
+      border-radius: 6px;
+      padding: 7px 10px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-align: center;
+      animation: badgePop 0.3s ease;
+    }
+
+    .revote-footer-link {
+      text-align: center;
+      margin-top: 2px;
+    }
+
+    .btn-link-blueprint {
+      background: none;
+      border: none;
+      color: var(--color-blueprint);
+      font-family: var(--font-heading);
+      font-size: 0.73rem;
+      font-weight: 700;
+      text-decoration: underline;
+      cursor: pointer;
+      padding: 3px 6px;
+    }
+    .btn-link-blueprint:hover {
+      color: #1a365d;
     }
 
     .results-header {
@@ -1744,18 +1842,103 @@
         </div>
       </section>
 
-      <!-- RIGHT COLUMN: Watch Blueprint Video, Vote Again & Share to Network -->
+      <!-- RIGHT COLUMN: Interactive Voting ("Vote Again") & Share to Network -->
       <section class="res-col-right">
-        <!-- Watch Blueprint Video & Vote Again Card -->
-        <div class="revote-prompt-card">
-          <div class="revote-badge">🔄 BLUEPRINT OVERVIEW</div>
-          <h3 class="revote-title">Watch the Blueprint Video &amp; Vote Again</h3>
-          <p class="revote-desc">
-            Want to review the vision again or submit another community response? Watch the official blueprint video and participate in the survey.
-          </p>
-          <button type="button" class="btn-vote-again" id="btn-vote-again">
-            &larr; Watch Blueprint Video &amp; Vote Again
-          </button>
+        <!-- Cast Your Vote Again Card -->
+        <div class="revote-voting-card" id="revote-voting-card">
+          <div class="revote-header">
+            <div class="revote-badge">🗳️ VOTE AGAIN &bull; SHAPE COMMUNITY BLUEPRINT</div>
+            <h3 class="revote-title">Cast Your Vote Again</h3>
+            <p class="revote-desc">
+              Adjust your priorities or cast another vote below. Your ratings immediately update the community evidence on the left.
+            </p>
+          </div>
+
+          <form id="revote-form" class="revote-form" novalidate>
+            <div class="revote-q-list">
+              <!-- Revote Q1 -->
+              <div class="revote-q-card" id="card-revote-q1">
+                <div class="revote-q-meta">
+                  <span class="revote-q-tag">Q1 &bull; Baseline Effectiveness</span>
+                  <span class="revote-q-feedback" id="revote-q1-feedback"></span>
+                </div>
+                <div class="revote-q-title">
+                  How effective are current public safety &amp; policing approaches at keeping high-risk youth safe?
+                </div>
+                <div class="survey-scale-row" role="radiogroup" aria-label="Revote Question 1 scale">
+                  <label class="scale-btn" for="rq1-1"><input type="radio" id="rq1-1" name="rq1" value="1" /><span class="scale-num">1</span></label>
+                  <label class="scale-btn" for="rq1-2"><input type="radio" id="rq1-2" name="rq1" value="2" /><span class="scale-num">2</span></label>
+                  <label class="scale-btn" for="rq1-3"><input type="radio" id="rq1-3" name="rq1" value="3" /><span class="scale-num">3</span></label>
+                  <label class="scale-btn" for="rq1-4"><input type="radio" id="rq1-4" name="rq1" value="4" /><span class="scale-num">4</span></label>
+                  <label class="scale-btn" for="rq1-5"><input type="radio" id="rq1-5" name="rq1" value="5" /><span class="scale-num">5</span></label>
+                </div>
+                <div class="survey-legend">
+                  <span>1 = Completely Ineffective</span>
+                  <span>5 = Highly Effective</span>
+                </div>
+              </div>
+
+              <!-- Revote Q2 -->
+              <div class="revote-q-card" id="card-revote-q2">
+                <div class="revote-q-meta">
+                  <span class="revote-q-tag">Q2 &bull; Mentorship Expansion</span>
+                  <span class="revote-q-feedback" id="revote-q2-feedback"></span>
+                </div>
+                <div class="revote-q-title">
+                  How valuable do you feel it would be to provide verified, trusted peer and adult mentorship?
+                </div>
+                <div class="survey-scale-row" role="radiogroup" aria-label="Revote Question 2 scale">
+                  <label class="scale-btn" for="rq2-1"><input type="radio" id="rq2-1" name="rq2" value="1" /><span class="scale-num">1</span></label>
+                  <label class="scale-btn" for="rq2-2"><input type="radio" id="rq2-2" name="rq2" value="2" /><span class="scale-num">2</span></label>
+                  <label class="scale-btn" for="rq2-3"><input type="radio" id="rq2-3" name="rq2" value="3" /><span class="scale-num">3</span></label>
+                  <label class="scale-btn" for="rq2-4"><input type="radio" id="rq2-4" name="rq2" value="4" /><span class="scale-num">4</span></label>
+                  <label class="scale-btn" for="rq2-5"><input type="radio" id="rq2-5" name="rq2" value="5" /><span class="scale-num">5</span></label>
+                </div>
+                <div class="survey-legend">
+                  <span>1 = Not Valuable at All</span>
+                  <span>5 = Essential Priority</span>
+                </div>
+              </div>
+
+              <!-- Revote Q3 -->
+              <div class="revote-q-card" id="card-revote-q3">
+                <div class="revote-q-meta">
+                  <span class="revote-q-tag">Q3 &bull; Protected Digital Tooling</span>
+                  <span class="revote-q-feedback" id="revote-q3-feedback"></span>
+                </div>
+                <div class="revote-q-title">
+                  How valuable would it be if peer-led programs were equipped with safe, privacy-protected coaching tools?
+                </div>
+                <div class="survey-scale-row" role="radiogroup" aria-label="Revote Question 3 scale">
+                  <label class="scale-btn" for="rq3-1"><input type="radio" id="rq3-1" name="rq3" value="1" /><span class="scale-num">1</span></label>
+                  <label class="scale-btn" for="rq3-2"><input type="radio" id="rq3-2" name="rq3" value="2" /><span class="scale-num">2</span></label>
+                  <label class="scale-btn" for="rq3-3"><input type="radio" id="rq3-3" name="rq3" value="3" /><span class="scale-num">3</span></label>
+                  <label class="scale-btn" for="rq3-4"><input type="radio" id="rq3-4" name="rq3" value="4" /><span class="scale-num">4</span></label>
+                  <label class="scale-btn" for="rq3-5"><input type="radio" id="rq3-5" name="rq3" value="5" /><span class="scale-num">5</span></label>
+                </div>
+                <div class="survey-legend">
+                  <span>1 = Not Valuable at All</span>
+                  <span>5 = Essential Priority</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="revote-alert" id="revote-alert">&bull; Please select ratings to submit your updated vote.</div>
+
+            <button type="submit" class="btn-submit-revote" id="btn-submit-revote">
+              Submit Vote Again &rarr;
+            </button>
+
+            <div class="revote-toast" id="revote-toast">
+              <span>&check;</span> Your vote has been recorded! Thank you for shaping the blueprint.
+            </div>
+
+            <div class="revote-footer-link">
+              <button type="button" class="btn-link-blueprint" id="btn-vote-again">
+                &larr; Return to Blueprint Overview &amp; Intro
+              </button>
+            </div>
+          </form>
         </div>
 
         <!-- Share to Network Section -->
@@ -2031,8 +2214,135 @@
             fill.style.width = target + '%';
           });
         }, 120);
+
+        // Pre-populate Revote form on the right with initial ratings
+        const revoteInit = [
+          { name: 'rq1', val: q1Val },
+          { name: 'rq2', val: q2Val },
+          { name: 'rq3', val: q3Val }
+        ];
+        revoteInit.forEach(({ name, val }) => {
+          if (val) {
+            const rad = document.querySelector(`input[name="${name}"][value="${val}"]`);
+            if (rad) {
+              rad.checked = true;
+              document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
+                const lbl = r.closest('.scale-btn');
+                if (lbl) lbl.classList.toggle('selected', r.checked);
+              });
+              const qNum = name.substring(1); // 'q1', 'q2', 'q3'
+              const feedback = document.getElementById(`revote-${qNum}-feedback`);
+              if (feedback) {
+                const text = (qNum === 'q1') ? q1Labels[val] : qValLabels[val];
+                feedback.textContent = text ? `${text}` : '';
+              }
+            }
+          }
+        });
       }, 350);
     });
+
+    // Revote form radio change handlers
+    ['rq1', 'rq2', 'rq3'].forEach(qName => {
+      document.querySelectorAll(`input[name="${qName}"]`).forEach(radio => {
+        radio.addEventListener('change', () => {
+          document.querySelectorAll(`input[name="${qName}"]`).forEach(r => {
+            const lbl = r.closest('.scale-btn');
+            if (lbl) lbl.classList.toggle('selected', r.checked);
+          });
+
+          const alertBox = document.getElementById('revote-alert');
+          if (alertBox) alertBox.classList.remove('show');
+          const toast = document.getElementById('revote-toast');
+          if (toast) toast.style.display = 'none';
+
+          const qNum = qName.substring(1); // 'q1', 'q2', 'q3'
+          const feedback = document.getElementById(`revote-${qNum}-feedback`);
+          if (feedback) {
+            const val = radio.value;
+            const text = (qNum === 'q1') ? q1Labels[val] : qValLabels[val];
+            feedback.textContent = text ? `${text}` : '';
+          }
+        });
+      });
+    });
+
+    // Revote form submission handler
+    const revoteForm = document.getElementById('revote-form');
+    if (revoteForm) {
+      revoteForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const rq1 = document.querySelector('input[name="rq1"]:checked');
+        const rq2 = document.querySelector('input[name="rq2"]:checked');
+        const rq3 = document.querySelector('input[name="rq3"]:checked');
+
+        if (!rq1 && !rq2 && !rq3) {
+          const alertBox = document.getElementById('revote-alert');
+          if (alertBox) alertBox.classList.add('show');
+          return;
+        }
+
+        // Update left-column rating badges dynamically with animation
+        if (rq2) {
+          const badgeMentorship = document.getElementById('dyn-badge-mentorship');
+          if (badgeMentorship) {
+            badgeMentorship.innerHTML = `&check; Your Rating: ${rq2.value}/5`;
+            badgeMentorship.style.display = 'inline-flex';
+            badgeMentorship.style.animation = 'none';
+            void badgeMentorship.offsetWidth;
+            badgeMentorship.style.animation = 'badgePop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+          }
+          sessionStorage.setItem('mcb_survey_q2', rq2.value);
+        }
+
+        if (rq3) {
+          const badgeTooling = document.getElementById('dyn-badge-tooling');
+          if (badgeTooling) {
+            badgeTooling.innerHTML = `&check; Your Rating: ${rq3.value}/5`;
+            badgeTooling.style.display = 'inline-flex';
+            badgeTooling.style.animation = 'none';
+            void badgeTooling.offsetWidth;
+            badgeTooling.style.animation = 'badgePop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+          }
+          sessionStorage.setItem('mcb_survey_q3', rq3.value);
+        }
+
+        if (rq1) {
+          const badgeBaseline = document.getElementById('dyn-badge-baseline');
+          if (badgeBaseline) {
+            badgeBaseline.innerHTML = `&check; Your Rating: ${rq1.value}/5`;
+            badgeBaseline.style.display = 'inline-flex';
+            badgeBaseline.style.animation = 'none';
+            void badgeBaseline.offsetWidth;
+            badgeBaseline.style.animation = 'badgePop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+          }
+          sessionStorage.setItem('mcb_survey_q1', rq1.value);
+        }
+
+        const toast = document.getElementById('revote-toast');
+        if (toast) {
+          toast.style.display = 'flex';
+        }
+
+        // Send updated vote event to webhook
+        try {
+          const updatePayload = {
+            event: 'revote_update',
+            name: sessionStorage.getItem('mcb_name') || 'Anonymous Member',
+            email: sessionStorage.getItem('mcb_email') || '',
+            q1_rating: rq1 ? rq1.value : '',
+            q2_rating: rq2 ? rq2.value : '',
+            q3_rating: rq3 ? rq3.value : '',
+            timestamp: new Date().toISOString()
+          };
+          fetch(CRM_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(updatePayload)
+          }).catch(err => console.warn('Revote webhook note:', err));
+        } catch (err) {}
+      });
+    }
 
     // Copy link helper for results dashboard
     const btnLandingCopy = document.getElementById('btn-landing-copy');
@@ -2052,7 +2362,7 @@
       });
     }
 
-    // "Watch Blueprint Video & Vote Again" helper
+    // "Watch Blueprint Video & Vote Again" helper (return to landing stage)
     const btnVoteAgain = document.getElementById('btn-vote-again');
     if (btnVoteAgain) {
       btnVoteAgain.addEventListener('click', () => {

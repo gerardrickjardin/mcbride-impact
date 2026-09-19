@@ -621,6 +621,107 @@
       text-align: center;
     }
 
+    /* Revote Card in Component */
+    .revote-component-card {
+      background: #ffffff;
+      border: var(--border-sketch-sm);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sketch-sm);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: left;
+    }
+
+    .revote-badge {
+      font-family: var(--font-heading);
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-blueprint);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .revote-title {
+      font-family: var(--font-heading);
+      font-size: 0.96rem;
+      font-weight: 800;
+      color: var(--color-navy);
+      line-height: 1.25;
+    }
+
+    .revote-desc {
+      font-size: 0.74rem;
+      color: var(--color-navy-muted);
+      line-height: 1.35;
+    }
+
+    .revote-checkboxes {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .revote-p-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border: 1.5px solid #0d1b2a;
+      border-radius: 6px;
+      background: #faf8f5;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .revote-p-item:hover {
+      background: #f0ede6;
+    }
+
+    .btn-submit-revote-comp {
+      display: block;
+      width: 100%;
+      padding: 9px 12px;
+      background: var(--color-yellow);
+      color: var(--color-navy);
+      border: var(--border-sketch-sm);
+      border-radius: 6px;
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      box-shadow: 1.5px 1.5px 0px #0d1b2a;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-align: center;
+    }
+    .btn-submit-revote-comp:hover {
+      background: var(--color-yellow-light);
+      transform: translate(-1px, -1px);
+      box-shadow: 2.5px 2.5px 0px #0d1b2a;
+    }
+
+    .revote-toast-comp {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      background: #f0fff4;
+      border: 1.5px solid #276749;
+      color: #22543d;
+      border-radius: 6px;
+      padding: 6px 8px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
     .share-header {
       display: flex;
       flex-direction: column;
@@ -953,8 +1054,35 @@
           </div>
         </div>
 
-        <!-- RIGHT COLUMN: Only Share to Network -->
+        <!-- RIGHT COLUMN: Revote & Share to Network -->
         <div class="dashboard-right-col">
+          <!-- Revote Card -->
+          <div class="revote-component-card">
+            <div class="revote-header">
+              <div class="revote-badge">🗳️ CAST YOUR VOTE AGAIN</div>
+              <h3 class="revote-title">Update Your Priorities &amp; Vote Again</h3>
+              <p class="revote-desc">Adjust your community priorities below to update live consensus in real time.</p>
+            </div>
+            <form id="revote-component-form" class="revote-comp-form">
+              <div class="revote-checkboxes">
+                <label class="revote-p-item">
+                  <input type="checkbox" name="revote_p" value="school" id="r-p1" />
+                  <span>🏫 The "5 to THRIVE" Process</span>
+                </label>
+                <label class="revote-p-item">
+                  <input type="checkbox" name="revote_p" value="coaches" id="r-p2" />
+                  <span>🤝 Student Hope Squads</span>
+                </label>
+                <label class="revote-p-item">
+                  <input type="checkbox" name="revote_p" value="healing" id="r-p3" />
+                  <span>🎬 The "Big Picture" Movement</span>
+                </label>
+              </div>
+              <button type="submit" class="btn-submit-revote-comp" id="btn-submit-revote-comp">Update My Vote &rarr;</button>
+              <div class="revote-toast-comp" id="revote-toast-comp">&check; Your vote has been recorded!</div>
+            </form>
+          </div>
+
           <!-- Share to Network Section -->
           <div class="share-network-card">
             <div class="share-header">
@@ -1108,8 +1236,39 @@
             fill.style.width = target + '%';
           });
         }, 120);
+
+        // Pre-populate revote checkboxes
+        document.getElementById('r-p1').checked = votes.includes('school_culture');
+        document.getElementById('r-p2').checked = votes.includes('empowered_coaches');
+        document.getElementById('r-p3').checked = votes.includes('community_healing');
       }, 350);
     });
+
+    // Revote Component Submission Handler
+    const revoteCompForm = document.getElementById('revote-component-form');
+    if (revoteCompForm) {
+      revoteCompForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const p1 = document.getElementById('r-p1').checked;
+        const p2 = document.getElementById('r-p2').checked;
+        const p3 = document.getElementById('r-p3').checked;
+
+        document.getElementById('tag-school').style.display = p1 ? 'inline-flex' : 'none';
+        document.getElementById('card-res-school').classList.toggle('user-selected', p1);
+
+        document.getElementById('tag-coaches').style.display = p2 ? 'inline-flex' : 'none';
+        document.getElementById('card-res-coaches').classList.toggle('user-selected', p2);
+
+        document.getElementById('tag-healing').style.display = p3 ? 'inline-flex' : 'none';
+        document.getElementById('card-res-healing').classList.toggle('user-selected', p3);
+
+        const toast = document.getElementById('revote-toast-comp');
+        if (toast) {
+          toast.style.display = 'flex';
+          setTimeout(() => { toast.style.display = 'none'; }, 3000);
+        }
+      });
+    }
 
     // Copy link helper with feedback
     const btnCopy = document.getElementById('btn-copy-share');
