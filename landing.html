@@ -177,22 +177,20 @@
       border-radius: 16px;
       box-shadow: var(--shadow-sketch);
       display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
+      grid-template-columns: 1.1fr 0.9fr;
       overflow: hidden;
     }
 
-    /* Left Column: Interactive 3-Question Survey & Voting */
+    /* Left Column: Media & Founder Voice */
     .stage-left {
-      padding: 14px 20px;
+      padding: 18px 20px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 10px;
+      gap: 14px;
       border-right: var(--border-sketch);
-      background: var(--bg-card);
-      overflow-y: auto;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(26,32,44,0.25) transparent;
+      background: var(--bg-white);
+      overflow: hidden;
     }
 
     .video-frame-container {
@@ -279,14 +277,14 @@
     }
     .proof-copy strong { color: var(--color-text); }
 
-    /* Right Column: Media & Founder Video */
+    /* Right Column: Priority Voting & Inline Form */
     .stage-right {
-      padding: 18px 20px;
+      padding: 14px 20px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 12px;
-      background: var(--bg-white);
+      gap: 10px;
+      background: var(--bg-card);
       overflow-y: auto;
       scrollbar-width: thin;
       scrollbar-color: rgba(26,32,44,0.25) transparent;
@@ -1080,9 +1078,72 @@
     .btn-soc-item.ig { background: linear-gradient(45deg, #f09433, #dc2743, #bc1888); color: #fff; }
     .btn-soc-item.tt { background: #000; color: #fff; }
     .btn-soc-item:hover { transform: translate(-1px, -1px); opacity: 0.9; }
+
+    /* Re-vote & Watch Video Card in Right Column */
+    .revote-prompt-card {
+      background: var(--bg-white);
+      border: 1.5px solid #1a202c;
+      border-radius: 8px;
+      box-shadow: 2px 2px 0px #1a202c;
+      padding: 14px 16px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 7px;
+    }
+
+    .revote-badge {
+      font-family: var(--font-heading);
+      font-size: 0.64rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-blueprint);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .revote-title {
+      font-family: var(--font-heading);
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: var(--color-text);
+      line-height: 1.25;
+    }
+
+    .revote-desc {
+      font-size: 0.74rem;
+      color: var(--color-text-muted);
+      line-height: 1.35;
+    }
+
+    .btn-vote-again {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      width: 100%;
+      padding: 9px 14px;
+      background: var(--color-blueprint-light);
+      color: var(--color-blueprint);
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      border: 1.5px solid var(--color-blueprint);
+      border-radius: 6px;
+      box-shadow: 2px 2px 0px var(--color-blueprint);
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 4px;
+    }
+
+    .btn-vote-again:hover {
+      background: var(--color-blueprint);
+      color: #fff;
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0px #1a202c;
     }
 
     .results-header {
@@ -1351,8 +1412,49 @@
     <!-- Central Split Stage Container - 20% Smaller Proportion -->
     <main class="main-stage" id="main-stage">
 
-      <!-- LEFT: Interactive 3-Question Survey & Inline Lead Capture Form -->
+      <!-- LEFT: Jason McBride Video Player & Founder Quote -->
       <section class="stage-left" id="stage-left">
+        <div class="right-header" style="margin-bottom: 2px;">
+          <div class="eyebrow-tag">
+            <span>🎬</span> THE JOHN MCBRIDE BLUEPRINT VIDEO
+          </div>
+          <p class="right-subtitle">
+            Watch the official blueprint video, then cast your input on the right to guide Colorado funding.
+          </p>
+        </div>
+
+        <div class="video-frame-container">
+          <iframe
+            src="https://www.youtube.com/embed/AjiLfebHYiQ?rel=0&modestbranding=1"
+            title="Jason McBride — Introduction to the John McBride Impact Project"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <div class="founder-quote-box">
+          <p class="founder-quote-text">
+            &ldquo;Our youth don&rsquo;t need more empty promises. They need a vision of their future&hellip; they need real tools to build it.&rdquo;
+          </p>
+          <div class="founder-quote-author">
+            &mdash; <strong>Jason McBride</strong>, Project Director
+          </div>
+        </div>
+
+        <div class="social-proof-bar">
+          <div class="avatars-cluster">
+            <div class="mini-avatar">JM</div>
+            <div class="mini-avatar">KR</div>
+            <div class="mini-avatar">+</div>
+          </div>
+          <p class="proof-copy">
+            <strong>47+ community members</strong> have shared their input on youth safety to guide Colorado funding.
+          </p>
+        </div>
+      </section>
+
+      <!-- RIGHT: Interactive 3-Question Survey & Inline Lead Capture Form -->
+      <section class="stage-right" id="stage-right">
         <!-- Form View (starts visible, fades out upward on submit) -->
         <div class="vote-stage-view" id="stage-form-view">
           <div class="right-header">
@@ -1533,47 +1635,6 @@
           </form>
         </div>
       </section>
-
-      <!-- RIGHT: Jason McBride Video Player & Founder Quote -->
-      <section class="stage-right" id="stage-right">
-        <div class="right-header" style="margin-bottom: 2px;">
-          <div class="eyebrow-tag">
-            <span>🎬</span> THE JOHN MCBRIDE BLUEPRINT VIDEO
-          </div>
-          <p class="right-subtitle">
-            Watch the official blueprint video, then cast your input on the left to guide Colorado funding.
-          </p>
-        </div>
-
-        <div class="video-frame-container">
-          <iframe
-            src="https://www.youtube.com/embed/AjiLfebHYiQ?rel=0&modestbranding=1"
-            title="Jason McBride — Introduction to the John McBride Impact Project"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-          </iframe>
-        </div>
-
-        <div class="founder-quote-box">
-          <p class="founder-quote-text">
-            &ldquo;Our youth don&rsquo;t need more empty promises. They need a vision of their future&hellip; they need real tools to build it.&rdquo;
-          </p>
-          <div class="founder-quote-author">
-            &mdash; <strong>Jason McBride</strong>, Project Director
-          </div>
-        </div>
-
-        <div class="social-proof-bar">
-          <div class="avatars-cluster">
-            <div class="mini-avatar">JM</div>
-            <div class="mini-avatar">KR</div>
-            <div class="mini-avatar">+</div>
-          </div>
-          <p class="proof-copy">
-            <strong>47+ community members</strong> have shared their input on youth safety to guide Colorado funding.
-          </p>
-        </div>
-      </section>
     </main>
 
     <!-- TWO-COLUMN RESULTS DASHBOARD (Hidden initially, swaps smoothly on submit) -->
@@ -1683,8 +1744,20 @@
         </div>
       </section>
 
-      <!-- RIGHT COLUMN: Share to Network -->
+      <!-- RIGHT COLUMN: Watch Blueprint Video, Vote Again & Share to Network -->
       <section class="res-col-right">
+        <!-- Watch Blueprint Video & Vote Again Card -->
+        <div class="revote-prompt-card">
+          <div class="revote-badge">🔄 BLUEPRINT OVERVIEW</div>
+          <h3 class="revote-title">Watch the Blueprint Video &amp; Vote Again</h3>
+          <p class="revote-desc">
+            Want to review the vision again or submit another community response? Watch the official blueprint video and participate in the survey.
+          </p>
+          <button type="button" class="btn-vote-again" id="btn-vote-again">
+            &larr; Watch Blueprint Video &amp; Vote Again
+          </button>
+        </div>
+
         <!-- Share to Network Section -->
         <div class="share-network-box">
           <div class="share-network-header">
@@ -1795,7 +1868,7 @@
       revealContact.classList.add('visible');
 
       // Smooth scroll stage to ensure contact fields are fully visible
-      const stageScroll = document.getElementById('stage-left') || document.getElementById('stage-right');
+      const stageScroll = document.getElementById('stage-right') || document.getElementById('stage-left');
       if (stageScroll) {
         stageScroll.scrollTo({ top: stageScroll.scrollHeight, behavior: 'smooth' });
       }
@@ -1975,6 +2048,24 @@
           document.execCommand('copy');
           btnLandingCopy.textContent = 'Copied!';
           setTimeout(() => { btnLandingCopy.textContent = 'Copy Link'; }, 2000);
+        }
+      });
+    }
+
+    // "Watch Blueprint Video & Vote Again" helper
+    const btnVoteAgain = document.getElementById('btn-vote-again');
+    if (btnVoteAgain) {
+      btnVoteAgain.addEventListener('click', () => {
+        const resultsStage = document.getElementById('two-col-results-stage');
+        const mainStage    = document.getElementById('main-stage');
+        if (resultsStage && mainStage) {
+          resultsStage.classList.remove('fade-in-up', 'is-active');
+          resultsStage.style.display = 'none';
+          mainStage.style.display = 'grid';
+          mainStage.classList.remove('slide-out-up');
+          mainStage.style.opacity = '1';
+          mainStage.style.transform = 'translateY(0)';
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         }
       });
     }
