@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The John McBride Impact Project — Community Priority Vote</title>
-  <meta name="description" content="Help allocate Colorado settlement funds to reduce youth violence by 50%. Cast your vote on community priorities and see real-time results." />
+  <title>The John McBride Impact Project — Youth Safety &amp; Intervention Survey</title>
+  <meta name="description" content="Share actionable community input on youth safety and intervention tools to help direct Colorado settlement funds and reduce youth violence by 50%." />
   <link rel="icon" href="assets/favicon.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -310,25 +310,25 @@
       line-height: 1.3;
     }
 
-    /* Priority Cards Box */
-    .priority-cards-box {
+    /* 3-Question Community Survey Box */
+    .survey-box {
       background: var(--bg-white);
       border: 1.5px solid #1a202c;
       border-radius: 10px;
       box-shadow: var(--shadow-card-sm);
-      padding: 8px 10px;
+      padding: 9px 11px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 8px;
       flex-shrink: 0;
     }
 
-    .vote-box-header {
+    .survey-box-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       font-family: var(--font-heading);
-      font-size: 0.7rem;
+      font-size: 0.69rem;
       font-weight: 800;
       color: var(--color-blueprint);
       text-transform: uppercase;
@@ -336,99 +336,144 @@
       flex-shrink: 0;
     }
 
-    .vote-hint {
-      font-size: 0.66rem;
+    .survey-hint {
+      font-size: 0.65rem;
       font-weight: 600;
       color: var(--color-accent-hover);
       text-transform: none;
       letter-spacing: normal;
     }
 
-    .priority-cards {
+    .survey-questions {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 7px;
     }
 
-    .priority-card {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .survey-q-card {
       background: var(--bg-card);
       border: 1.5px solid #1a202c;
       border-radius: 8px;
-      padding: 8px 10px;
-      cursor: pointer;
-      position: relative;
-      transition: var(--transition);
-      user-select: none;
+      padding: 7px 9px;
       box-shadow: 1.5px 1.5px 0px #1a202c;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      transition: var(--transition);
     }
 
-    .priority-card:hover {
-      transform: translate(-1px, -1px);
-      box-shadow: 3px 3px 0px #1a202c;
-      background: #fff;
+    .survey-q-card:hover {
+      background: #ffffff;
+      box-shadow: 2.5px 2.5px 0px #1a202c;
     }
 
-    .priority-card.selected {
-      background: rgba(44, 82, 130, 0.09);
-      border-color: var(--color-blueprint);
-      box-shadow: 2.5px 2.5px 0px var(--color-blueprint);
+    .survey-q-card.has-error {
+      border-color: var(--color-danger);
+      background: #fff5f5;
+      box-shadow: 2px 2px 0px var(--color-danger);
     }
 
-    .priority-card input[type="checkbox"] { display: none; }
-
-    .priority-thumb {
-      width: 56px;
-      height: 40px;
-      border-radius: 5px;
-      object-fit: cover;
-      flex-shrink: 0;
-      border: 1.5px solid #1a202c;
+    .survey-q-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
     }
 
-    .priority-meta {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .priority-title {
+    .survey-q-tag {
       font-family: var(--font-heading);
-      font-size: clamp(0.78rem, 0.9vw, 0.85rem);
+      font-size: 0.62rem;
       font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--color-blueprint);
+      background: var(--color-blueprint-light);
+      border: 1px solid rgba(44, 82, 130, 0.2);
+      padding: 1px 7px;
+      border-radius: 100px;
+    }
+
+    .survey-q-feedback {
+      font-family: var(--font-heading);
+      font-size: 0.64rem;
+      font-weight: 700;
+      color: var(--color-blueprint);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .survey-q-title {
+      font-family: var(--font-heading);
+      font-size: clamp(0.72rem, 0.8vw, 0.77rem);
+      font-weight: 700;
       color: var(--color-text);
-      margin-bottom: 2px;
+      line-height: 1.28;
     }
 
-    .priority-desc {
-      font-size: clamp(0.68rem, 0.78vw, 0.73rem);
-      color: var(--color-text-muted);
-      line-height: 1.3;
-      white-space: normal;
-      overflow: visible;
+    .survey-scale-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 5px;
+      margin-top: 1px;
     }
 
-    .check-indicator {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      border: 1.5px solid #1a202c;
-      background: #fff;
+    .scale-btn {
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
+      padding: 4px 0;
+      background: #ffffff;
+      border: 1.5px solid #1a202c;
+      border-radius: 6px;
+      box-shadow: 1.5px 1.5px 0px #1a202c;
+      cursor: pointer;
+      user-select: none;
       transition: var(--transition);
-      color: transparent;
-      font-size: 0.65rem;
-      font-weight: 800;
     }
 
-    .priority-card.selected .check-indicator {
-      background: var(--color-blueprint);
-      border-color: var(--color-blueprint);
-      color: #fff;
+    .scale-btn input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+      margin: 0;
+    }
+
+    .scale-num {
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--color-text);
+      line-height: 1;
+    }
+
+    .scale-btn:hover {
+      background: #f7fafc;
+      transform: translate(-1px, -1px);
+      box-shadow: 2px 2px 0px #1a202c;
+    }
+
+    .scale-btn.selected {
+      background: var(--color-accent);
+      border-color: #1a202c;
+      transform: translate(-1px, -1px);
+      box-shadow: 2px 2px 0px #1a202c;
+    }
+
+    .scale-btn.selected .scale-num {
+      color: #1a202c;
+      font-weight: 900;
+    }
+
+    .survey-legend {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.6rem;
+      color: var(--color-text-muted);
+      font-weight: 600;
+      line-height: 1.2;
+      padding: 0 1px;
     }
 
     .vote-alert {
@@ -1323,75 +1368,156 @@
             <div class="mini-avatar">+</div>
           </div>
           <p class="proof-copy">
-            <strong>2,847+ community members</strong> have already cast their votes to guide Colorado funding.
+            <strong>2,847+ community members</strong> have shared their input on youth safety to guide Colorado funding.
           </p>
         </div>
       </section>
 
-      <!-- RIGHT: Interactive Priority Cards & Inline Lead Capture Form -->
+      <!-- RIGHT: Interactive 3-Question Survey & Inline Lead Capture Form -->
       <section class="stage-right" id="stage-right">
         <!-- Form View (starts visible, fades out upward on submit) -->
         <div class="vote-stage-view" id="stage-form-view">
           <div class="right-header">
             <div class="eyebrow-tag">
-              <span>🗳️</span> COMMUNITY ALLOCATION VOTE
+              <span>📋</span> COMMUNITY IMPACT SURVEY
             </div>
             <p class="right-subtitle">
-              Select the priorities you want funded first, then see how your vote compares across Colorado.
+              Share actionable community input on youth safety and intervention tools to guide Colorado funding.
             </p>
           </div>
 
-          <!-- Priority Cards (Choose 1 or more) -->
-          <div class="priority-cards-box" role="group" aria-label="Community Priority Selection">
-            <div class="vote-box-header">
-              <span>Community Priorities</span>
-              <span class="vote-hint">Select 1 or more options &darr;</span>
+          <!-- 3-Question Community Survey Box -->
+          <div class="survey-box" role="group" aria-label="Actionable Community Input Survey">
+            <div class="survey-box-header">
+              <span>Community Input Survey</span>
+              <span class="survey-hint">Rate all 3 questions &darr;</span>
             </div>
 
-            <div class="priority-cards">
-              <!-- Card 1: 5 to THRiVE -->
-              <label class="priority-card" id="card-school" for="chk-school">
-                <input type="checkbox" id="chk-school" name="vote" value="school_culture" />
-                <div class="priority-meta">
-                  <div class="priority-title">🏫 The "5 to THRiVE" Process</div>
-                  <div class="priority-desc">Story-driven personal mastery curriculum teaching students goal achievement, emotional control, and life problem-solving.</div>
+            <div class="survey-questions">
+              <!-- Question 1: Baseline Effectiveness -->
+              <div class="survey-q-card" id="card-q1">
+                <div class="survey-q-top">
+                  <span class="survey-q-tag">Q1 &bull; Baseline Effectiveness</span>
+                  <span class="survey-q-feedback" id="q1-feedback"></span>
                 </div>
-                <div class="check-indicator">&check;</div>
-              </label>
+                <div class="survey-q-title">
+                  How effective do you feel current public safety investments are at reaching high-risk youth in your community right now?
+                </div>
+                <div class="survey-scale-row" role="radiogroup" aria-label="Question 1 rating scale">
+                  <label class="scale-btn" for="q1-1">
+                    <input type="radio" id="q1-1" name="q1" value="1" />
+                    <span class="scale-num">1</span>
+                  </label>
+                  <label class="scale-btn" for="q1-2">
+                    <input type="radio" id="q1-2" name="q1" value="2" />
+                    <span class="scale-num">2</span>
+                  </label>
+                  <label class="scale-btn" for="q1-3">
+                    <input type="radio" id="q1-3" name="q1" value="3" />
+                    <span class="scale-num">3</span>
+                  </label>
+                  <label class="scale-btn" for="q1-4">
+                    <input type="radio" id="q1-4" name="q1" value="4" />
+                    <span class="scale-num">4</span>
+                  </label>
+                  <label class="scale-btn" for="q1-5">
+                    <input type="radio" id="q1-5" name="q1" value="5" />
+                    <span class="scale-num">5</span>
+                  </label>
+                </div>
+                <div class="survey-legend">
+                  <span>1 = Completely Ineffective</span>
+                  <span>5 = Highly Effective</span>
+                </div>
+              </div>
 
-              <!-- Card 2: Hope Squads -->
-              <label class="priority-card" id="card-coaches" for="chk-coaches">
-                <input type="checkbox" id="chk-coaches" name="vote" value="empowered_coaches" />
-                <div class="priority-meta">
-                  <div class="priority-title">🤝 Student Hope Squads</div>
-                  <div class="priority-desc">Student-led peer networks and trusted adult mentors trained to intercept bullying, prevent violence, and support peers.</div>
+              <!-- Question 2: Mentorship Expansion -->
+              <div class="survey-q-card" id="card-q2">
+                <div class="survey-q-top">
+                  <span class="survey-q-tag">Q2 &bull; Mentorship Expansion</span>
+                  <span class="survey-q-feedback" id="q2-feedback"></span>
                 </div>
-                <div class="check-indicator">&check;</div>
-              </label>
+                <div class="survey-q-title">
+                  How valuable do you feel it would be to provide verified, trusted peer and adult mentorship for teenagers in your neighborhood?
+                </div>
+                <div class="survey-scale-row" role="radiogroup" aria-label="Question 2 rating scale">
+                  <label class="scale-btn" for="q2-1">
+                    <input type="radio" id="q2-1" name="q2" value="1" />
+                    <span class="scale-num">1</span>
+                  </label>
+                  <label class="scale-btn" for="q2-2">
+                    <input type="radio" id="q2-2" name="q2" value="2" />
+                    <span class="scale-num">2</span>
+                  </label>
+                  <label class="scale-btn" for="q2-3">
+                    <input type="radio" id="q2-3" name="q2" value="3" />
+                    <span class="scale-num">3</span>
+                  </label>
+                  <label class="scale-btn" for="q2-4">
+                    <input type="radio" id="q2-4" name="q2" value="4" />
+                    <span class="scale-num">4</span>
+                  </label>
+                  <label class="scale-btn" for="q2-5">
+                    <input type="radio" id="q2-5" name="q2" value="5" />
+                    <span class="scale-num">5</span>
+                  </label>
+                </div>
+                <div class="survey-legend">
+                  <span>1 = Not Valuable at All</span>
+                  <span>5 = Essential Priority</span>
+                </div>
+              </div>
 
-              <!-- Card 3: Big Picture Movement -->
-              <label class="priority-card" id="card-healing" for="chk-healing">
-                <input type="checkbox" id="chk-healing" name="vote" value="community_healing" />
-                <div class="priority-meta">
-                  <div class="priority-title">🎬 The "Big Picture" Movement</div>
-                  <div class="priority-desc">The world’s largest collaborative anti-violence poster campaign paired with Netflix-caliber documentary storytelling.</div>
+              <!-- Question 3: Protected Digital Tooling -->
+              <div class="survey-q-card" id="card-q3">
+                <div class="survey-q-top">
+                  <span class="survey-q-tag">Q3 &bull; Protected Digital Tooling</span>
+                  <span class="survey-q-feedback" id="q3-feedback"></span>
                 </div>
-                <div class="check-indicator">&check;</div>
-              </label>
+                <div class="survey-q-title">
+                  How valuable would it be if peer-led programs were equipped with safe, privacy-protected coaching tools to support real-time problem-solving?
+                </div>
+                <div class="survey-scale-row" role="radiogroup" aria-label="Question 3 rating scale">
+                  <label class="scale-btn" for="q3-1">
+                    <input type="radio" id="q3-1" name="q3" value="1" />
+                    <span class="scale-num">1</span>
+                  </label>
+                  <label class="scale-btn" for="q3-2">
+                    <input type="radio" id="q3-2" name="q3" value="2" />
+                    <span class="scale-num">2</span>
+                  </label>
+                  <label class="scale-btn" for="q3-3">
+                    <input type="radio" id="q3-3" name="q3" value="3" />
+                    <span class="scale-num">3</span>
+                  </label>
+                  <label class="scale-btn" for="q3-4">
+                    <input type="radio" id="q3-4" name="q3" value="4" />
+                    <span class="scale-num">4</span>
+                  </label>
+                  <label class="scale-btn" for="q3-5">
+                    <input type="radio" id="q3-5" name="q3" value="5" />
+                    <span class="scale-num">5</span>
+                  </label>
+                </div>
+                <div class="survey-legend">
+                  <span>1 = Not Valuable at All</span>
+                  <span>5 = Essential Priority</span>
+                </div>
+              </div>
             </div>
 
-            <div class="vote-alert" id="vote-alert">&bull; Please select at least one priority before unlocking results.</div>
+            <div class="vote-alert" id="survey-alert">&bull; Please answer all 3 survey questions to unlock results.</div>
           </div>
 
-          <!-- Step 1: Cast My Vote button (always visible) -->
+          <!-- Step 1: Submit Survey button -->
           <button type="button" class="btn-cast-vote" id="btn-cast-vote">
-            Submit Vote &rarr;
+            Submit Survey Input &rarr;
           </button>
 
-          <!-- Step 2: Contact fields revealed after vote is cast -->
+          <!-- Step 2: Contact fields revealed after survey is rated -->
           <form class="inline-form" id="funnel-form" novalidate>
             <div class="reveal-contact" id="reveal-contact">
-              <p class="reveal-headline">See how your vote compares &mdash;<br><span>enter your info to unlock the results.</span></p>
+              <p class="reveal-headline">See how your input compares &mdash;<br><span>enter your info to unlock community results.</span></p>
 
               <div class="form-row">
                 <div class="input-wrapper">
@@ -1419,11 +1545,11 @@
 
               <!-- Signature McBride Gold Button -->
               <button type="submit" class="btn-submit-funnel" id="btn-submit">
-                Show Me How My Vote Compares &rarr;
+                Show Me How My Input Compares &rarr;
               </button>
 
               <div class="footer-guarantee">
-                <span>&#128274; Community data is protected. Your vote directly impacts state funding applications.</span>
+                <span>&#128274; Community data is protected. Your input directly impacts state funding applications.</span>
               </div>
             </div>
           </form>
@@ -1438,60 +1564,60 @@
         <!-- Thank You Greeting -->
         <div class="greeting-box">
           <div class="greeting-title">
-            <span>&check;</span> <span id="dyn-results-greeting">Thank you for voting!</span>
+            <span>&check;</span> <span id="dyn-results-greeting">Thank you for your input!</span>
           </div>
           <p class="greeting-desc" id="dyn-results-sub">
-            Your priorities directly influence where Colorado settlement funding will be targeted first.
+            Your responses directly influence where Colorado settlement funding will be targeted first.
           </p>
         </div>
 
-        <!-- Three Horizontal Progress Bars (90%, 85%, 72%) -->
+        <!-- Three Horizontal Progress Bars Aligned to Survey Findings -->
         <div class="chart-box">
           <div class="chart-box-header">
-            <span class="chart-box-title">Community Allocation Priorities</span>
-            <span class="chart-total-votes">2,848 Community Votes</span>
+            <span class="chart-box-title">Community Consensus &amp; Priority Evidence</span>
+            <span class="chart-total-votes">2,848 Community Responses</span>
           </div>
 
           <div class="chart-bars">
-            <!-- 1: 5 to THRIVE (90%) -->
-            <div class="bar-item" id="card-item-school">
+            <!-- 1: Mentorship Expansion (94%) -->
+            <div class="bar-item" id="card-item-mentorship">
               <div class="bar-label-row">
                 <span class="bar-name">
-                  🏫 The "5 to THRIVE" Process
-                  <span class="your-vote-badge" id="dyn-badge-school">&check; Your Vote</span>
+                  🤝 Mentorship Expansion: Verified Peer &amp; Adult Mentors
+                  <span class="your-vote-badge" id="dyn-badge-mentorship">&check; Your Rating</span>
                 </span>
-                <span class="bar-pct-val">90%</span>
+                <span class="bar-pct-val">94%</span>
               </div>
               <div class="bar-track">
-                <div class="res-bar-fill" id="dyn-fill-school" data-target="90" style="width: 0%;"></div>
+                <div class="res-bar-fill" id="dyn-fill-mentorship" data-target="94" style="width: 0%;"></div>
               </div>
             </div>
 
-            <!-- 2: Student Hope Squads (85%) -->
-            <div class="bar-item" id="card-item-coaches">
+            <!-- 2: Protected Digital Coaching Tools (89%) -->
+            <div class="bar-item" id="card-item-tooling">
               <div class="bar-label-row">
                 <span class="bar-name">
-                  🤝 Student Hope Squads
-                  <span class="your-vote-badge" id="dyn-badge-coaches">&check; Your Vote</span>
+                  🛡️ Protected Digital Coaching Tools for Peer Networks
+                  <span class="your-vote-badge" id="dyn-badge-tooling">&check; Your Rating</span>
                 </span>
-                <span class="bar-pct-val">85%</span>
+                <span class="bar-pct-val">89%</span>
               </div>
               <div class="bar-track">
-                <div class="res-bar-fill" id="dyn-fill-coaches" data-target="85" style="width: 0%;"></div>
+                <div class="res-bar-fill" id="dyn-fill-tooling" data-target="89" style="width: 0%;"></div>
               </div>
             </div>
 
-            <!-- 3: Big Picture Movement (72%) -->
-            <div class="bar-item" id="card-item-healing">
+            <!-- 3: Current Safety Systems Ineffective (84%) -->
+            <div class="bar-item" id="card-item-baseline">
               <div class="bar-label-row">
                 <span class="bar-name">
-                  🎬 The "Big Picture" Movement
-                  <span class="your-vote-badge" id="dyn-badge-healing">&check; Your Vote</span>
+                  ⚠️ Current Public Safety Ineffective for High-Risk Youth
+                  <span class="your-vote-badge" id="dyn-badge-baseline">&check; Your Rating</span>
                 </span>
-                <span class="bar-pct-val">72%</span>
+                <span class="bar-pct-val">84%</span>
               </div>
               <div class="bar-track">
-                <div class="res-bar-fill" id="dyn-fill-healing" data-target="72" style="width: 0%;"></div>
+                <div class="res-bar-fill" id="dyn-fill-baseline" data-target="84" style="width: 0%;"></div>
               </div>
             </div>
           </div>
@@ -1500,7 +1626,7 @@
         <!-- Settlement Note -->
         <div class="settlement-card">
           <p>
-            The John McBride Impact Project is <strong>formally applying for Colorado settlement dollars</strong>. Your vote builds verified evidence that <strong>communities must drive state funding decisions</strong>.
+            The John McBride Impact Project is <strong>formally applying for Colorado settlement dollars</strong>. Your verified input builds actionable evidence that <strong>communities must drive state funding decisions</strong>.
           </p>
         </div>
 
@@ -1561,64 +1687,121 @@
   </div>
 
   <script>
-    // Priority card toggle interaction
-    document.querySelectorAll('.priority-card').forEach(card => {
-      card.addEventListener('click', (e) => {
-        // Prevent default label toggle duplication
-        e.preventDefault();
-        const cb = card.querySelector('input[type="checkbox"]');
-        if (cb) {
-          cb.checked = !cb.checked;
-          card.classList.toggle('selected', cb.checked);
-        }
-        const alertBox = document.getElementById('vote-alert');
-        if (alertBox && document.querySelectorAll('input[name="vote"]:checked').length > 0) {
-          alertBox.classList.remove('show');
-        }
+    // Survey scale button interaction & labels
+    const q1Labels = {
+      '1': '1 – Completely Ineffective',
+      '2': '2 – Mostly Ineffective',
+      '3': '3 – Neutral / Moderate',
+      '4': '4 – Moderately Effective',
+      '5': '5 – Highly Effective'
+    };
+    const qValLabels = {
+      '1': '1 – Not Valuable at All',
+      '2': '2 – Slightly Valuable',
+      '3': '3 – Moderately Valuable',
+      '4': '4 – Very Valuable',
+      '5': '5 – Essential Priority'
+    };
+
+    ['q1', 'q2', 'q3'].forEach(qName => {
+      document.querySelectorAll(`input[name="${qName}"]`).forEach(radio => {
+        radio.addEventListener('change', () => {
+          // Update selected style for all scale buttons in this question
+          document.querySelectorAll(`input[name="${qName}"]`).forEach(r => {
+            const lbl = r.closest('.scale-btn');
+            if (lbl) lbl.classList.toggle('selected', r.checked);
+          });
+
+          // Remove error outline if active
+          const card = document.getElementById(`card-${qName}`);
+          if (card) card.classList.remove('has-error');
+
+          const alertBox = document.getElementById('survey-alert');
+          if (alertBox) {
+            const allDone = ['q1', 'q2', 'q3'].every(name => document.querySelector(`input[name="${name}"]:checked`));
+            if (allDone) alertBox.classList.remove('show');
+          }
+
+          // Live feedback text display
+          const feedback = document.getElementById(`${qName}-feedback`);
+          if (feedback) {
+            const val = radio.value;
+            const text = (qName === 'q1') ? q1Labels[val] : qValLabels[val];
+            feedback.textContent = text ? `Selected: ${text}` : '';
+          }
+        });
       });
     });
 
-    // ── STEP 1: "Cast My Vote" reveals the contact fields ──────────────────
+    // ── STEP 1: "Submit Survey Input" reveals the contact fields ────────────
     const btnCastVote   = document.getElementById('btn-cast-vote');
     const revealContact = document.getElementById('reveal-contact');
-    const voteAlert     = document.getElementById('vote-alert');
+    const surveyAlert   = document.getElementById('survey-alert');
 
     btnCastVote.addEventListener('click', () => {
-      let checked = document.querySelectorAll('input[name="vote"]:checked');
-      if (checked.length === 0) {
-        // Default select the flagship curriculum priority so user is never blocked
-        const firstCard = document.getElementById('card-school');
-        const firstChk  = document.getElementById('chk-school');
-        if (firstCard && firstChk) {
-          firstChk.checked = true;
-          firstCard.classList.add('selected');
-        }
-        checked = document.querySelectorAll('input[name="vote"]:checked');
-      }
-      if (voteAlert) voteAlert.classList.remove('show');
+      const q1Checked = document.querySelector('input[name="q1"]:checked');
+      const q2Checked = document.querySelector('input[name="q2"]:checked');
+      const q3Checked = document.querySelector('input[name="q3"]:checked');
 
-      // Hide the cast button, reveal contact panel with animation
+      let hasError = false;
+      if (!q1Checked) {
+        document.getElementById('card-q1')?.classList.add('has-error');
+        hasError = true;
+      }
+      if (!q2Checked) {
+        document.getElementById('card-q2')?.classList.add('has-error');
+        hasError = true;
+      }
+      if (!q3Checked) {
+        document.getElementById('card-q3')?.classList.add('has-error');
+        hasError = true;
+      }
+
+      if (hasError) {
+        if (surveyAlert) {
+          surveyAlert.textContent = '• Please answer all 3 survey questions to unlock results.';
+          surveyAlert.classList.add('show');
+        }
+        return;
+      }
+
+      if (surveyAlert) surveyAlert.classList.remove('show');
+
+      // Hide the submit button, reveal contact panel with animation
       btnCastVote.style.display = 'none';
       revealContact.classList.add('animating');
-      // Trigger reflow so transition fires reliably
       void revealContact.offsetHeight;
       revealContact.classList.add('visible');
+
+      // Smooth scroll stage to ensure contact fields are fully visible
+      const stageRight = document.getElementById('stage-right');
+      if (stageRight) {
+        stageRight.scrollTo({ top: stageRight.scrollHeight, behavior: 'smooth' });
+      }
     });
 
     // ── STEP 2: Full form submission & validation ───────────────────────────
     const funnelForm = document.getElementById('funnel-form');
     const btnSubmit  = document.getElementById('btn-submit');
-    // Form Submission & Validation
 
     funnelForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      // Check priority selection
-      const checkedBoxes = document.querySelectorAll('input[name="vote"]:checked');
-      if (checkedBoxes.length === 0) {
-        voteAlert.classList.add('show');
+      const q1Checked = document.querySelector('input[name="q1"]:checked');
+      const q2Checked = document.querySelector('input[name="q2"]:checked');
+      const q3Checked = document.querySelector('input[name="q3"]:checked');
+
+      if (!q1Checked || !q2Checked || !q3Checked) {
+        if (surveyAlert) {
+          surveyAlert.textContent = '• Please answer all 3 survey questions to unlock results.';
+          surveyAlert.classList.add('show');
+        }
         return;
       }
+
+      const q1Val = q1Checked.value;
+      const q2Val = q2Checked.value;
+      const q3Val = q3Checked.value;
 
       // Validate inputs
       const firstNameInput = document.getElementById('inp-first-name');
@@ -1651,17 +1834,15 @@
 
       if (!valid) return;
 
-      const votes = Array.from(checkedBoxes).map(cb => cb.value);
-
       // Loading state
       btnSubmit.disabled = true;
-      btnSubmit.innerHTML = '<span class="spinner"></span> Verifying Ballot...';
+      btnSubmit.innerHTML = '<span class="spinner"></span> Verifying Responses...';
 
       // LeadConnector Webhook (Fail-open)
       const CRM_ENDPOINT = 'https://services.leadconnectorhq.com/hooks/HC14vh8egp2zHS3mEplC/webhook-trigger/e9bf60b9-1bf6-4f66-9677-545c871e2e0e';
 
       const payload = {
-        source: 'john_mcbride_impact_funnel_p1',
+        source: 'john_mcbride_impact_survey_p1',
         name: fullNameVal,
         full_name: fullNameVal,
         first_name: firstNameVal,
@@ -1670,8 +1851,10 @@
         organization: companyVal,
         email: emailVal,
         phone: phoneVal,
-        vote_selections: votes,
-        vote_summary: votes.join(', '),
+        survey_q1_baseline_effectiveness: q1Val,
+        survey_q2_mentorship_expansion: q2Val,
+        survey_q3_protected_digital_tooling: q3Val,
+        survey_summary: `Q1: ${q1Val}/5 | Q2: ${q2Val}/5 | Q3: ${q3Val}/5`,
         submitted_at: new Date().toISOString(),
         page_url: window.location.href
       };
@@ -1687,7 +1870,9 @@
       }
 
       // Persist in sessionStorage for future reference
-      sessionStorage.setItem('mcb_votes',      JSON.stringify(votes));
+      sessionStorage.setItem('mcb_survey_q1',  q1Val);
+      sessionStorage.setItem('mcb_survey_q2',  q2Val);
+      sessionStorage.setItem('mcb_survey_q3',  q3Val);
       sessionStorage.setItem('mcb_name',       fullNameVal);
       sessionStorage.setItem('mcb_first_name', firstNameVal);
       sessionStorage.setItem('mcb_last_name',  lastNameVal);
@@ -1701,28 +1886,33 @@
       const greetingSub   = document.getElementById('dyn-results-sub');
       if (greetingTitle) greetingTitle.textContent = `Thank You, ${displayName}!`;
       if (greetingSub) {
-        greetingSub.innerHTML = `Your vote as part of <strong>${companyVal || 'Community Supporter'}</strong> joins <strong>2,848+ verified voices</strong> guiding Colorado settlement funds.`;
+        greetingSub.innerHTML = `Your survey input as part of <strong>${companyVal || 'Community Supporter'}</strong> joins <strong>2,848+ verified voices</strong> guiding Colorado settlement funds.`;
       }
 
-      // The Personalization: Display '★ Your Vote' badges next to matching selections
-      if (votes.includes('school_culture')) {
-        const b = document.getElementById('dyn-badge-school');
-        if (b) b.style.display = 'inline-flex';
-        const item = document.getElementById('card-item-school');
-        if (item) item.classList.add('user-voted');
+      // The Personalization: Display user's exact ratings on corresponding bars
+      const badgeMentorship = document.getElementById('dyn-badge-mentorship');
+      const itemMentorship  = document.getElementById('card-item-mentorship');
+      if (badgeMentorship) {
+        badgeMentorship.innerHTML = `&check; Your Rating: ${q2Val}/5`;
+        badgeMentorship.style.display = 'inline-flex';
       }
-      if (votes.includes('empowered_coaches')) {
-        const b = document.getElementById('dyn-badge-coaches');
-        if (b) b.style.display = 'inline-flex';
-        const item = document.getElementById('card-item-coaches');
-        if (item) item.classList.add('user-voted');
+      if (itemMentorship) itemMentorship.classList.add('user-voted');
+
+      const badgeTooling = document.getElementById('dyn-badge-tooling');
+      const itemTooling  = document.getElementById('card-item-tooling');
+      if (badgeTooling) {
+        badgeTooling.innerHTML = `&check; Your Rating: ${q3Val}/5`;
+        badgeTooling.style.display = 'inline-flex';
       }
-      if (votes.includes('community_healing')) {
-        const b = document.getElementById('dyn-badge-healing');
-        if (b) b.style.display = 'inline-flex';
-        const item = document.getElementById('card-item-healing');
-        if (item) item.classList.add('user-voted');
+      if (itemTooling) itemTooling.classList.add('user-voted');
+
+      const badgeBaseline = document.getElementById('dyn-badge-baseline');
+      const itemBaseline  = document.getElementById('card-item-baseline');
+      if (badgeBaseline) {
+        badgeBaseline.innerHTML = `&check; Your Rating: ${q1Val}/5`;
+        badgeBaseline.style.display = 'inline-flex';
       }
+      if (itemBaseline) itemBaseline.classList.add('user-voted');
 
       // ── THE SWAP ──────────────────────────────────────────────────
       const mainStage    = document.getElementById('main-stage');
