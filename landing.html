@@ -675,7 +675,6 @@
       width: 100%;
       flex: 1;
       min-height: 0;
-      height: 100%;
       background: #fbf8f2;
       border: var(--border-sketch);
       border-radius: 14px;
@@ -695,43 +694,43 @@
 
     /* Left Column of Results */
     .res-col-left {
-      padding: 10px 14px;
+      padding: 16px 18px;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
-      gap: 8px;
+      justify-content: space-between;
+      gap: 14px;
       border-right: var(--border-sketch);
       background: #fdfbf7;
       overflow-y: auto;
       scrollbar-width: thin;
-      height: 100%;
       box-sizing: border-box;
+      align-self: stretch;
     }
 
     /* Right Column of Results */
     .res-col-right {
-      padding: 10px 14px;
+      padding: 16px 18px;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
-      gap: 8px;
+      justify-content: space-between;
+      gap: 14px;
       background: #fdfbf7;
       overflow-y: auto;
       scrollbar-width: thin;
-      height: 100%;
       box-sizing: border-box;
+      align-self: stretch;
     }
 
     /* Left Card 1: Consensus & Verified Greeting */
     .res-card-consensus {
       background: #ffffff;
       border: 1.5px solid #1a202c;
-      border-radius: 8px;
+      border-radius: 10px;
       box-shadow: 2px 2px 0px #1a202c;
-      padding: 8px 12px;
+      padding: 14px 18px;
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 10px;
       flex-shrink: 0;
     }
 
@@ -739,17 +738,17 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 6px;
-      padding-bottom: 5px;
+      gap: 8px;
+      padding-bottom: 8px;
       border-bottom: 1px solid #edf2f7;
     }
 
     .res-live-pill {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
       font-family: var(--font-heading);
-      font-size: 0.62rem;
+      font-size: 0.66rem;
       font-weight: 800;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -757,12 +756,12 @@
       background: #f0fff4;
       border: 1px solid #9ae6b4;
       border-radius: 999px;
-      padding: 1px 7px;
+      padding: 2px 9px;
     }
 
     .res-live-dot {
-      width: 6px;
-      height: 6px;
+      width: 7px;
+      height: 7px;
       background: #38a169;
       border-radius: 50%;
       animation: pulseDot 1.8s infinite;
@@ -775,18 +774,18 @@
 
     .greeting-title {
       font-family: var(--font-heading);
-      font-size: 0.82rem;
+      font-size: 0.92rem;
       font-weight: 800;
       color: var(--color-blueprint);
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 5px;
     }
 
     .greeting-desc {
-      font-size: 0.68rem;
+      font-size: 0.74rem;
       color: var(--color-text-muted);
-      line-height: 1.25;
+      line-height: 1.35;
     }
 
     .greeting-desc strong {
@@ -797,13 +796,13 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: 1px;
-      margin-bottom: 2px;
+      margin-top: 2px;
+      margin-bottom: 4px;
     }
 
     .chart-box-title {
       font-family: var(--font-heading);
-      font-size: 0.68rem;
+      font-size: 0.74rem;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.06em;
@@ -811,32 +810,32 @@
     }
 
     .chart-total-votes {
-      font-size: 0.64rem;
+      font-size: 0.68rem;
       font-weight: 700;
       color: #b7791f;
       background: #fefcbf;
       border: 1px solid #f6e05e;
-      border-radius: 4px;
-      padding: 1px 6px;
+      border-radius: 5px;
+      padding: 2px 8px;
     }
 
     .chart-bars {
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 8px;
     }
 
     .bar-item {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 4px;
     }
 
     .bar-label-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.68rem;
+      font-size: 0.74rem;
     }
 
     .bar-name {
@@ -845,26 +844,26 @@
       color: var(--color-text);
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 6px;
       flex-wrap: wrap;
     }
 
     .bar-pct-val {
       font-weight: 800;
       color: var(--color-blueprint);
-      font-size: 0.72rem;
+      font-size: 0.8rem;
     }
 
     .your-vote-badge {
       display: none;
       align-items: center;
-      gap: 3px;
+      gap: 4px;
       background: #0d1b2a;
       color: #fbbf24;
       border: 1px solid #0d1b2a;
       border-radius: 999px;
-      padding: 0 6px;
-      font-size: 0.58rem;
+      padding: 2px 8px;
+      font-size: 0.62rem;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -879,7 +878,7 @@
 
     .bar-track {
       width: 100%;
-      height: 9px;
+      height: 14px;
       background: #eae4d5;
       border: 1px solid #1a202c;
       border-radius: 999px;
@@ -904,12 +903,12 @@
     .res-card-media {
       background: #ffffff;
       border: 1.5px solid #1a202c;
-      border-radius: 8px;
+      border-radius: 10px;
       box-shadow: 2px 2px 0px #1a202c;
-      padding: 8px 12px;
+      padding: 14px 18px;
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 10px;
       flex-shrink: 0;
     }
 
@@ -918,15 +917,15 @@
       align-items: center;
       justify-content: space-between;
       gap: 6px;
-      margin-bottom: 1px;
+      margin-bottom: 2px;
     }
 
     .video-eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 5px;
       font-family: var(--font-heading);
-      font-size: 0.62rem;
+      font-size: 0.7rem;
       font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -935,37 +934,37 @@
 
     .video-heading {
       font-family: var(--font-heading);
-      font-size: 0.8rem;
+      font-size: 0.98rem;
       font-weight: 800;
       color: var(--color-text);
-      line-height: 1.15;
+      line-height: 1.2;
       text-align: left;
     }
 
     .video-duration-tag {
       font-family: var(--font-heading);
-      font-size: 0.58rem;
+      font-size: 0.64rem;
       font-weight: 800;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: #718096;
       background: #edf2f7;
       border: 1px solid #cbd5e0;
-      border-radius: 4px;
-      padding: 1px 6px;
+      border-radius: 5px;
+      padding: 2px 8px;
     }
 
     .results-video-frame {
       position: relative;
       width: 100%;
-      max-width: 440px;
+      max-width: 560px;
       aspect-ratio: 16/9;
-      max-height: 195px;
+      max-height: 315px;
       margin: 0 auto;
-      border-radius: 6px;
+      border-radius: 8px;
       overflow: hidden;
       border: 1.5px solid #1a202c;
-      box-shadow: 1.5px 1.5px 0px #1a202c;
+      box-shadow: 2px 2px 0px #1a202c;
       background: #000;
     }
 
@@ -978,24 +977,24 @@
     }
 
     .doc-caption {
-      font-size: 0.64rem;
+      font-size: 0.72rem;
       color: var(--color-text-muted);
-      line-height: 1.22;
+      line-height: 1.35;
       text-align: center;
-      padding: 0 4px;
+      padding: 0 6px;
     }
 
     .settlement-card-inner {
       background: rgba(44, 82, 130, 0.07);
       border: 1px solid rgba(44, 82, 130, 0.35);
-      border-radius: 6px;
-      padding: 5px 8px;
-      font-size: 0.64rem;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.74rem;
       color: var(--color-text);
-      line-height: 1.24;
+      line-height: 1.35;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
 
     .settlement-card-inner strong {
@@ -1006,62 +1005,70 @@
     .revote-voting-card {
       background: #ffffff;
       border: 1.5px solid #1a202c;
-      border-radius: 8px;
+      border-radius: 10px;
       box-shadow: 2px 2px 0px #1a202c;
-      padding: 8px 12px;
+      padding: 14px 18px;
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 10px;
       flex-shrink: 0;
     }
 
     .revote-header {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 3px;
       margin-bottom: 2px;
     }
 
     .revote-badge {
       font-family: var(--font-heading);
-      font-size: 0.6rem;
+      font-size: 0.68rem;
       font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--color-blueprint);
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 5px;
     }
 
     .revote-title {
       font-family: var(--font-heading);
-      font-size: 0.88rem;
+      font-size: 1.02rem;
       font-weight: 800;
       color: var(--color-text);
-      line-height: 1.15;
+      line-height: 1.2;
+    }
+
+    .revote-desc {
+      display: block;
+      font-size: 0.72rem;
+      color: var(--color-text-muted);
+      line-height: 1.3;
+      margin-top: 1px;
     }
 
     .revote-form {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 8px;
     }
 
     .revote-q-list {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 8px;
     }
 
     .revote-q-card {
       background: #fbf8f2;
       border: 1px solid #1a202c;
-      border-radius: 6px;
-      padding: 4px 8px;
+      border-radius: 7px;
+      padding: 8px 12px;
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 5px;
       transition: border-color 0.2s;
     }
 
@@ -1069,7 +1076,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.62rem;
+      font-size: 0.68rem;
     }
 
     .revote-q-tag {
@@ -1080,31 +1087,29 @@
     }
 
     .revote-q-feedback {
-      font-size: 0.62rem;
+      font-size: 0.68rem;
       font-weight: 800;
       color: #b7791f;
     }
 
     .revote-q-title {
-      font-size: 0.66rem;
+      font-size: 0.76rem;
       font-weight: 600;
       color: var(--color-text);
-      line-height: 1.18;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      line-height: 1.3;
+      white-space: normal;
     }
 
     .revote-q-card .survey-scale-row {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 4px;
+      gap: 6px;
     }
 
     .revote-q-card .scale-btn {
-      height: 24px;
+      height: 34px;
       padding: 0;
-      border-radius: 4px;
+      border-radius: 6px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1129,22 +1134,22 @@
 
     .revote-q-card .scale-num {
       font-family: var(--font-heading);
-      font-size: 0.72rem;
+      font-size: 0.84rem;
       font-weight: 800;
-      line-height: 24px;
+      line-height: 34px;
     }
 
     .revote-q-card .survey-legend {
       display: flex;
       justify-content: space-between;
-      font-size: 0.54rem;
+      font-size: 0.6rem;
       color: var(--color-text-muted);
       line-height: 1;
-      padding: 0 1px;
+      padding: 0 2px;
     }
 
     .revote-alert {
-      font-size: 0.62rem;
+      font-size: 0.68rem;
       font-weight: 600;
       color: var(--color-danger);
       text-align: center;
@@ -1155,21 +1160,21 @@
     .btn-submit-revote {
       display: block;
       width: 100%;
-      padding: 6px 12px;
+      padding: 10px 16px;
       background: var(--color-accent);
       color: #1a202c;
       font-family: var(--font-heading);
-      font-size: 0.74rem;
+      font-size: 0.82rem;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.04em;
       border: 1.5px solid #1a202c;
-      border-radius: 6px;
+      border-radius: 7px;
       box-shadow: 2px 2px 0px #1a202c;
       cursor: pointer;
       transition: var(--transition);
       text-align: center;
-      margin-top: 2px;
+      margin-top: 4px;
     }
 
     .btn-submit-revote:hover {
@@ -1181,13 +1186,13 @@
       display: none;
       align-items: center;
       justify-content: center;
-      gap: 4px;
+      gap: 5px;
       background: #f0fff4;
       border: 1px solid #276749;
       color: #22543d;
-      border-radius: 5px;
-      padding: 3px 6px;
-      font-size: 0.64rem;
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 0.68rem;
       font-weight: 700;
       text-align: center;
       animation: badgePop 0.3s ease;
@@ -1195,7 +1200,7 @@
 
     .revote-footer-link {
       text-align: center;
-      margin-top: 0;
+      margin-top: 2px;
     }
 
     .btn-link-blueprint {
@@ -1203,11 +1208,11 @@
       border: none;
       color: var(--color-blueprint);
       font-family: var(--font-heading);
-      font-size: 0.62rem;
+      font-size: 0.68rem;
       font-weight: 700;
       text-decoration: underline;
       cursor: pointer;
-      padding: 1px 3px;
+      padding: 2px 4px;
     }
     .btn-link-blueprint:hover {
       color: #1a365d;
@@ -1217,61 +1222,69 @@
     .share-network-box {
       background: #ffffff;
       border: 1.5px solid #1a202c;
-      border-radius: 8px;
-      padding: 6px 12px;
+      border-radius: 10px;
+      padding: 12px 18px;
       box-shadow: 2px 2px 0px #1a202c;
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 8px;
       text-align: center;
       flex-shrink: 0;
     }
 
     .share-network-header {
       font-family: var(--font-heading);
-      font-size: 0.66rem;
+      font-size: 0.76rem;
       font-weight: 800;
       color: var(--color-blueprint);
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 4px;
+      gap: 5px;
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
 
+    .share-network-sub {
+      display: block;
+      font-size: 0.72rem;
+      color: var(--color-text-muted);
+      line-height: 1.25;
+      margin-bottom: 2px;
+    }
+
     .share-input-row {
       display: flex;
-      gap: 5px;
+      gap: 6px;
     }
 
     .share-link-field {
       flex: 1;
-      height: 26px;
-      padding: 0 8px;
+      height: 34px;
+      padding: 0 10px;
       font-family: var(--font-body);
-      font-size: 0.68rem;
+      font-size: 0.76rem;
       color: var(--color-text);
       background: #f7fafc;
       border: 1px solid #1a202c;
-      border-radius: 4px;
+      border-radius: 5px;
       outline: none;
     }
 
     .btn-share-copy {
-      padding: 0 10px;
-      height: 26px;
+      padding: 0 16px;
+      height: 34px;
       background: #1a202c;
       color: #ffffff;
       border: 1px solid #1a202c;
-      border-radius: 4px;
+      border-radius: 5px;
       font-family: var(--font-heading);
-      font-size: 0.68rem;
+      font-size: 0.76rem;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.04em;
       cursor: pointer;
-      box-shadow: 1px 1px 0px #1a202c;
+      box-shadow: 1.5px 1.5px 0px #1a202c;
       transition: all 0.15s;
       white-space: nowrap;
     }
@@ -1284,17 +1297,20 @@
     .social-share-row {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      gap: 4px;
+      gap: 6px;
     }
 
     .btn-soc-item {
-      padding: 3px 6px;
+      padding: 5px 8px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       border: 1px solid #1a202c;
-      border-radius: 4px;
+      border-radius: 5px;
       font-family: var(--font-heading);
-      font-size: 0.64rem;
+      font-size: 0.72rem;
       font-weight: 800;
-      text-align: center;
       text-decoration: none;
       box-shadow: 1px 1px 0px #1a202c;
       transition: all 0.15s;
@@ -1309,9 +1325,8 @@
     .actions-cluster {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 8px;
+      gap: 10px;
       margin-top: 2px;
-      margin-bottom: 2px;
       flex-shrink: 0;
     }
 
@@ -1321,16 +1336,17 @@
       justify-content: center;
       gap: 6px;
       width: 100%;
+      height: 42px;
       font-family: var(--font-heading);
-      font-size: 0.72rem;
+      font-size: 0.82rem;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.03em;
-      padding: 7px 8px;
+      padding: 0 10px;
       background: var(--color-accent);
       color: #1a202c;
       border: 1.5px solid #1a202c;
-      border-radius: 6px;
+      border-radius: 7px;
       box-shadow: 2px 2px 0px #1a202c;
       text-decoration: none;
       transition: var(--transition);
@@ -1345,27 +1361,28 @@
     }
 
     .btn-blueprint svg {
-      width: 14px;
-      height: 14px;
+      width: 16px;
+      height: 16px;
     }
 
     .btn-secondary-home {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 4px;
+      gap: 5px;
       width: 100%;
+      height: 42px;
       font-family: var(--font-heading);
-      font-size: 0.72rem;
+      font-size: 0.82rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.03em;
-      padding: 7px 8px;
+      padding: 0 10px;
       background: #ffffff;
       color: var(--color-text);
       border: 1.5px solid #1a202c;
       box-shadow: 2px 2px 0px #1a202c;
-      border-radius: 6px;
+      border-radius: 7px;
       text-decoration: none;
       transition: var(--transition);
       white-space: nowrap;
@@ -2336,6 +2353,7 @@
 
       // 2. Fade in the two-column results dashboard in its place without reloading
       setTimeout(() => {
+        window.scrollTo(0, 0);
         mainStage.style.display = 'none';
         if (mainHeadline) {
           mainHeadline.innerHTML = `Here's How Your Voice <span class="highlight-blueprint">Shapes The Movement</span> &amp; The <span class="highlight-accent">Community Blueprint</span>`;
