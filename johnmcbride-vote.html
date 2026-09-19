@@ -679,8 +679,26 @@
       border: var(--border-sketch);
       border-radius: 14px;
       box-shadow: var(--shadow-sketch);
-      overflow: hidden;
+      overflow-y: auto;
+      overflow-x: hidden;
       grid-template-columns: 1.08fr 0.92fr;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(26, 32, 44, 0.28) transparent;
+      scroll-behavior: smooth;
+    }
+
+    .two-col-results-stage::-webkit-scrollbar {
+      width: 6px;
+    }
+    .two-col-results-stage::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .two-col-results-stage::-webkit-scrollbar-thumb {
+      background: rgba(26, 32, 44, 0.25);
+      border-radius: 999px;
+    }
+    .two-col-results-stage::-webkit-scrollbar-thumb:hover {
+      background: rgba(26, 32, 44, 0.45);
     }
 
     .two-col-results-stage.is-active {
@@ -694,31 +712,27 @@
 
     /* Left Column of Results */
     .res-col-left {
-      padding: 16px 18px;
+      padding: 16px 18px 20px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       gap: 14px;
       border-right: var(--border-sketch);
       background: #fdfbf7;
-      overflow-y: auto;
-      scrollbar-width: thin;
       box-sizing: border-box;
       align-self: stretch;
+      min-height: 100%;
     }
 
     /* Right Column of Results */
     .res-col-right {
-      padding: 16px 18px;
+      padding: 16px 18px 20px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       gap: 14px;
       background: #fdfbf7;
-      overflow-y: auto;
-      scrollbar-width: thin;
       box-sizing: border-box;
       align-self: stretch;
+      min-height: 100%;
     }
 
     /* Left Card 1: Consensus & Verified Greeting */
