@@ -1661,40 +1661,221 @@
       text-decoration: underline;
     }
 
-    /* Responsive fallbacks */
+    /* Responsive Mobile & Tablet Optimization: Unboxed, Natural Scrolling Layout */
     @media (max-width: 1024px) {
       html, body {
-        height: auto;
-        overflow-y: auto;
+        height: auto !important;
+        min-height: 100% !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
       }
-      .top-bar, .landing-wrapper {
-        width: 100%;
-        max-width: 100%;
-        padding-left: 20px;
-        padding-right: 20px;
+
+      /* Sticky, clean mobile navigation bar */
+      .top-bar {
+        position: relative !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 8px 16px !important;
+        height: auto !important;
+        min-height: 44px !important;
       }
+
+      .top-brand .brand-badge {
+        display: none; /* Hide badge on smaller screens to keep nav clean */
+      }
+
+      .skip-btn {
+        padding: 5px 10px;
+        font-size: 0.72rem;
+        white-space: nowrap;
+      }
+
+      /* Main container: unconstrained height, centered flow */
       .landing-wrapper {
-        height: auto;
-        padding-bottom: 30px;
+        width: 100% !important;
+        max-width: 640px !important;
+        height: auto !important;
+        max-height: none !important;
+        overflow: visible !important;
+        padding: 10px 16px 48px !important;
+        gap: 16px !important;
+        margin: 0 auto !important;
       }
+
+      .headline-wrap {
+        padding: 0 4px !important;
+      }
+
+      .main-headline {
+        font-size: clamp(1.05rem, 4vw, 1.3rem) !important;
+        line-height: 1.25 !important;
+      }
+
+      /* UNBOX MAIN STAGE: Remove outer boxed container so content naturally flows */
       .main-stage {
-        grid-template-columns: 1fr;
+        display: flex !important;
+        flex-direction: column !important;
+        border: none !important;
+        box-shadow: none !important;
+        background: transparent !important;
+        border-radius: 0 !important;
+        overflow: visible !important;
+        gap: 22px !important;
+        height: auto !important;
+        min-height: auto !important;
+        padding: 0 !important;
       }
-      .two-col-results-stage {
-        grid-template-columns: 1fr;
-        height: auto;
-        overflow: visible;
-      }
-      .res-col-left {
-        border-right: none;
-        border-bottom: var(--border-sketch);
-      }
+
+      /* Stage Left: Video, Quote, Social Proof */
       .stage-left {
-        border-right: none;
-        border-bottom: var(--border-sketch);
+        border: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        gap: 12px !important;
+        justify-content: flex-start !important;
       }
+
+      .video-player-card {
+        width: 100% !important;
+        border-radius: 12px !important;
+        border: 2px solid #1a202c !important;
+        box-shadow: 3px 3px 0px #1a202c !important;
+      }
+
       .video-frame-container {
-        min-height: 260px;
+        min-height: auto !important;
+      }
+
+      .video-action-bar {
+        padding: 9px 12px 11px !important;
+      }
+
+      .btn-restart-unmute {
+        width: 100% !important;
+        padding: 12px 18px !important;
+        font-size: clamp(0.78rem, 3.4vw, 0.86rem) !important;
+        min-height: 46px !important;
+      }
+
+      .founder-quote-box {
+        padding: 10px 14px !important;
+        border-radius: 8px !important;
+      }
+
+      .founder-quote-text {
+        font-size: 0.8rem !important;
+        line-height: 1.4 !important;
+      }
+
+      .social-proof-bar {
+        padding: 8px 12px !important;
+        border-radius: 8px !important;
+      }
+
+      /* Stage Right: Survey & Contact Reveal Form */
+      .stage-right {
+        border: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        gap: 16px !important;
+        justify-content: flex-start !important;
+      }
+
+      .survey-box {
+        padding: 12px 14px !important;
+        border-radius: 10px !important;
+        box-shadow: 3px 3px 0px #1a202c !important;
+        gap: 10px !important;
+      }
+
+      .survey-q-card {
+        padding: 10px 12px !important;
+        border-radius: 8px !important;
+        gap: 6px !important;
+      }
+
+      .survey-q-title {
+        font-size: 0.8rem !important;
+        line-height: 1.35 !important;
+      }
+
+      .scale-btn {
+        padding: 8px 0 !important;
+        min-height: 38px !important;
+        border-radius: 6px !important;
+      }
+
+      .scale-num {
+        font-size: 0.88rem !important;
+      }
+
+      .btn-cast-vote {
+        padding: 14px 20px !important;
+        font-size: 0.92rem !important;
+        min-height: 48px !important;
+        box-shadow: 2px 2px 0px #1a202c !important;
+      }
+
+      /* UNBOX RESULTS STAGE: Naturally scrollable results */
+      .two-col-results-stage {
+        display: none;
+        grid-template-columns: 1fr !important;
+        border: none !important;
+        box-shadow: none !important;
+        background: transparent !important;
+        border-radius: 0 !important;
+        overflow: visible !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        height: auto !important;
+        max-height: none !important;
+        gap: 20px !important;
+      }
+
+      .two-col-results-stage.is-active {
+        display: flex !important;
+        flex-direction: column !important;
+      }
+
+      .res-col-left, .res-col-right {
+        border: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        gap: 16px !important;
+      }
+
+      .res-card-scores,
+      .res-card-media,
+      .revote-card-box,
+      .share-results-card {
+        border: 2px solid #1a202c !important;
+        box-shadow: 3px 3px 0px #1a202c !important;
+        border-radius: 12px !important;
+        padding: 14px 16px !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .landing-wrapper {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+      }
+      .survey-scale-row {
+        gap: 4px !important;
+      }
+      .scale-btn {
+        padding: 7px 0 !important;
+        min-height: 36px !important;
+      }
+      .survey-legend {
+        font-size: 0.65rem !important;
+      }
+      .btn-cast-vote, .btn-restart-unmute {
+        font-size: 0.82rem !important;
       }
     }
   </style>
