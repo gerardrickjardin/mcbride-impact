@@ -727,6 +727,19 @@
       pointer-events: none !important;
     }
 
+    .main-stage.is-hidden {
+      display: none !important;
+      height: 0 !important;
+      min-height: 0 !important;
+      max-height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: none !important;
+      overflow: hidden !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+    }
+
     /* Two-Column Results Dashboard Stage (starts hidden, animates in from below) */
     .two-col-results-stage {
       display: none;
@@ -1713,7 +1726,7 @@
       }
 
       /* UNBOX MAIN STAGE: Remove outer boxed container so content naturally flows */
-      .main-stage {
+      .main-stage:not(.is-hidden) {
         display: flex !important;
         flex-direction: column !important;
         border: none !important;
@@ -1725,6 +1738,17 @@
         height: auto !important;
         min-height: auto !important;
         padding: 0 !important;
+      }
+
+      .main-stage.is-hidden {
+        display: none !important;
+        height: 0 !important;
+        min-height: 0 !important;
+        max-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        overflow: hidden !important;
       }
 
       /* Stage Left: Video, Quote, Social Proof */
@@ -2601,24 +2625,26 @@
 
       // 2. Fade in the two-column results dashboard in its place without reloading
       setTimeout(() => {
-        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-        document.documentElement.scrollTop = 0;
-        document.body.scrollTop = 0;
-        mainStage.style.display = 'none';
+        mainStage.classList.add('is-hidden');
+        mainStage.style.setProperty('display', 'none', 'important');
         if (mainHeadline) {
           mainHeadline.innerHTML = `Here's How Your Voice <span class="highlight-blueprint">Shapes The Movement</span> &amp; The <span class="highlight-accent">Community Blueprint</span>`;
         }
+        resultsStage.style.removeProperty('display');
         resultsStage.classList.add('is-active');
         // Force reflow for CSS transition
         void resultsStage.offsetHeight;
         resultsStage.classList.add('fade-in-up');
 
-        requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+
+        setTimeout(() => {
           window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
           document.documentElement.scrollTop = 0;
           document.body.scrollTop = 0;
-          resultsStage.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
+        }, 50);
 
         // ── THE ANIMATION: PROGRESS BARS FILL UP (0% -> 90%, 85%, 72%) ──
         setTimeout(() => {
@@ -2784,8 +2810,8 @@
         if (resultsStage && mainStage) {
           resultsStage.classList.remove('fade-in-up', 'is-active');
           resultsStage.style.display = 'none';
-          mainStage.style.display = 'grid';
-          mainStage.classList.remove('slide-out-up');
+          mainStage.classList.remove('is-hidden', 'slide-out-up');
+          mainStage.style.removeProperty('display');
           mainStage.style.opacity = '1';
           mainStage.style.transform = 'translateY(0)';
           window.scrollTo({ top: 0, behavior: 'smooth' });
