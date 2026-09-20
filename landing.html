@@ -354,7 +354,7 @@
       scrollbar-color: rgba(26,32,44,0.25) transparent;
     }
 
-    .right-header { flex-shrink: 0; margin-bottom: 2px; }
+    .right-header { flex-shrink: 0; margin-bottom: 12px; }
     .eyebrow-tag {
       font-family: var(--font-heading);
       font-size: 0.68rem;
@@ -1774,6 +1774,10 @@
         border-radius: 8px !important;
       }
 
+      .right-header {
+        margin-bottom: 14px !important;
+      }
+
       /* Stage Right: Survey & Contact Reveal Form */
       .stage-right {
         border: none !important;
@@ -1907,7 +1911,7 @@
 
       <!-- LEFT: Jason McBride Video Player & Founder Quote -->
       <section class="stage-left" id="stage-left">
-        <div class="right-header" style="margin-bottom: 2px;">
+        <div class="right-header" style="margin-bottom: 8px;">
           <div class="eyebrow-tag">
             <span>🎬</span> THE JOHN MCBRIDE BLUEPRINT VIDEO
           </div>
@@ -2597,7 +2601,9 @@
 
       // 2. Fade in the two-column results dashboard in its place without reloading
       setTimeout(() => {
-        window.scrollTo(0, 0);
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
         mainStage.style.display = 'none';
         if (mainHeadline) {
           mainHeadline.innerHTML = `Here's How Your Voice <span class="highlight-blueprint">Shapes The Movement</span> &amp; The <span class="highlight-accent">Community Blueprint</span>`;
@@ -2606,6 +2612,13 @@
         // Force reflow for CSS transition
         void resultsStage.offsetHeight;
         resultsStage.classList.add('fade-in-up');
+
+        requestAnimationFrame(() => {
+          window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+          document.documentElement.scrollTop = 0;
+          document.body.scrollTop = 0;
+          resultsStage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
 
         // ── THE ANIMATION: PROGRESS BARS FILL UP (0% -> 90%, 85%, 72%) ──
         setTimeout(() => {
