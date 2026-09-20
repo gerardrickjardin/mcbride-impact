@@ -2,3 +2,4 @@
 Lourease Audio/
 .vercel
 *.bak
+.env*

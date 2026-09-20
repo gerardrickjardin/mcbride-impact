@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://www.youtube.com/iframe_api"></script>
   <style>
     :root {
       --bg-primary: #f4eee1;
@@ -187,14 +188,27 @@
 
     /* Left Column: Media & Founder Voice */
     .stage-left {
-      padding: 18px 20px;
+      padding: 14px 20px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 14px;
+      gap: 10px;
       border-right: var(--border-sketch);
       background: var(--bg-white);
       overflow: hidden;
+    }
+
+    /* Video Player Container & Action Bar */
+    .video-player-card {
+      width: 100%;
+      flex-shrink: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid #1a202c;
+      box-shadow: var(--shadow-card-sm);
+      background: #faf6ed;
+      display: flex;
+      flex-direction: column;
     }
 
     .video-frame-container {
@@ -202,12 +216,8 @@
       width: 100%;
       height: 0;
       padding-bottom: 56.25%;
-      flex-shrink: 0;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 2px solid #1a202c;
-      box-shadow: var(--shadow-card-sm);
       background: #000;
+      overflow: hidden;
     }
 
     .video-frame-container iframe {
@@ -216,6 +226,56 @@
       width: 100%;
       height: 100%;
       border: none;
+    }
+
+    .video-action-bar {
+      background: #faf6ed;
+      padding: 9px 14px 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-top: 2px solid #1a202c;
+    }
+
+    .btn-restart-unmute {
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 11px 20px;
+      border-radius: 6px;
+      background: var(--color-accent, #d69e2e);
+      color: #1a202c;
+      font-family: var(--font-heading), var(--font-body), sans-serif;
+      font-size: clamp(0.78rem, 0.92vw, 0.88rem);
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border: 2.5px solid #005fcc;
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s, transform 0.12s, border-color 0.18s;
+      user-select: none;
+      outline: none;
+    }
+
+    .btn-restart-unmute:hover {
+      background: #e0a334;
+      border-color: #004bb5;
+      color: #1a202c;
+      transform: translateY(-1px);
+    }
+
+    .btn-restart-unmute:active {
+      transform: translateY(1px) scale(0.99);
+    }
+
+    .btn-restart-icon {
+      width: 17px;
+      height: 17px;
+      flex-shrink: 0;
+      stroke-width: 2.8;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     /* Founder Quote */
@@ -491,28 +551,29 @@
     }
     .vote-alert.show { display: block; }
 
-    /* Step 1 "Cast My Vote" button */
+    /* Step 1 "Submit Survey Input" button */
     .btn-cast-vote {
       display: block;
       width: 100%;
       margin-top: 0;
       padding: 12px 20px;
-      background: var(--color-text);
-      color: #fff;
+      background: var(--color-accent, #d69e2e);
+      color: #1a202c;
       font-family: var(--font-heading);
       font-size: 0.9rem;
       font-weight: 900;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      border: 2px solid var(--color-text);
-      border-radius: 4px;
+      border: 2.5px solid #005fcc;
+      border-radius: 6px;
       cursor: pointer;
-      transition: background 0.18s, color 0.18s, transform 0.12s;
+      transition: background 0.18s, color 0.18s, transform 0.12s, border-color 0.18s;
     }
     .btn-cast-vote:hover {
-      background: var(--color-accent, #e8a000);
-      border-color: var(--color-accent, #e8a000);
+      background: #e0a334;
+      border-color: #004bb5;
       color: #1a202c;
+      transform: translateY(-1px);
     }
     .btn-cast-vote:active { transform: scale(0.98); }
 
@@ -1674,13 +1735,25 @@
           </p>
         </div>
 
-        <div class="video-frame-container">
-          <iframe
-            src="https://www.youtube.com/embed/AjiLfebHYiQ?rel=0&modestbranding=1"
-            title="Jason McBride — Introduction to the John McBride Impact Project"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-          </iframe>
+        <div class="video-player-card">
+          <div class="video-frame-container">
+            <iframe
+              id="blueprint-video-iframe"
+              src="https://www.youtube.com/embed/AjiLfebHYiQ?autoplay=1&mute=1&enablejsapi=1&playsinline=1&rel=0&modestbranding=1"
+              title="Jason McBride — Introduction to the John McBride Impact Project"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="video-action-bar">
+            <button type="button" class="btn-restart-unmute" id="btn-restart-unmute" aria-label="Click to restart and unmute video">
+              <svg class="btn-restart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                <path d="M3 3v5h5"/>
+              </svg>
+              <span>CLICK TO RESTART AND UNMUTE</span>
+            </button>
+          </div>
         </div>
 
         <div class="founder-quote-box">
@@ -2534,6 +2607,100 @@
         });
       }
     });
+
+    // ── YouTube Blueprint Video Controller (Autoplay Muted + Restart & Unmute) ──
+    let blueprintPlayer = null;
+
+    function initYouTubeBlueprintPlayer() {
+      const iframe = document.getElementById('blueprint-video-iframe');
+      if (!iframe) return;
+
+      if (window.YT && window.YT.Player) {
+        try {
+          blueprintPlayer = new YT.Player('blueprint-video-iframe', {
+            events: {
+              'onReady': function(event) {
+                try {
+                  event.target.mute();
+                  event.target.playVideo();
+                } catch (err) {}
+              }
+            }
+          });
+        } catch (e) {
+          console.warn('YT.Player initialization note:', e);
+        }
+      }
+    }
+
+    window.onYouTubeIframeAPIReady = function() {
+      initYouTubeBlueprintPlayer();
+    };
+
+    if (window.YT && window.YT.Player) {
+      initYouTubeBlueprintPlayer();
+    }
+
+    function handleRestartAndUnmute() {
+      // 1. YouTube IFrame API control
+      if (blueprintPlayer && typeof blueprintPlayer.seekTo === 'function') {
+        try {
+          blueprintPlayer.seekTo(0, true);
+          blueprintPlayer.unMute();
+          blueprintPlayer.setVolume(100);
+          blueprintPlayer.playVideo();
+        } catch (err) {
+          console.warn('YT API call error:', err);
+        }
+      }
+
+      // 2. Universal postMessage fallback for iframe
+      const iframe = document.getElementById('blueprint-video-iframe');
+      if (iframe && iframe.contentWindow) {
+        try {
+          iframe.contentWindow.postMessage(JSON.stringify({
+            event: 'command',
+            func: 'seekTo',
+            args: [0, true]
+          }), '*');
+          iframe.contentWindow.postMessage(JSON.stringify({
+            event: 'command',
+            func: 'unMute',
+            args: []
+          }), '*');
+          iframe.contentWindow.postMessage(JSON.stringify({
+            event: 'command',
+            func: 'setVolume',
+            args: [100]
+          }), '*');
+          iframe.contentWindow.postMessage(JSON.stringify({
+            event: 'command',
+            func: 'playVideo',
+            args: []
+          }), '*');
+        } catch (err) {
+          console.warn('postMessage command error:', err);
+        }
+      }
+
+      // 3. Icon animation feedback
+      const icon = document.querySelector('.btn-restart-icon');
+      if (icon) {
+        icon.style.transform = 'rotate(-360deg)';
+        setTimeout(() => {
+          icon.style.transition = 'none';
+          icon.style.transform = 'rotate(0deg)';
+          setTimeout(() => {
+            icon.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+          }, 50);
+        }, 500);
+      }
+    }
+
+    const btnRestartUnmute = document.getElementById('btn-restart-unmute');
+    if (btnRestartUnmute) {
+      btnRestartUnmute.addEventListener('click', handleRestartAndUnmute);
+    }
   </script>
 </body>
 </html>
