@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Community Voting Dashboard Component — McBride Impact</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap"
+    rel="stylesheet" />
 
   <style>
     :root {
@@ -447,8 +450,15 @@
     }
 
     @keyframes badgePop {
-      0% { transform: scale(0.6); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
+      0% {
+        transform: scale(0.6);
+        opacity: 0;
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
 
     .bar-pct-number {
@@ -581,7 +591,8 @@
     .video-responsive-16-9 {
       position: relative;
       width: 100%;
-      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      padding-bottom: 56.25%;
+      /* 16:9 aspect ratio */
       border-radius: 6px;
       overflow: hidden;
       border: var(--border-sketch-sm);
@@ -679,6 +690,7 @@
       cursor: pointer;
       transition: all 0.15s;
     }
+
     .revote-p-item:hover {
       background: #f0ede6;
     }
@@ -701,6 +713,7 @@
       transition: all 0.15s;
       text-align: center;
     }
+
     .btn-submit-revote-comp:hover {
       background: var(--color-yellow-light);
       transform: translate(-1px, -1px);
@@ -877,6 +890,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <!-- Component Demonstration Header -->
@@ -899,7 +913,8 @@
           <span>🗳️</span> Colorado Settlement Priority Vote
         </div>
         <h2 class="form-heading">Choose Where Settlement Funds Should Go First</h2>
-        <p class="form-desc">Select one or more priorities below and cast your vote to see live Colorado community results.</p>
+        <p class="form-desc">Select one or more priorities below and cast your vote to see live Colorado community
+          results.</p>
       </div>
 
       <form id="interactive-vote-form" novalidate>
@@ -910,7 +925,8 @@
             <input type="checkbox" id="vote-p1" name="vote" value="school_culture" />
             <div class="priority-card-content">
               <div class="priority-card-title">🏫 The "5 to THRIVE" Process</div>
-              <div class="priority-card-desc">Story-driven personal mastery curriculum teaching students goal achievement, emotional control, and life problem-solving.</div>
+              <div class="priority-card-desc">Story-driven personal mastery curriculum teaching students goal
+                achievement, emotional control, and life problem-solving.</div>
             </div>
             <div class="priority-check-box">&check;</div>
           </label>
@@ -920,7 +936,8 @@
             <input type="checkbox" id="vote-p2" name="vote" value="empowered_coaches" />
             <div class="priority-card-content">
               <div class="priority-card-title">🤝 Student Hope Squads</div>
-              <div class="priority-card-desc">Student-led peer networks and trusted adult mentors trained to intercept bullying, prevent violence, and support peers.</div>
+              <div class="priority-card-desc">Student-led peer networks and trusted adult mentors trained to intercept
+                bullying, prevent violence, and support peers.</div>
             </div>
             <div class="priority-check-box">&check;</div>
           </label>
@@ -930,7 +947,8 @@
             <input type="checkbox" id="vote-p3" name="vote" value="community_healing" />
             <div class="priority-card-content">
               <div class="priority-card-title">🎬 The "Big Picture" Movement</div>
-              <div class="priority-card-desc">The world’s largest collaborative anti-violence poster campaign paired with Netflix-caliber documentary storytelling.</div>
+              <div class="priority-card-desc">The world’s largest collaborative anti-violence poster campaign paired
+                with Netflix-caliber documentary storytelling.</div>
             </div>
             <div class="priority-check-box">&check;</div>
           </label>
@@ -941,16 +959,20 @@
         <!-- Contact Fields -->
         <div class="form-inputs-grid">
           <div class="input-field-wrap">
-            <input type="text" class="form-input" id="field-name" name="name" placeholder="Full Name" autocomplete="name" required />
+            <input type="text" class="form-input" id="field-name" name="name" placeholder="Full Name"
+              autocomplete="name" required />
           </div>
           <div class="input-field-wrap">
-            <input type="text" class="form-input" id="field-org" name="organization" placeholder="Organization (Optional)" autocomplete="organization" />
+            <input type="text" class="form-input" id="field-org" name="organization"
+              placeholder="Organization (Optional)" autocomplete="organization" />
           </div>
           <div class="input-field-wrap">
-            <input type="email" class="form-input" id="field-email" name="email" placeholder="Email Address" autocomplete="email" required />
+            <input type="email" class="form-input" id="field-email" name="email" placeholder="Email Address"
+              autocomplete="email" required />
           </div>
           <div class="input-field-wrap">
-            <input type="tel" class="form-input" id="field-phone" name="phone" placeholder="Phone Number (Optional)" autocomplete="tel" />
+            <input type="tel" class="form-input" id="field-phone" name="phone" placeholder="Phone Number (Optional)"
+              autocomplete="tel" />
           </div>
         </div>
 
@@ -973,7 +995,8 @@
             </div>
             <h2 class="greeting-title" id="dyn-greeting-title">Thank You for Your Vote!</h2>
             <p class="greeting-subtext" id="dyn-greeting-sub">
-              Your voice joins <strong>47+ verified community members</strong> guiding Colorado settlement funds directly where youth need them most.
+              Your voice joins <strong>47+ verified community members</strong> guiding Colorado settlement funds
+              directly where youth need them most.
             </p>
           </div>
 
@@ -1025,15 +1048,15 @@
           <!-- 16:9 Video Player (Watch Blueprint Video & Vote Again) -->
           <div class="video-card-wrap">
             <div class="video-responsive-16-9">
-              <iframe
-                src="https://www.youtube.com/embed/EOht_WR8oX4?rel=0&modestbranding=1"
+              <iframe src="https://www.youtube.com/embed/b1LsKcIXuPA?rel=0&modestbranding=1"
                 title="The John McBride Impact Project — Blueprint Overview Video (5:50)"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen>
               </iframe>
             </div>
             <div class="video-card-caption">
-              <strong>Watch the Blueprint Video (5:50) &amp; Vote Again</strong> — Explore community solutions, then update your priorities or cast your vote again on the right.
+              <strong>Watch the Blueprint Video (5:50) &amp; Vote Again</strong> — Explore community solutions, then
+              update your priorities or cast your vote again on the right.
             </div>
           </div>
         </div>
@@ -1062,7 +1085,8 @@
                   <span>🎬 The "Big Picture" Movement</span>
                 </label>
               </div>
-              <button type="submit" class="btn-submit-revote-comp" id="btn-submit-revote-comp">Update My Vote &rarr;</button>
+              <button type="submit" class="btn-submit-revote-comp" id="btn-submit-revote-comp">Update My Vote
+                &rarr;</button>
               <div class="revote-toast-comp" id="revote-toast-comp">&check; Your vote has been recorded!</div>
             </form>
           </div>
@@ -1075,12 +1099,14 @@
             </div>
 
             <div class="share-copy-row">
-              <input type="text" class="share-link-input" id="share-link-input" value="https://mcbrideimpact.org" readonly />
+              <input type="text" class="share-link-input" id="share-link-input" value="https://mcbrideimpact.org"
+                readonly />
               <button type="button" class="btn-copy-link" id="btn-copy-share">Copy Link</button>
             </div>
 
             <div class="social-buttons-row">
-              <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmcbrideimpact.org" target="_blank" rel="noopener" class="btn-social facebook">
+              <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmcbrideimpact.org" target="_blank"
+                rel="noopener" class="btn-social facebook">
                 Facebook
               </a>
               <a href="https://www.instagram.com" target="_blank" rel="noopener" class="btn-social instagram">
@@ -1094,11 +1120,14 @@
 
           <!-- Two Full-Width Buttons (Below Share to Network) -->
           <div class="left-actions-cluster">
-            <a href="/The%20John%20McBride%20Impact%20Project%20-%20Proposal.pdf" download="The John McBride Impact Project - Proposal.pdf" class="btn-blueprint-pdf" id="btn-blueprint-pdf" target="_blank" rel="noopener">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
-                <polyline points="7 10 12 15 17 10"/>
-                <line x1="12" y1="15" x2="12" y2="3"/>
+            <a href="/The%20John%20McBride%20Impact%20Project%20-%20Proposal.pdf"
+              download="The John McBride Impact Project - Proposal.pdf" class="btn-blueprint-pdf" id="btn-blueprint-pdf"
+              target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
               </svg>
               Download Blueprint PDF
             </a>
@@ -1143,12 +1172,12 @@
       }
 
       const nameInp = document.getElementById('field-name');
-      const orgInp  = document.getElementById('field-org');
-      const emailInp= document.getElementById('field-email');
+      const orgInp = document.getElementById('field-org');
+      const emailInp = document.getElementById('field-email');
 
       const nameVal = nameInp.value.trim();
-      const orgVal  = orgInp.value.trim();
-      const emailVal= emailInp.value.trim();
+      const orgVal = orgInp.value.trim();
+      const emailVal = emailInp.value.trim();
       const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
       let valid = true;
@@ -1170,7 +1199,7 @@
       const CRM_ENDPOINT = 'https://services.leadconnectorhq.com/hooks/HC14vh8egp2zHS3mEplC/webhook-trigger/e9bf60b9-1bf6-4f66-9677-545c871e2e0e';
       const nameParts = nameVal.split(' ');
       const firstName = nameParts[0] || '';
-      const lastName  = nameParts.slice(1).join(' ') || '';
+      const lastName = nameParts.slice(1).join(' ') || '';
 
       try {
         fetch(CRM_ENDPOINT, {
@@ -1293,10 +1322,11 @@
 
     // Remove input error styling on typing
     ['field-name', 'field-org', 'field-email'].forEach(id => {
-      document.getElementById(id).addEventListener('input', function() {
+      document.getElementById(id).addEventListener('input', function () {
         this.classList.remove('error');
       });
     });
   </script>
 </body>
+
 </html>
