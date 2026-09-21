@@ -1123,97 +1123,116 @@
       gap: 5px;
     }
 
-    .revote-q-list {
+    .revote-priority-box {
+      border: 1.5px solid #1a202c;
+      border-radius: 8px;
+      padding: 7px 9px;
+      background: #fbf8f2;
       display: flex;
       flex-direction: column;
       gap: 5px;
     }
 
-    .revote-q-card {
-      background: #fbf8f2;
-      border: 1px solid #1a202c;
-      border-radius: 6px;
-      padding: 4px 8px;
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-      transition: border-color 0.2s;
-    }
-
-    .revote-q-meta {
+    .revote-priority-box-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.64rem;
+      padding: 0 1px 1px 1px;
     }
 
-    .revote-q-tag {
+    .revote-priority-box-title {
       font-family: var(--font-heading);
+      font-size: 0.65rem;
       font-weight: 800;
-      color: var(--color-blueprint);
-      letter-spacing: 0.03em;
+      letter-spacing: 0.05em;
+      color: #1a202c;
+      text-transform: uppercase;
     }
 
-    .revote-q-feedback {
-      font-size: 0.64rem;
-      font-weight: 800;
+    .revote-priority-box-hint {
+      font-size: 0.62rem;
+      font-weight: 600;
       color: #b7791f;
     }
 
-    .revote-q-title {
-      font-size: 0.68rem;
-      font-weight: 600;
+    .revote-priority-list {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .revote-priority-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: #ffffff;
+      border: 1.5px solid #1a202c;
+      border-radius: 7px;
+      padding: 6px 10px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.15s ease;
+      user-select: none;
+      box-shadow: 1.5px 1.5px 0px #1a202c;
+    }
+
+    .revote-priority-card:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 2.5px 2.5px 0px #1a202c;
+      background: #fffbeb;
+    }
+
+    .revote-priority-card.selected {
+      background: rgba(44, 82, 130, 0.09);
+      border-color: var(--color-blueprint);
+      box-shadow: 2px 2px 0px var(--color-blueprint);
+    }
+
+    .revote-priority-card input[type="checkbox"] {
+      display: none;
+    }
+
+    .revote-priority-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .revote-priority-title {
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      font-weight: 800;
       color: var(--color-text);
       line-height: 1.2;
-      white-space: normal;
+      margin-bottom: 2px;
     }
 
-    .revote-q-card .survey-scale-row {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 4px;
+    .revote-priority-desc {
+      font-size: 0.65rem;
+      color: var(--color-text-muted);
+      line-height: 1.25;
     }
 
-    .revote-q-card .scale-btn {
-      height: 24px;
-      padding: 0;
-      border-radius: 4px;
+    .revote-check-indicator {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1.5px solid #1a202c;
+      background: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid #1a202c;
-      box-shadow: 1px 1px 0px #1a202c;
-      background: #ffffff;
-      cursor: pointer;
-      transition: all 0.15s;
-    }
-
-    .revote-q-card .scale-btn:hover {
-      background: #fef3c7;
-      transform: translate(-1px, -1px);
-    }
-
-    .revote-q-card .scale-btn.selected {
-      background: #f59e0b;
-      color: #1a202c;
+      flex-shrink: 0;
+      transition: all 0.15s ease;
+      color: transparent;
+      font-size: 0.65rem;
       font-weight: 800;
-      border-color: #1a202c;
     }
 
-    .revote-q-card .scale-num {
-      font-family: var(--font-heading);
-      font-size: 0.72rem;
-      font-weight: 800;
-      line-height: 24px;
-    }
-
-    .revote-q-card .survey-legend {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.54rem;
-      color: var(--color-text-muted);
-      line-height: 1;
-      padding: 0 1px;
+    .revote-priority-card.selected .revote-check-indicator {
+      background: var(--color-blueprint);
+      border-color: var(--color-blueprint);
+      color: #ffffff;
     }
 
     .revote-alert {
@@ -2272,75 +2291,46 @@
           </div>
 
           <form id="revote-form" class="revote-form" novalidate>
-            <div class="revote-q-list">
-              <!-- Revote Q1 -->
-              <div class="revote-q-card" id="card-revote-q1">
-                <div class="revote-q-meta">
-                  <span class="revote-q-tag">Q1 &bull; Baseline Effectiveness</span>
-                  <span class="revote-q-feedback" id="revote-q1-feedback"></span>
-                </div>
-                <div class="revote-q-title">
-                  How effective are current policing &amp; safety approaches for high-risk youth?
-                </div>
-                <div class="survey-scale-row" role="radiogroup" aria-label="Revote Question 1 scale">
-                  <label class="scale-btn" for="rq1-1"><input type="radio" id="rq1-1" name="rq1" value="1" /><span class="scale-num">1</span></label>
-                  <label class="scale-btn" for="rq1-2"><input type="radio" id="rq1-2" name="rq1" value="2" /><span class="scale-num">2</span></label>
-                  <label class="scale-btn" for="rq1-3"><input type="radio" id="rq1-3" name="rq1" value="3" /><span class="scale-num">3</span></label>
-                  <label class="scale-btn" for="rq1-4"><input type="radio" id="rq1-4" name="rq1" value="4" /><span class="scale-num">4</span></label>
-                  <label class="scale-btn" for="rq1-5"><input type="radio" id="rq1-5" name="rq1" value="5" /><span class="scale-num">5</span></label>
-                </div>
-                <div class="survey-legend">
-                  <span>1 = Ineffective</span>
-                  <span>5 = Highly Effective</span>
-                </div>
+            <div class="revote-priority-box" role="group" aria-label="Community Priorities">
+              <div class="revote-priority-box-header">
+                <span class="revote-priority-box-title">COMMUNITY PRIORITIES</span>
+                <span class="revote-priority-box-hint">Select 1 or more options &darr;</span>
               </div>
 
-              <!-- Revote Q2 -->
-              <div class="revote-q-card" id="card-revote-q2">
-                <div class="revote-q-meta">
-                  <span class="revote-q-tag">Q2 &bull; Mentorship Expansion</span>
-                  <span class="revote-q-feedback" id="revote-q2-feedback"></span>
-                </div>
-                <div class="revote-q-title">
-                  How valuable is providing verified, trusted peer and adult mentorship?
-                </div>
-                <div class="survey-scale-row" role="radiogroup" aria-label="Revote Question 2 scale">
-                  <label class="scale-btn" for="rq2-1"><input type="radio" id="rq2-1" name="rq2" value="1" /><span class="scale-num">1</span></label>
-                  <label class="scale-btn" for="rq2-2"><input type="radio" id="rq2-2" name="rq2" value="2" /><span class="scale-num">2</span></label>
-                  <label class="scale-btn" for="rq2-3"><input type="radio" id="rq2-3" name="rq2" value="3" /><span class="scale-num">3</span></label>
-                  <label class="scale-btn" for="rq2-4"><input type="radio" id="rq2-4" name="rq2" value="4" /><span class="scale-num">4</span></label>
-                  <label class="scale-btn" for="rq2-5"><input type="radio" id="rq2-5" name="rq2" value="5" /><span class="scale-num">5</span></label>
-                </div>
-                <div class="survey-legend">
-                  <span>1 = Not Valuable</span>
-                  <span>5 = Essential Priority</span>
-                </div>
-              </div>
+              <div class="revote-priority-list">
+                <!-- Priority 1: Transform School Culture -->
+                <label class="revote-priority-card" for="rv-school">
+                  <input type="checkbox" id="rv-school" name="revote_priority" value="school_culture" />
+                  <div class="revote-priority-content">
+                    <div class="revote-priority-title">🏫 Transform School Culture</div>
+                    <div class="revote-priority-desc">Turn school environments into safe sanctuaries where students thrive.</div>
+                  </div>
+                  <div class="revote-check-indicator">&check;</div>
+                </label>
 
-              <!-- Revote Q3 -->
-              <div class="revote-q-card" id="card-revote-q3">
-                <div class="revote-q-meta">
-                  <span class="revote-q-tag">Q3 &bull; Protected Digital Tooling</span>
-                  <span class="revote-q-feedback" id="revote-q3-feedback"></span>
-                </div>
-                <div class="revote-q-title">
-                  How valuable are safe, protected digital coaching tools for youth programs?
-                </div>
-                <div class="survey-scale-row" role="radiogroup" aria-label="Revote Question 3 scale">
-                  <label class="scale-btn" for="rq3-1"><input type="radio" id="rq3-1" name="rq3" value="1" /><span class="scale-num">1</span></label>
-                  <label class="scale-btn" for="rq3-2"><input type="radio" id="rq3-2" name="rq3" value="2" /><span class="scale-num">2</span></label>
-                  <label class="scale-btn" for="rq3-3"><input type="radio" id="rq3-3" name="rq3" value="3" /><span class="scale-num">3</span></label>
-                  <label class="scale-btn" for="rq3-4"><input type="radio" id="rq3-4" name="rq3" value="4" /><span class="scale-num">4</span></label>
-                  <label class="scale-btn" for="rq3-5"><input type="radio" id="rq3-5" name="rq3" value="5" /><span class="scale-num">5</span></label>
-                </div>
-                <div class="survey-legend">
-                  <span>1 = Not Valuable</span>
-                  <span>5 = Essential Priority</span>
-                </div>
+                <!-- Priority 2: Empower Coaches -->
+                <label class="revote-priority-card" for="rv-coaches">
+                  <input type="checkbox" id="rv-coaches" name="revote_priority" value="empowered_coaches" />
+                  <div class="revote-priority-content">
+                    <div class="revote-priority-title">⚡ Empower Coaches</div>
+                    <div class="revote-priority-desc">Equip mentors with cutting-edge digital tools for real-time problem-solving.</div>
+                  </div>
+                  <div class="revote-check-indicator">&check;</div>
+                </label>
+
+                <!-- Priority 3: Heal Our Communities -->
+                <label class="revote-priority-card" for="rv-healing">
+                  <input type="checkbox" id="rv-healing" name="revote_priority" value="community_healing" />
+                  <div class="revote-priority-content">
+                    <div class="revote-priority-title">💛 Heal Our Communities</div>
+                    <div class="revote-priority-desc">Root-level trauma recovery for inner-city youth, parents, and neighborhoods.</div>
+                  </div>
+                  <div class="revote-check-indicator">&check;</div>
+                </label>
               </div>
             </div>
 
-            <div class="revote-alert" id="revote-alert">&bull; Please select ratings to submit your updated vote.</div>
+            <div class="revote-alert" id="revote-alert">&bull; Please select at least one priority to submit your updated vote.</div>
 
             <button type="submit" class="btn-submit-revote" id="btn-submit-revote">
               Submit Vote Again &rarr;
@@ -2706,57 +2696,41 @@
       });
     });
 
+    // Revote priority card toggle handlers
+    document.querySelectorAll('.revote-priority-card').forEach(card => {
+      const checkbox = card.querySelector('input[type="checkbox"]');
+      if (!checkbox) return;
+
+      if (checkbox.checked) {
+        card.classList.add('selected');
+      }
+
+      card.addEventListener('click', (e) => {
+        if (e.target !== checkbox) {
+          checkbox.checked = !checkbox.checked;
+        }
+        card.classList.toggle('selected', checkbox.checked);
+
+        const alertBox = document.getElementById('revote-alert');
+        if (alertBox) alertBox.classList.remove('show');
+      });
+    });
+
     // Revote form submission handler
     const revoteForm = document.getElementById('revote-form');
     if (revoteForm) {
       revoteForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const rq1 = document.querySelector('input[name="rq1"]:checked');
-        const rq2 = document.querySelector('input[name="rq2"]:checked');
-        const rq3 = document.querySelector('input[name="rq3"]:checked');
+        const checkedBoxes = Array.from(document.querySelectorAll('input[name="revote_priority"]:checked'));
 
-        if (!rq1 && !rq2 && !rq3) {
+        if (checkedBoxes.length === 0) {
           const alertBox = document.getElementById('revote-alert');
           if (alertBox) alertBox.classList.add('show');
           return;
         }
 
-        // Update left-column rating badges dynamically with animation
-        if (rq2) {
-          const badgeMentorship = document.getElementById('dyn-badge-mentorship');
-          if (badgeMentorship) {
-            badgeMentorship.innerHTML = `&check; Your Rating: ${rq2.value}/5`;
-            badgeMentorship.style.display = 'inline-flex';
-            badgeMentorship.style.animation = 'none';
-            void badgeMentorship.offsetWidth;
-            badgeMentorship.style.animation = 'badgePop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-          }
-          sessionStorage.setItem('mcb_survey_q2', rq2.value);
-        }
-
-        if (rq3) {
-          const badgeTooling = document.getElementById('dyn-badge-tooling');
-          if (badgeTooling) {
-            badgeTooling.innerHTML = `&check; Your Rating: ${rq3.value}/5`;
-            badgeTooling.style.display = 'inline-flex';
-            badgeTooling.style.animation = 'none';
-            void badgeTooling.offsetWidth;
-            badgeTooling.style.animation = 'badgePop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-          }
-          sessionStorage.setItem('mcb_survey_q3', rq3.value);
-        }
-
-        if (rq1) {
-          const badgeBaseline = document.getElementById('dyn-badge-baseline');
-          if (badgeBaseline) {
-            badgeBaseline.innerHTML = `&check; Your Rating: ${rq1.value}/5`;
-            badgeBaseline.style.display = 'inline-flex';
-            badgeBaseline.style.animation = 'none';
-            void badgeBaseline.offsetWidth;
-            badgeBaseline.style.animation = 'badgePop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-          }
-          sessionStorage.setItem('mcb_survey_q1', rq1.value);
-        }
+        const selectedPriorities = checkedBoxes.map(cb => cb.value);
+        sessionStorage.setItem('mcb_revote_priorities', JSON.stringify(selectedPriorities));
 
         const toast = document.getElementById('revote-toast');
         if (toast) {
@@ -2766,12 +2740,10 @@
         // Send updated vote event to webhook
         try {
           const updatePayload = {
-            event: 'revote_update',
+            event: 'revote_priority_update',
             name: sessionStorage.getItem('mcb_name') || 'Anonymous Member',
             email: sessionStorage.getItem('mcb_email') || '',
-            q1_rating: rq1 ? rq1.value : '',
-            q2_rating: rq2 ? rq2.value : '',
-            q3_rating: rq3 ? rq3.value : '',
+            priorities: selectedPriorities,
             timestamp: new Date().toISOString()
           };
           fetch(CRM_ENDPOINT, {
