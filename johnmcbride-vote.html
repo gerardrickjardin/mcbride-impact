@@ -768,10 +768,11 @@
 
     /* Left Column of Results */
     .res-col-left {
-      padding: 10px 14px;
+      padding: 12px 14px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      justify-content: space-between;
+      gap: 10px;
       border-right: var(--border-sketch);
       background: #fdfbf7;
       box-sizing: border-box;
@@ -780,10 +781,11 @@
 
     /* Right Column of Results */
     .res-col-right {
-      padding: 10px 14px;
+      padding: 12px 14px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      justify-content: space-between;
+      gap: 10px;
       background: #fdfbf7;
       box-sizing: border-box;
       overflow: hidden !important;
@@ -1075,74 +1077,74 @@
       border: 1.5px solid #1a202c;
       border-radius: 8px;
       box-shadow: 2px 2px 0px #1a202c;
-      padding: 8px 12px;
+      padding: 12px 14px;
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 7px;
       flex-shrink: 0;
     }
 
     .revote-header {
       display: flex;
       flex-direction: column;
-      gap: 2px;
-      margin-bottom: 1px;
+      gap: 3px;
+      margin-bottom: 2px;
     }
 
     .revote-badge {
       font-family: var(--font-heading);
-      font-size: 0.64rem;
+      font-size: 0.72rem;
       font-weight: 800;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--color-blueprint);
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 5px;
     }
 
     .revote-title {
       font-family: var(--font-heading);
-      font-size: 0.88rem;
+      font-size: 1.05rem;
       font-weight: 800;
       color: var(--color-text);
-      line-height: 1.18;
+      line-height: 1.2;
     }
 
     .revote-desc {
       display: block;
-      font-size: 0.66rem;
+      font-size: 0.74rem;
       color: var(--color-text-muted);
-      line-height: 1.2;
+      line-height: 1.25;
       margin-top: 1px;
     }
 
     .revote-form {
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 7px;
     }
 
     .revote-priority-box {
       border: 1.5px solid #1a202c;
       border-radius: 8px;
-      padding: 7px 9px;
+      padding: 9px 11px;
       background: #fbf8f2;
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 7px;
     }
 
     .revote-priority-box-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 1px 1px 1px;
+      padding: 0 1px 2px 1px;
     }
 
     .revote-priority-box-title {
       font-family: var(--font-heading);
-      font-size: 0.65rem;
+      font-size: 0.74rem;
       font-weight: 800;
       letter-spacing: 0.05em;
       color: #1a202c;
@@ -1150,7 +1152,7 @@
     }
 
     .revote-priority-box-hint {
-      font-size: 0.62rem;
+      font-size: 0.68rem;
       font-weight: 600;
       color: #b7791f;
     }
@@ -1158,18 +1160,18 @@
     .revote-priority-list {
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 7px;
     }
 
     .revote-priority-card {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
+      gap: 12px;
       background: #ffffff;
       border: 1.5px solid #1a202c;
-      border-radius: 7px;
-      padding: 6px 10px;
+      border-radius: 8px;
+      padding: 9px 12px;
       cursor: pointer;
       position: relative;
       transition: all 0.15s ease;
@@ -1200,22 +1202,22 @@
 
     .revote-priority-title {
       font-family: var(--font-heading);
-      font-size: 0.78rem;
+      font-size: 0.90rem;
       font-weight: 800;
       color: var(--color-text);
-      line-height: 1.2;
+      line-height: 1.25;
       margin-bottom: 2px;
     }
 
     .revote-priority-desc {
-      font-size: 0.65rem;
+      font-size: 0.74rem;
       color: var(--color-text-muted);
-      line-height: 1.25;
+      line-height: 1.3;
     }
 
     .revote-check-indicator {
-      width: 18px;
-      height: 18px;
+      width: 22px;
+      height: 22px;
       border-radius: 50%;
       border: 1.5px solid #1a202c;
       background: #ffffff;
@@ -1225,7 +1227,7 @@
       flex-shrink: 0;
       transition: all 0.15s ease;
       color: transparent;
-      font-size: 0.65rem;
+      font-size: 0.76rem;
       font-weight: 800;
     }
 
@@ -1236,7 +1238,7 @@
     }
 
     .revote-alert {
-      font-size: 0.64rem;
+      font-size: 0.70rem;
       font-weight: 600;
       color: var(--color-danger);
       text-align: center;
@@ -1247,17 +1249,17 @@
     .btn-submit-revote {
       display: block;
       width: 100%;
-      padding: 6px 12px;
+      padding: 9px 16px;
       background: var(--color-accent);
       color: #1a202c;
       font-family: var(--font-heading);
-      font-size: 0.74rem;
+      font-size: 0.86rem;
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.05em;
       border: 1.5px solid #1a202c;
-      border-radius: 6px;
-      box-shadow: 1.5px 1.5px 0px #1a202c;
+      border-radius: 7px;
+      box-shadow: 2px 2px 0px #1a202c;
       cursor: pointer;
       transition: var(--transition);
       text-align: center;
@@ -1273,13 +1275,13 @@
       display: none;
       align-items: center;
       justify-content: center;
-      gap: 4px;
+      gap: 5px;
       background: #f0fff4;
       border: 1px solid #276749;
       color: #22543d;
-      border-radius: 5px;
-      padding: 3px 6px;
-      font-size: 0.64rem;
+      border-radius: 6px;
+      padding: 5px 8px;
+      font-size: 0.72rem;
       font-weight: 700;
       text-align: center;
       animation: badgePop 0.3s ease;
@@ -1287,7 +1289,7 @@
 
     .revote-footer-link {
       text-align: center;
-      margin-top: 1px;
+      margin-top: 2px;
     }
 
     .btn-link-blueprint {
@@ -1295,11 +1297,11 @@
       border: none;
       color: var(--color-blueprint);
       font-family: var(--font-heading);
-      font-size: 0.64rem;
+      font-size: 0.72rem;
       font-weight: 700;
       text-decoration: underline;
       cursor: pointer;
-      padding: 1px 3px;
+      padding: 2px 4px;
     }
     .btn-link-blueprint:hover {
       color: #1a365d;
@@ -1310,63 +1312,63 @@
       background: #ffffff;
       border: 1.5px solid #1a202c;
       border-radius: 8px;
-      padding: 6px 12px;
+      padding: 9px 14px;
       box-shadow: 2px 2px 0px #1a202c;
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 6px;
       text-align: center;
       flex-shrink: 0;
     }
 
     .share-network-header {
       font-family: var(--font-heading);
-      font-size: 0.68rem;
+      font-size: 0.74rem;
       font-weight: 800;
       color: var(--color-blueprint);
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 4px;
+      gap: 5px;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
     }
 
     .share-network-sub {
       display: block;
-      font-size: 0.64rem;
+      font-size: 0.68rem;
       color: var(--color-text-muted);
-      line-height: 1.2;
-      margin-bottom: 1px;
+      line-height: 1.25;
+      margin-bottom: 2px;
     }
 
     .share-input-row {
       display: flex;
-      gap: 5px;
+      gap: 6px;
     }
 
     .share-link-field {
       flex: 1;
-      height: 26px;
-      padding: 0 8px;
+      height: 30px;
+      padding: 0 10px;
       font-family: var(--font-body);
-      font-size: 0.7rem;
+      font-size: 0.76rem;
       color: var(--color-text);
       background: #f7fafc;
       border: 1px solid #1a202c;
-      border-radius: 4px;
+      border-radius: 5px;
       outline: none;
     }
 
     .btn-share-copy {
-      padding: 0 12px;
-      height: 26px;
+      padding: 0 14px;
+      height: 30px;
       background: #1a202c;
       color: #ffffff;
       border: 1px solid #1a202c;
-      border-radius: 4px;
+      border-radius: 5px;
       font-family: var(--font-heading);
-      font-size: 0.7rem;
+      font-size: 0.74rem;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.04em;
@@ -1384,19 +1386,19 @@
     .social-share-row {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      gap: 5px;
+      gap: 6px;
     }
 
     .btn-soc-item {
-      padding: 4px 6px;
-      height: 24px;
+      padding: 4px 8px;
+      height: 28px;
       display: flex;
       align-items: center;
       justify-content: center;
       border: 1px solid #1a202c;
-      border-radius: 4px;
+      border-radius: 5px;
       font-family: var(--font-heading);
-      font-size: 0.66rem;
+      font-size: 0.72rem;
       font-weight: 800;
       text-decoration: none;
       box-shadow: 1px 1px 0px #1a202c;
@@ -1421,19 +1423,19 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 5px;
+      gap: 6px;
       width: 100%;
-      height: 32px;
+      height: 36px;
       font-family: var(--font-heading);
-      font-size: 0.72rem;
+      font-size: 0.76rem;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.03em;
-      padding: 0 8px;
+      padding: 0 10px;
       background: var(--color-accent);
       color: #1a202c;
       border: 1.5px solid #1a202c;
-      border-radius: 6px;
+      border-radius: 7px;
       box-shadow: 1.5px 1.5px 0px #1a202c;
       text-decoration: none;
       transition: var(--transition);
@@ -1448,28 +1450,28 @@
     }
 
     .btn-blueprint svg {
-      width: 14px;
-      height: 14px;
+      width: 15px;
+      height: 15px;
     }
 
     .btn-secondary-home {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 4px;
+      gap: 5px;
       width: 100%;
-      height: 32px;
+      height: 36px;
       font-family: var(--font-heading);
-      font-size: 0.72rem;
-      font-weight: 700;
+      font-size: 0.76rem;
+      font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.03em;
-      padding: 0 8px;
+      padding: 0 10px;
       background: #ffffff;
       color: var(--color-text);
       border: 1.5px solid #1a202c;
       box-shadow: 1.5px 1.5px 0px #1a202c;
-      border-radius: 6px;
+      border-radius: 7px;
       text-decoration: none;
       transition: var(--transition);
       white-space: nowrap;
@@ -2265,9 +2267,10 @@
 
           <div class="results-video-frame">
             <iframe
-              src="https://www.youtube.com/embed/b1LsKcIXuPA?rel=0&modestbranding=1"
+              id="results-video-iframe"
+              src="https://www.youtube.com/embed/b1LsKcIXuPA?autoplay=1&mute=1&loop=1&playlist=b1LsKcIXuPA&enablejsapi=1&playsinline=1&rel=0&modestbranding=1"
               title="The John McBride Impact Project — Blueprint Overview Video (5:50)"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowfullscreen>
             </iframe>
           </div>
@@ -2333,7 +2336,7 @@
             <div class="revote-alert" id="revote-alert">&bull; Please select at least one priority to submit your updated vote.</div>
 
             <button type="submit" class="btn-submit-revote" id="btn-submit-revote">
-              Submit Vote Again &rarr;
+              Submit Vote &rarr;
             </button>
 
             <div class="revote-toast" id="revote-toast">
@@ -2626,6 +2629,22 @@
         void resultsStage.offsetHeight;
         resultsStage.classList.add('fade-in-up');
 
+        // Pause initial stage video and ensure results video is actively playing
+        if (blueprintPlayer && typeof blueprintPlayer.pauseVideo === 'function') {
+          try { blueprintPlayer.pauseVideo(); } catch (err) {}
+        }
+        if (resultsPlayer && typeof resultsPlayer.playVideo === 'function') {
+          try {
+            resultsPlayer.mute();
+            resultsPlayer.playVideo();
+          } catch (err) {}
+        } else {
+          const resIframe = document.getElementById('results-video-iframe');
+          if (resIframe && resIframe.contentWindow) {
+            resIframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
+          }
+        }
+
         window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
         document.documentElement.scrollTop = 0;
         document.body.scrollTop = 0;
@@ -2780,6 +2799,13 @@
         const resultsStage = document.getElementById('two-col-results-stage');
         const mainStage    = document.getElementById('main-stage');
         if (resultsStage && mainStage) {
+          // Pause results video and resume main video
+          if (resultsPlayer && typeof resultsPlayer.pauseVideo === 'function') {
+            try { resultsPlayer.pauseVideo(); } catch (err) {}
+          }
+          if (blueprintPlayer && typeof blueprintPlayer.playVideo === 'function') {
+            try { blueprintPlayer.playVideo(); } catch (err) {}
+          }
           resultsStage.classList.remove('fade-in-up', 'is-active');
           resultsStage.style.display = 'none';
           mainStage.classList.remove('is-hidden', 'slide-out-up');
@@ -2800,27 +2826,46 @@
       }
     });
 
-    // ── YouTube Blueprint Video Controller (Autoplay Muted + Restart & Unmute) ──
+    // ── YouTube Video Controllers (Autoplay Muted + Restart & Unmute) ──
     let blueprintPlayer = null;
+    let resultsPlayer = null;
 
     function initYouTubeBlueprintPlayer() {
-      const iframe = document.getElementById('blueprint-video-iframe');
-      if (!iframe) return;
-
       if (window.YT && window.YT.Player) {
-        try {
-          blueprintPlayer = new YT.Player('blueprint-video-iframe', {
-            events: {
-              'onReady': function(event) {
-                try {
-                  event.target.mute();
-                  event.target.playVideo();
-                } catch (err) {}
+        const iframe = document.getElementById('blueprint-video-iframe');
+        if (iframe && !blueprintPlayer) {
+          try {
+            blueprintPlayer = new YT.Player('blueprint-video-iframe', {
+              events: {
+                'onReady': function(event) {
+                  try {
+                    event.target.mute();
+                    event.target.playVideo();
+                  } catch (err) {}
+                }
               }
-            }
-          });
-        } catch (e) {
-          console.warn('YT.Player initialization note:', e);
+            });
+          } catch (e) {
+            console.warn('YT.Player initialization note:', e);
+          }
+        }
+
+        const resIframe = document.getElementById('results-video-iframe');
+        if (resIframe && !resultsPlayer) {
+          try {
+            resultsPlayer = new YT.Player('results-video-iframe', {
+              events: {
+                'onReady': function(event) {
+                  try {
+                    event.target.mute();
+                    event.target.playVideo();
+                  } catch (err) {}
+                }
+              }
+            });
+          } catch (e) {
+            console.warn('YT.Player results initialization note:', e);
+          }
         }
       }
     }
@@ -2892,6 +2937,25 @@
     const btnRestartUnmute = document.getElementById('btn-restart-unmute');
     if (btnRestartUnmute) {
       btnRestartUnmute.addEventListener('click', handleRestartAndUnmute);
+    }
+
+    // Direct preview handler for ?results=1
+    if (new URLSearchParams(window.location.search).get('results') === '1') {
+      const mainStage = document.getElementById('main-stage');
+      const resultsStage = document.getElementById('two-col-results-stage');
+      const mainHeadline = document.getElementById('main-headline');
+      if (mainStage && resultsStage) {
+        mainStage.style.setProperty('display', 'none', 'important');
+        if (mainHeadline) {
+          mainHeadline.innerHTML = `Here's How Your Voice <span class="highlight-blueprint">Shapes The Movement</span> &amp; The <span class="highlight-accent">Community Blueprint</span>`;
+        }
+        resultsStage.style.removeProperty('display');
+        resultsStage.classList.add('is-active', 'fade-in-up');
+        document.querySelectorAll('#two-col-results-stage .res-bar-fill').forEach(fill => {
+          const target = fill.getAttribute('data-target') || '0';
+          fill.style.width = target + '%';
+        });
+      }
     }
   </script>
 </body>
