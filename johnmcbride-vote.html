@@ -1191,8 +1191,17 @@
       box-shadow: 2px 2px 0px var(--color-blueprint);
     }
 
+    .revote-priority-card:focus-visible {
+      outline: 2px solid var(--color-blueprint);
+      outline-offset: 2px;
+    }
+
     .revote-priority-card input[type="checkbox"] {
-      display: none;
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+      pointer-events: none;
     }
 
     .revote-priority-content {
@@ -2302,34 +2311,34 @@
 
               <div class="revote-priority-list">
                 <!-- Priority 1: Transform School Culture -->
-                <label class="revote-priority-card" for="rv-school">
+                <div class="revote-priority-card" id="card-rv-school" role="checkbox" aria-checked="false" tabindex="0">
                   <input type="checkbox" id="rv-school" name="revote_priority" value="school_culture" />
                   <div class="revote-priority-content">
                     <div class="revote-priority-title">🏫 Transform School Culture</div>
                     <div class="revote-priority-desc">Turn school environments into safe sanctuaries where students thrive.</div>
                   </div>
                   <div class="revote-check-indicator">&check;</div>
-                </label>
+                </div>
 
                 <!-- Priority 2: Empower Coaches -->
-                <label class="revote-priority-card" for="rv-coaches">
+                <div class="revote-priority-card" id="card-rv-coaches" role="checkbox" aria-checked="false" tabindex="0">
                   <input type="checkbox" id="rv-coaches" name="revote_priority" value="empowered_coaches" />
                   <div class="revote-priority-content">
                     <div class="revote-priority-title">⚡ Empower Coaches</div>
                     <div class="revote-priority-desc">Equip mentors with cutting-edge digital tools for real-time problem-solving.</div>
                   </div>
                   <div class="revote-check-indicator">&check;</div>
-                </label>
+                </div>
 
                 <!-- Priority 3: Heal Our Communities -->
-                <label class="revote-priority-card" for="rv-healing">
+                <div class="revote-priority-card" id="card-rv-healing" role="checkbox" aria-checked="false" tabindex="0">
                   <input type="checkbox" id="rv-healing" name="revote_priority" value="community_healing" />
                   <div class="revote-priority-content">
                     <div class="revote-priority-title">💛 Heal Our Communities</div>
                     <div class="revote-priority-desc">Root-level trauma recovery for inner-city youth, parents, and neighborhoods.</div>
                   </div>
                   <div class="revote-check-indicator">&check;</div>
-                </label>
+                </div>
               </div>
             </div>
 
@@ -2716,16 +2725,24 @@
 
       if (checkbox.checked) {
         card.classList.add('selected');
+        card.setAttribute('aria-checked', 'true');
       }
 
-      card.addEventListener('click', (e) => {
-        if (e.target !== checkbox) {
-          checkbox.checked = !checkbox.checked;
-        }
+      function togglePriority() {
+        checkbox.checked = !checkbox.checked;
         card.classList.toggle('selected', checkbox.checked);
-
+        card.setAttribute('aria-checked', checkbox.checked ? 'true' : 'false');
         const alertBox = document.getElementById('revote-alert');
-        if (alertBox) alertBox.classList.remove('show');
+        if (alertBox && checkbox.checked) alertBox.classList.remove('show');
+      }
+
+      card.addEventListener('click', togglePriority);
+
+      card.addEventListener('keydown', (e) => {
+        if (e.key === ' ' || e.key === 'Enter') {
+          e.preventDefault();
+          togglePriority();
+        }
       });
     });
 

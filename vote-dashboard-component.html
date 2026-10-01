@@ -184,7 +184,11 @@
     }
 
     .priority-checkbox-card input[type="checkbox"] {
-      display: none;
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+      pointer-events: none;
     }
 
     .priority-card-content {
@@ -1146,11 +1150,17 @@
   <script>
     // Priority Card Selection Toggle
     document.querySelectorAll('.priority-checkbox-card').forEach(card => {
-      card.addEventListener('click', (e) => {
-        const checkbox = card.querySelector('input[type="checkbox"]');
-        checkbox.checked = !checkbox.checked;
+      const checkbox = card.querySelector('input[type="checkbox"]');
+      if (!checkbox) return;
+
+      if (checkbox.checked) {
+        card.classList.add('selected');
+      }
+
+      checkbox.addEventListener('change', () => {
         card.classList.toggle('selected', checkbox.checked);
-        document.getElementById('form-alert').classList.remove('show');
+        const formAlert = document.getElementById('form-alert');
+        if (formAlert && checkbox.checked) formAlert.classList.remove('show');
       });
     });
 
