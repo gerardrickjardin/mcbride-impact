@@ -10,6 +10,34 @@
   ],
   "rewrites": [
     {
+      "source": "/terms-and-conditions",
+      "destination": "/terms-and-conditions.html"
+    },
+    {
+      "source": "/terms",
+      "destination": "/terms-and-conditions.html"
+    },
+    {
+      "source": "/terms-of-service",
+      "destination": "/terms-and-conditions.html"
+    },
+    {
+      "source": "/privacy-policy",
+      "destination": "/privacy-policy.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact.html"
+    },
+    {
+      "source": "/contact-us",
+      "destination": "/contact.html"
+    },
+    {
+      "source": "/opt-in",
+      "destination": "/contact.html"
+    },
+    {
       "source": "/landing",
       "destination": "/landing.html"
     },
