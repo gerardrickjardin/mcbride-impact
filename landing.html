@@ -2284,6 +2284,14 @@
             </iframe>
           </div>
 
+          <button type="button" class="btn-restart-unmute" id="btn-results-restart-unmute" aria-label="Click to restart and unmute video" style="margin: 10px 0 12px;">
+            <svg class="btn-restart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+              <path d="M3 3v5h5"/>
+            </svg>
+            <span>CLICK TO RESTART AND UNMUTE</span>
+          </button>
+
           <div class="settlement-card-inner">
             <span style="font-size: 1rem; flex-shrink: 0;">⚖️</span>
             <div>
@@ -2948,6 +2956,27 @@
     const btnRestartUnmute = document.getElementById('btn-restart-unmute');
     if (btnRestartUnmute) {
       btnRestartUnmute.addEventListener('click', handleRestartAndUnmute);
+    }
+
+    const btnResultsRestartUnmute = document.getElementById('btn-results-restart-unmute');
+    if (btnResultsRestartUnmute) {
+      btnResultsRestartUnmute.addEventListener('click', () => {
+        const iframe = document.getElementById('results-video-iframe');
+        if (iframe && iframe.contentWindow) {
+          [['seekTo', [0, true]], ['unMute', []], ['setVolume', [100]], ['playVideo', []]].forEach(([func, args]) => {
+            iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func, args }), '*');
+          });
+        }
+        const icon = btnResultsRestartUnmute.querySelector('.btn-restart-icon');
+        if (icon) {
+          icon.style.transform = 'rotate(-360deg)';
+          setTimeout(() => {
+            icon.style.transition = 'none';
+            icon.style.transform = 'rotate(0deg)';
+            setTimeout(() => { icon.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)'; }, 50);
+          }, 500);
+        }
+      });
     }
 
     // Direct preview handler for ?results=1
