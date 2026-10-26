@@ -496,6 +496,53 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ==========================================
+  // STOREFRONT VARSITY JACKET VIEW SWITCHER
+  // ==========================================
+  const jacketCard = document.getElementById('merch-card-jacket');
+  if (jacketCard) {
+    const angleBtns = jacketCard.querySelectorAll('.angle-btn');
+    const jacketImgs = jacketCard.querySelectorAll('.jacket-img');
+    const imgWrapper = jacketCard.querySelector('#jacket-img-wrapper');
+
+    function setJacketView(targetId) {
+      jacketImgs.forEach(img => {
+        if (img.id === targetId) {
+          img.classList.add('active');
+        } else {
+          img.classList.remove('active');
+        }
+      });
+      angleBtns.forEach(btn => {
+        if (btn.getAttribute('data-target') === targetId) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    angleBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const targetId = btn.getAttribute('data-target');
+        if (targetId) setJacketView(targetId);
+      });
+    });
+
+    if (imgWrapper) {
+      imgWrapper.addEventListener('click', (e) => {
+        if (e.target.closest('.jacket-angle-switcher')) return;
+        const frontImg = document.getElementById('jacket-img-front');
+        if (frontImg && frontImg.classList.contains('active')) {
+          setJacketView('jacket-img-side');
+        } else {
+          setJacketView('jacket-img-front');
+        }
+      });
+    }
+  }
+
 });
 
 
