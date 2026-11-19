@@ -2712,7 +2712,47 @@ a {
 }
 
 .scholarship-hero-action {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.btn-scholarship-register {
+  display: inline-block;
+  padding: 16px 48px;
+  background-color: var(--color-blueprint);
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.15rem;
+  text-decoration: none;
+  border: var(--border-sketch);
+  border-radius: 8px;
+  box-shadow: 4px 4px 0px #1a202c;
+  transition: var(--transition-smooth);
+}
+
+.btn-scholarship-register:hover {
+  background-color: #1e3a5f;
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 6px 6px 0px #1a202c;
+}
+
+@media (max-width: 540px) {
+  .scholarship-hero-action {
+    flex-direction: column;
+    gap: 14px;
+  }
+  .scholarship-hero-action .btn-donate-gold,
+  .scholarship-hero-action .btn-scholarship-register {
+    width: 100%;
+    max-width: 280px;
+    padding: 14px 32px;
+    text-align: center;
+  }
 }
 
 .btn-scholarship-donate {
